@@ -1,0 +1,581 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.3.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.14.0/css/all.min.css">
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css">
+
+<script class="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"zhengyuan.xyz","root":"/","scheme":"Pisces","version":"8.0.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}};
+  </script>
+
+  <meta name="description" content="相关概念 git与GitHub   git 是一个分布式版本控制软件，最初由林纳斯·托瓦兹（Linus Torvalds）创作，于2005年以GPL发布。最初目的是为更好地管理Linux内核开发而设计。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="GitHub Pages搭建个人博客傻瓜教程">
+<meta property="og:url" content="http://zhengyuan.xyz/2017/04/29/GitHub-Pages%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%E5%82%BB%E7%93%9C%E6%95%99%E7%A8%8B/index.html">
+<meta property="og:site_name" content="玉竹的博客">
+<meta property="og:description" content="相关概念 git与GitHub   git 是一个分布式版本控制软件，最初由林纳斯·托瓦兹（Linus Torvalds）创作，于2005年以GPL发布。最初目的是为更好地管理Linux内核开发而设计。">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/yuzhu9/image@master/img/21.jpg">
+<meta property="og:image" content="http://i2.muimg.com/567571/b59a901adecc8fc9.png">
+<meta property="article:published_time" content="2017-04-29T15:37:03.000Z">
+<meta property="article:modified_time" content="2020-12-30T20:46:56.823Z">
+<meta property="article:author" content="yuzhu9">
+<meta property="article:tag" content="工具">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://cdn.jsdelivr.net/gh/yuzhu9/image@master/img/21.jpg">
+
+
+<link rel="canonical" href="http://zhengyuan.xyz/2017/04/29/GitHub-Pages%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%E5%82%BB%E7%93%9C%E6%95%99%E7%A8%8B/">
+
+
+<script class="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>GitHub Pages搭建个人博客傻瓜教程 | 玉竹的博客</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  body { margin-top: 2rem; }
+
+  .use-motion .menu-item,
+  .use-motion .sidebar,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header {
+    visibility: visible;
+  }
+
+  .use-motion .header,
+  .use-motion .site-brand-container .toggle,
+  .use-motion .footer { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle,
+  .use-motion .custom-logo-image {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line {
+    transform: scaleX(1);
+  }
+
+  .search-pop-overlay, .sidebar-nav { display: none; }
+  .sidebar-panel { display: block; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <h1 class="site-title">玉竹的博客</h1>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <section class="post-toc-wrap sidebar-panel">
+          <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%9B%B8%E5%85%B3%E6%A6%82%E5%BF%B5"><span class="nav-number">1.</span> <span class="nav-text">相关概念</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%87%86%E5%A4%87%E5%B7%A5%E4%BD%9C"><span class="nav-number">2.</span> <span class="nav-text">准备工作</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%AD%A5%E9%AA%A4"><span class="nav-number">3.</span> <span class="nav-text">步骤</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AC%AC%E4%B8%80%E9%98%B6%E6%AE%B5%E5%AE%8C%E6%88%90%EF%BC%81%EF%BC%81%EF%BC%81"><span class="nav-number">3.1.</span> <span class="nav-text">第一阶段完成！！！</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AC%AC%E4%BA%8C%E9%98%B6%E6%AE%B5%E5%AE%8C%E6%88%90%EF%BC%81%EF%BC%81%EF%BC%81"><span class="nav-number">3.2.</span> <span class="nav-text">第二阶段完成！！！</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AC%AC%E4%B8%89%E9%98%B6%E6%AE%B5%E5%AE%8C%E6%88%90"><span class="nav-number">3.3.</span> <span class="nav-text">第三阶段完成</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AC%AC%E5%9B%9B%E9%98%B6%E6%AE%B5%E5%AE%8C%E6%88%90%EF%BC%81%EF%BC%81%EF%BC%81"><span class="nav-number">3.4.</span> <span class="nav-text">第四阶段完成！！！</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%99%84%EF%BC%9A"><span class="nav-number">4.</span> <span class="nav-text">附：</span></a></li></ol></div>
+      </section>
+      <!--/noindex-->
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="yuzhu9"
+      src="/images/avatar.jpg">
+  <p class="site-author-name" itemprop="name">yuzhu9</p>
+  <div class="site-description" itemprop="description">逝者如斯夫，不舍昼夜</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">25</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">2</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">6</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/yuzhu9" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;yuzhu9" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:poly2014w@163.com" title="E-Mail → mailto:poly2014w@163.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+
+
+
+      </section>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+      
+
+      
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://zhengyuan.xyz/2017/04/29/GitHub-Pages%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%E5%82%BB%E7%93%9C%E6%95%99%E7%A8%8B/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="yuzhu9">
+      <meta itemprop="description" content="逝者如斯夫，不舍昼夜">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="玉竹的博客">
+    </span>
+
+    
+    
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          GitHub Pages搭建个人博客傻瓜教程
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2017-04-29 23:37:03" itemprop="dateCreated datePublished" datetime="2017-04-29T23:37:03+08:00">2017-04-29</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">更新于</span>
+        <time title="修改时间：2020-12-31 04:46:56" itemprop="dateModified" datetime="2020-12-31T04:46:56+08:00">2020-12-31</time>
+      </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E6%95%99%E7%A8%8B/" itemprop="url" rel="index"><span itemprop="name">教程</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <h2 id="相关概念"><a href="#相关概念" class="headerlink" title="相关概念"></a>相关概念</h2><ul>
+<li><p>git与GitHub</p>
+</li>
+<li><blockquote>
+<p>git 是一个分布式版本控制软件，最初由林纳斯·托瓦兹（Linus Torvalds）创作，于2005年以GPL发布。最初目的是为更好地管理Linux内核开发而设计。</p>
+</blockquote>
+<p><img src="https://cdn.jsdelivr.net/gh/yuzhu9/image@master/img/21.jpg"></p>
+<a id="more"></a>
+</li>
+<li><blockquote>
+<p>GitHub是一个通过Git进行版本控制的软件源代码托管服务，由GitHub公司（曾称Logical Awesome）的开发者Chris Wanstrath、PJ Hyett和Tom Preston-Werner使用Ruby on Rails编写而成。事实上已经成为了世界上最大的代码存放网站和开源社区。</p>
+</blockquote>
+</li>
+<li><p>GitHub Pages</p>
+<blockquote>
+<p>Github Pages 是面向用户、组织和项目开放的公共静态页面搭建托管服务，站点可以被免费托管在Github 上，你可以选择使用Github Pages 默认提供的域名github.io 或者自定义域名来发布站点</p>
+</blockquote>
+</li>
+<li><p>Hexo</p>
+<blockquote>
+<p>Hexo 是一个快速、简洁且高效的博客框架。Hexo 使用 Markdown（或其他渲染引擎）解析文章，在几秒内，即可利用靓丽的主题生成静态网页。</p>
+</blockquote>
+</li>
+<li><p><a target="_blank" rel="noopener" href="http://www.liaoxuefeng.com/wiki/0013739516305929606dd18361248578c67b8067c8c017b000">git教程</a> </p>
+</li>
+</ul>
+<h2 id="准备工作"><a href="#准备工作" class="headerlink" title="准备工作"></a>准备工作</h2><p>1.软件下载安装：</p>
+<ul>
+<li>GitBash <a target="_blank" rel="noopener" href="https://git-for-windows.github.io/">下载地址</a></li>
+<li>Node.js <a target="_blank" rel="noopener" href="http://nodejs.cn/download/">下载地址</a></li>
+</ul>
+<p>2.GitHub账号注册: <a target="_blank" rel="noopener" href="https://github.com/">官网地址</a></p>
+<p>3.申请域名（可选项）</p>
+<h2 id="步骤"><a href="#步骤" class="headerlink" title="步骤"></a>步骤</h2><p><strong>1.打开GitBash，在GitBash中输入下面命令安装Hexo(进行此步骤前请确认已安装好Node.js,否则无法安装成功)</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install -g hexo-cli</span><br></pre></td></tr></table></figure>
+<p><strong>2.输入以上命令之后等待安装完成，之后可以输入以下命令进行检查：</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo -v</span><br></pre></td></tr></table></figure>
+<p>  如果出现版本信息，说明安装成功</p>
+<p><strong>3.选择一个合适的位置新建你的站点文件夹(例如我是在D盘新建文件夹hexo)</strong></p>
+<p><strong>4.直接打开你刚刚新建的空白文件夹(例如我的是hexo,就打开hexo文件夹)</strong></p>
+<p><strong>5.右键点击，在弹出的菜单中选择Git Bash Here</strong></p>
+<p><strong>6.输入以下命令，Hexo 将会在指定文件夹中新建所需要的文件</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">hexo init</span><br><span class="line">npm install</span><br></pre></td></tr></table></figure>
+
+<p><strong>7.此时可以查看文件夹,包含如下目录：</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">.</span><br><span class="line">├── _config.yml</span><br><span class="line">├── package.json</span><br><span class="line">├── scaffolds</span><br><span class="line">├── source</span><br><span class="line">|   ├── _drafts</span><br><span class="line">|   └── _posts</span><br><span class="line">└── themes</span><br></pre></td></tr></table></figure>
+<p><strong>8.GitBash输入如下命令：</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo g</span><br></pre></td></tr></table></figure>
+<p><strong>9.等以上命令执行完毕，接着输入：</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo s</span><br></pre></td></tr></table></figure>
+<p>有可能windows会跳出防火墙提示，允许即可</p>
+<p><strong>10.接着会出现提示：</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">INFO  Start processing</span><br><span class="line">INFO  Hexo is running at http:&#x2F;&#x2F;localhost:4000&#x2F;. Press Ctrl+C to stop.</span><br></pre></td></tr></table></figure>
+<p>此时在浏览器输入<code>http://localhost:4000/</code>打开，就可以看到页面</p>
+<p>如果出现上面提示但是无法打开，可能是端口被占用。解决办法按ctrl+c中断，重新设置端口。例如设置端口号为3999，在命令行输入<code>hexo s -p 3999</code>,在浏览器输入<code>http://localhost:3999/</code>即可。此修改只生效一次，永久修改请看文章最后补充</p>
+<p><strong>11.接下来设置你的博客昵称等信息。</strong></p>
+<p>打开Hexo的配置文件_config.yml，打开你第3步建的文件夹（我的是hexo文件夹）就可以看到了。用文本编辑器打开这个配置文件（可以用vim，可以用其他文本编辑器，例如记事本、sublime、vscode等等，推荐使用有高亮显示的编辑器，例如我使用vscode）（注意：配置参数的冒号后面必须有一个空格！！！）</p>
+<ul>
+<li>设置作者昵称 <code>author: 你的昵称</code></li>
+<li>设置博客标题 <code>title: 你的博客名称</code></li>
+<li>设置博客语言 <code>language: zh-Hans</code></li>
+<li>设置网站描述 <code>description: 网站描述</code></li>
+<li><strong>更多配置信息请查看<a target="_blank" rel="noopener" href="https://hexo.io/zh-cn/docs/configuration.html">Hexo文档</a></strong></li>
+</ul>
+<h3 id="第一阶段完成！！！"><a href="#第一阶段完成！！！" class="headerlink" title="第一阶段完成！！！"></a>第一阶段完成！！！</h3><p>不喜欢这个默认界面风格？那么接着进行下一个步骤吧，更换主题：<a target="_blank" rel="noopener" href="https://hexo.io/themes/">官方收集的主题</a>，下面以Next主题为例讲解更换主题的步骤</p>
+<p><strong>12.安装Next:GitBash中输入如下命令</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git clone https:&#x2F;&#x2F;github.com&#x2F;iissnan&#x2F;hexo-theme-next themes&#x2F;next</span><br></pre></td></tr></table></figure>
+<p><strong>13.等待主题下载完成，启用主题。</strong></p>
+<p>打开Hexo的配置文件_config.yml，找到theme字段，将值改为next，并保存（注意：可以直接复制我的代码，自己填写也可以，注意冒号后面必须有一个空格）（<em>一般的文本编辑器，按ctrl+f输入字段就可以在文件中进行字段查找</em>）</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">theme: next</span><br></pre></td></tr></table></figure>
+<p><strong>14.命令行输入</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">hexo clean</span><br><span class="line">hexo p</span><br><span class="line">hexo s</span><br></pre></td></tr></table></figure>
+<p>此时即可使用浏览器访问 <a href="http://localhost:4000，查看新主题是否生效，生效后就可以接着进行主题的修改配置">http://localhost:4000，查看新主题是否生效，生效后就可以接着进行主题的修改配置</a></p>
+<p><em>建议进行以下15~19步配置时，每配置一项，就使用下面命令及时查看，以免出错后难以查找。</em></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">hexo g</span><br><span class="line">hexo s --debug</span><br></pre></td></tr></table></figure>
+<p><strong>15.修改Scheme，目前NexT支持3种Scheme:</strong></p>
+<ul>
+<li><blockquote>
+<p>Muse -默认 Scheme，这是 NexT 最初的版本，黑白主调，大量留白</p>
+</blockquote>
+</li>
+<li><blockquote>
+<p>Mist -Muse 的紧凑版本，整洁有序的单栏外观</p>
+</blockquote>
+</li>
+<li><blockquote>
+<p>Pisces -双栏 Scheme，小家碧玉似的清新</p>
+</blockquote>
+</li>
+</ul>
+<p>打开NexT的配置文件[路径：站点文件（hexo文件）/themes/next/_config.yml。注意这是NexT的配置文件，不是之前的Hexo的配置文件，不要找错了]，找到 scheme字段，选择哪个 scheme就去掉它前面的#，例如选择Pisces Scheme修改配置如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">#scheme: Muse</span><br><span class="line">#scheme: Mist</span><br><span class="line">scheme: Pisces</span><br></pre></td></tr></table></figure>
+<p><strong>16.设置菜单，例如设置只显示主页和归档，其他不显示，在配置文件中找到menu字段，配置如下：</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">menu:</span><br><span class="line">  home: &#x2F;</span><br><span class="line">  archives: &#x2F;archives</span><br><span class="line">  #about: &#x2F;about</span><br><span class="line">  #categories: &#x2F;categories</span><br><span class="line">  #tags: &#x2F;tags</span><br><span class="line">  #commonweal: &#x2F;404.html</span><br></pre></td></tr></table></figure>
+<p><strong>17.设置头像，在配置文件中找到avatar字段，修改它的参数:</strong></p>
+<ul>
+<li><p>地址可以是互联网上的地址，直接设置参数为url地址即可</p>
+</li>
+<li><p>如果要使用存放在本地的图片（例如你想使用你电脑上名字是avatar.png的图片作为头像)，打开主题的images文件夹（路径：站点文件夹/themes/next/source/images)，在source文件夹下新建文件夹images,将头像图片放到images文件夹下。配置如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">avatar: &#x2F;images&#x2F;avatar.png</span><br></pre></td></tr></table></figure></li>
+</ul>
+<p><strong>18.设置侧边栏社交链接。</strong></p>
+<p>在配置文件中找到Social Links 字段,添加需要的社交账号参数，例如添加GitHub，配置如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"># Social Links</span><br><span class="line"># Key is the link label showing to end users.</span><br><span class="line"># Value is the target link (E.g. GitHub: https:&#x2F;&#x2F;github.com&#x2F;iissnan)</span><br><span class="line">social:</span><br><span class="line">  #LinkLabel: Link</span><br><span class="line">  GitHub: https:&#x2F;&#x2F;github.com&#x2F;你的GitHub账户名</span><br></pre></td></tr></table></figure>
+<p><strong>19.配置完成，记得保存文件哟！打开站点目录，右键点击，选择Git Bash Here,运行命令查看效果</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">hexo g</span><br><span class="line">hexo s --debug</span><br></pre></td></tr></table></figure>
+<p><strong>20.更多配置请查看<a target="_blank" rel="noopener" href="http://theme-next.iissnan.com/getting-started.html">NexT使用文档</a></strong></p>
+<h3 id="第二阶段完成！！！"><a href="#第二阶段完成！！！" class="headerlink" title="第二阶段完成！！！"></a>第二阶段完成！！！</h3><p>下面就是往线上部署了</p>
+<p><strong>21.先确认本机是否已经生成了密钥对，是否已经设置了个人用户和邮箱等配置信息，如果有了，请跳过下面22步</strong></p>
+<p><strong>22.如果没有，输入命令，注意引号里面换成你自己的名字和邮箱</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git config --global user.name &quot;你的名字&quot;</span><br><span class="line">git config --global user.email &quot;你的邮箱&quot;</span><br></pre></td></tr></table></figure>
+<p>设置完成后，输入下面命令：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh-keygen -t rsa -C &quot;你的邮箱&quot;</span><br></pre></td></tr></table></figure>
+<p>按3个回车，生成密钥对。接着输入：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cd ~&#x2F;.ssh</span><br><span class="line">cat id_rsa.pub</span><br></pre></td></tr></table></figure>
+<p><strong>23.复制公钥，粘贴到你的GitHub上(登陆你的GitHub。</strong></p>
+<p>右上角setting-左侧栏SSH and GPG keys，标题随便填或不填，将公钥粘贴到内容，点击Add SSH key)</p>
+<p><strong>24.在GitHub上新建一个仓库,仓库名字<em>必须</em>是</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">你的GitHub账户名.github.io</span><br></pre></td></tr></table></figure>
+<p>不知道账户名的话，点页面右上角你的头像旁边的小三角，第一行Signed in as后面就是你的账户名</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Signed in as 你的GitHub账户名</span><br></pre></td></tr></table></figure>
+<p>填好仓库名字，点击Create repository创建仓库成功.</p>
+<p>复制仓库地址（注意是复制SSH地址，不要使用HTTPS地址，使用HTTPS地址需要输入用户名和密码）</p>
+<p><strong>25.打开Hexo的配置文件，也就是你的站点目录（例如我是hexo文件夹）目录下的_config.yml，找到deploy字段，配置如下：</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">deploy:</span><br><span class="line">  type: git</span><br><span class="line">  repo: 你刚刚复制的GitHub仓库的SSH地址</span><br><span class="line">  branch: master</span><br></pre></td></tr></table></figure>
+<p>配置完成之后保存文件。</p>
+<p><strong>26.打开站点目录，右键点击，选择Git Bash Here</strong><br>输入下面命令安装一个扩展</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install hexo-deployer-git --save</span><br></pre></td></tr></table></figure>
+<p>安装完成后，运行如下命令</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">hexo g</span><br><span class="line">hexo d</span><br></pre></td></tr></table></figure>
+<p>部署完成后，打开<code>https://你的GitHub账户名.github.io/</code>就可以查看你的博客了，这个地址就是你的博客地址。</p>
+<p><strong>27.发表博文:</strong><br>1.新建一篇文章</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo new &quot;title&quot;</span><br></pre></td></tr></table></figure>
+<p>这个命令就会在站点目录下的source文件夹下的_post文件夹中新建一个名字叫title的markdown文件。<br>2.完成文章的编写之后运行下面命令</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">hexo g</span><br><span class="line">hexo d</span><br></pre></td></tr></table></figure>
+<p>新的文章就发布到博客上了</p>
+<p><strong>更多Hexo操作请查看<a target="_blank" rel="noopener" href="https://hexo.io/zh-cn/docs/writing.html">Hexo文档</a></strong></p>
+<h3 id="第三阶段完成"><a href="#第三阶段完成" class="headerlink" title="第三阶段完成"></a>第三阶段完成</h3><p>下面简单讲下绑定个人域名,如果不需要绑定个人域名，以下步骤就不用看了</p>
+<p><strong>28.域名申请。</strong></p>
+<p>可以到万网申请个人域名，也可以到其他域名网站购买：<a target="_blank" rel="noopener" href="https://wanwang.aliyun.com/">点击打开万网</a><br>注册账号，查询域名，选择域名，付款购买，实名认证：步骤略！</p>
+<p><strong>29.域名购买成功后，进行域名解析,配置如下图：</strong><br><img src="http://i2.muimg.com/567571/b59a901adecc8fc9.png"></p>
+<p><strong>30.打开GitBash,转到你的站点目录下的source文件夹,新建CNAME文件</strong><br>（注意：无后缀名，字母全部大写，不要写错）例如我的站点目录是D盘的hexo文件夹，我从桌面上打开GitBash,那么就输入如下命令:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cd &#x2F;d&#x2F;source</span><br><span class="line">touch CNAME</span><br></pre></td></tr></table></figure>
+<p>如果你的路径跟我不一样，那么不要直接复制以上命令，按照你自己的路径找到站点目录下的source目录</p>
+<p><strong>31.打开CNAME，将你的个人域名填进去。</strong></p>
+<p>注意不要填写http/https/www等，直接填写你的个人域名，例如你的个人域名是hahaha.cn,那么就填写hahaha.cn，填写完成之后保存。</p>
+<p><strong>32.打开站点目录，右键点击，选择Git Bash Here,运行命令：</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">hexo g</span><br><span class="line">hexo d</span><br></pre></td></tr></table></figure>
+<h3 id="第四阶段完成！！！"><a href="#第四阶段完成！！！" class="headerlink" title="第四阶段完成！！！"></a>第四阶段完成！！！</h3><p>顺利的话输入你的个人域名就可以进入你的博客了。（新买的域名实名可能需要等待一段时间）</p>
+<h2 id="附："><a href="#附：" class="headerlink" title="附："></a>附：</h2><p><strong>修改默认端口的方法：</strong><br>打开你的站点文件夹（例如我的是hexo文件夹），找到node_modules文件夹，再打开 node_modules文件夹，找到hexo-server文件夹，将此文件夹下index.js文件打开，修改端口号，例如改成3999保存：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">port: 3999,</span><br></pre></td></tr></table></figure>
+<p><strong>常用hexo命令:</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">hexo g       # 也就是hexo generate 作用是生成静态文件，也就是把你写的markdown格式的文章生成html文件</span><br><span class="line">hexo s       # 也就是hexo server 作用是启动本地服务器，这样你在本地就可以看到效果，默认访问网址为：http:&#x2F;&#x2F;localhost:4000&#x2F;</span><br><span class="line">hexo d       # 也就是hexo deploy 作用是部署网站，部署hexo g生成的静态文件</span><br><span class="line">hexo clean   # 清除缓存文件 (db.json) 和已生成的静态文件 (public)。在某些情况（尤其是更换主题后），如果发现您对站点的更改无论如何也不生效，您可能需要运行该命令。</span><br><span class="line">hexo --debug # 在终端中显示调试信息并记录到 debug.log。</span><br><span class="line">hexo d -g    # hexo g 和hexo d合并,一个命令就完成生成和部署</span><br><span class="line">hexo new &quot;a&quot; # 新建标题为a的文章</span><br></pre></td></tr></table></figure>
+<p><strong><a target="_blank" rel="noopener" href="https://hexo.io/zh-cn/docs/commands.html">更多命令查看Hexo文档</a></strong></p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E5%B7%A5%E5%85%B7/" rel="tag"># 工具</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2017/04/29/%E4%BB%8EURL%E8%BE%93%E5%85%A5%E5%88%B0%E9%A1%B5%E9%9D%A2%E5%8A%A0%E8%BD%BD%E5%8F%91%E7%94%9F%E4%BA%86%E4%BB%80%E4%B9%88/" rel="prev" title="从URL输入到页面加载发生了什么">
+                  <i class="fa fa-chevron-left"></i> 从URL输入到页面加载发生了什么
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2017/05/01/meta%E6%A0%87%E7%AD%BE%E5%B1%9E%E6%80%A7/" rel="next" title="meta标签属性">
+                  meta标签属性 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+  
+  
+  
+
+
+
+      
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      const activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      const commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+      
+
+      
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">yuzhu9</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/pisces/" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <script src="//cdn.jsdelivr.net/npm/animejs@3.2.0/lib/anime.min.js"></script>
+<script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>

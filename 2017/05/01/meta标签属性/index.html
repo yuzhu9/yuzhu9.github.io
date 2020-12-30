@@ -1,0 +1,536 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.3.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.14.0/css/all.min.css">
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css">
+
+<script class="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"zhengyuan.xyz","root":"/","scheme":"Pisces","version":"8.0.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}};
+  </script>
+
+  <meta name="description" content="定义meta标签提供关于HTML文档的元数据。元数据不会显示在页面上，但是对于机器是可读的。使用meta可以声明这个页面的描述、作者、关键字、最后修改日期等信息，可以供浏览器、搜索引擎和一些Web服务使用。以下是几点注意事项：  meta标签总是定义在head标签之类。 meta标签总是以键值对（name和content）传递信息。 在定义name或者http-equiv属性之后才能定义conte">
+<meta property="og:type" content="article">
+<meta property="og:title" content="meta标签属性">
+<meta property="og:url" content="http://zhengyuan.xyz/2017/05/01/meta%E6%A0%87%E7%AD%BE%E5%B1%9E%E6%80%A7/index.html">
+<meta property="og:site_name" content="玉竹的博客">
+<meta property="og:description" content="定义meta标签提供关于HTML文档的元数据。元数据不会显示在页面上，但是对于机器是可读的。使用meta可以声明这个页面的描述、作者、关键字、最后修改日期等信息，可以供浏览器、搜索引擎和一些Web服务使用。以下是几点注意事项：  meta标签总是定义在head标签之类。 meta标签总是以键值对（name和content）传递信息。 在定义name或者http-equiv属性之后才能定义conte">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/yuzhu9/image@master/img/20.jpg">
+<meta property="article:published_time" content="2017-05-01T14:21:00.000Z">
+<meta property="article:modified_time" content="2017-05-01T14:21:00.000Z">
+<meta property="article:author" content="yuzhu9">
+<meta property="article:tag" content="HTML">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://cdn.jsdelivr.net/gh/yuzhu9/image@master/img/20.jpg">
+
+
+<link rel="canonical" href="http://zhengyuan.xyz/2017/05/01/meta%E6%A0%87%E7%AD%BE%E5%B1%9E%E6%80%A7/">
+
+
+<script class="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>meta标签属性 | 玉竹的博客</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  body { margin-top: 2rem; }
+
+  .use-motion .menu-item,
+  .use-motion .sidebar,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header {
+    visibility: visible;
+  }
+
+  .use-motion .header,
+  .use-motion .site-brand-container .toggle,
+  .use-motion .footer { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle,
+  .use-motion .custom-logo-image {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line {
+    transform: scaleX(1);
+  }
+
+  .search-pop-overlay, .sidebar-nav { display: none; }
+  .sidebar-panel { display: block; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <h1 class="site-title">玉竹的博客</h1>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <section class="post-toc-wrap sidebar-panel">
+          <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%9A%E4%B9%89"><span class="nav-number">1.</span> <span class="nav-text">定义</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-%E5%A3%B0%E6%98%8E%E7%BC%96%E7%A0%81"><span class="nav-number">2.</span> <span class="nav-text">1.声明编码</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-http-equiv%E5%B1%9E%E6%80%A7"><span class="nav-number">3.</span> <span class="nav-text">2.http-equiv属性</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-name%E5%B1%9E%E6%80%A7"><span class="nav-number">4.</span> <span class="nav-text">3.name属性</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8F%82%E8%80%83%E8%B5%84%E6%96%99%EF%BC%9A"><span class="nav-number">5.</span> <span class="nav-text">参考资料：</span></a></li></ol></div>
+      </section>
+      <!--/noindex-->
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="yuzhu9"
+      src="/images/avatar.jpg">
+  <p class="site-author-name" itemprop="name">yuzhu9</p>
+  <div class="site-description" itemprop="description">逝者如斯夫，不舍昼夜</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">25</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">2</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">6</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/yuzhu9" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;yuzhu9" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:poly2014w@163.com" title="E-Mail → mailto:poly2014w@163.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+
+
+
+      </section>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+      
+
+      
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://zhengyuan.xyz/2017/05/01/meta%E6%A0%87%E7%AD%BE%E5%B1%9E%E6%80%A7/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="yuzhu9">
+      <meta itemprop="description" content="逝者如斯夫，不舍昼夜">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="玉竹的博客">
+    </span>
+
+    
+    
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          meta标签属性
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2017-05-01 22:21:00" itemprop="dateCreated datePublished" datetime="2017-05-01T22:21:00+08:00">2017-05-01</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E7%AC%94%E8%AE%B0/" itemprop="url" rel="index"><span itemprop="name">笔记</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <h2 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h2><p>meta标签提供关于HTML文档的元数据。元数据不会显示在页面上，但是对于机器是可读的。使用meta可以声明这个页面的描述、作者、关键字、最后修改日期等信息，可以供浏览器、搜索引擎和一些Web服务使用。<br>以下是几点注意事项：</p>
+<ul>
+<li>meta标签总是定义在head标签之类。</li>
+<li>meta标签总是以键值对（name和content）传递信息。</li>
+<li>在定义name或者http-equiv属性之后才能定义content属性。</li>
+</ul>
+<p><img src="https://cdn.jsdelivr.net/gh/yuzhu9/image@master/img/20.jpg"></p>
+<a id="more"></a>
+
+<h2 id="1-声明编码"><a href="#1-声明编码" class="headerlink" title="1.声明编码"></a>1.声明编码</h2><p>只有HTML5才有的meta：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;meta charset&#x3D;&quot;utf-8&quot;&gt;</span><br></pre></td></tr></table></figure>
+<p>声明当前文档所使用的字符编码，但该声明可以被任何一个元素的 lang 特性的值覆盖。此特性的值必须是一个符合由IANA所定义的字符编码首选MIME 名称（preferred MIME name ）之一。尽管标准不要求必须使用某些特定的字符编码，但它还是给出了一些建议：</p>
+<ul>
+<li>鼓励使用 UTF-8；</li>
+<li>不应该使用不兼容ASCII的编码规范，以避免不必要的安全风险</li>
+<li>绝对不能使用CESU-8、UTF-7、BOCU-1以及SCSU这一类编码，由于这些编码而引起的交叉脚本攻击已经被记录在案</li>
+<li>不应该使用 UTF-31，因为不是所有的 HTML5 编码算法都能将它与 UTF-16 区分开来</li>
+</ul>
+<h2 id="2-http-equiv属性"><a href="#2-http-equiv属性" class="headerlink" title="2.http-equiv属性"></a>2.http-equiv属性</h2><p>这个属性定义了能改变服务器和用户引擎行为的编译。这个编译值使用content 来定义。其作用类似于HTTP头协议,它会告诉浏览器一些关于字符设定，页面刷新，cookie，和缓存等等相关信息.meta标签的http-equiv属性语法格式是：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;meta http-equiv&#x3D;&quot;参数&quot; content&#x3D;&quot;参数变量值&quot;&gt;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>（1）Content-Security-Policy这个属性允许网站管理员对服务资源定制安全策略，有助于方式跨域脚本攻击 XSS 。下面这段代码意思是限制所有的外部资源，都只能从当前域名加载。仅对于此标签下方的内容生效，在文档中应尽可能靠前放置<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;meta http-equiv&#x3D;&quot;Content-Security-Policy&quot; content&#x3D;&quot;default-src &#39;self&#39;&quot;&gt;</span><br></pre></td></tr></table></figure></li>
+<li>（2）X-UA-Compatible是针对IE的一个特殊文件头标记，用于为IE指定不同的页面渲染模式。下面这段代码意思是强制浏览器按照最新的标准去渲染，Google Chrome Frame则使用其渲染该页面<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;meta http-equiv&#x3D;&quot;X-UA-Compatible&quot; content&#x3D;&quot;IE&#x3D;Edge,chrome&#x3D;1&quot; &#x2F;&gt;</span><br></pre></td></tr></table></figure></li>
+<li>（3)x-dns-prefetch-control告知浏览器, 当前页面是否要做DNS预解析，下面代码为退出DNS预解析<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;meta http-equiv&#x3D;&quot;x-dns-prefetch-control&quot; content&#x3D;&quot;off&quot;&gt;</span><br></pre></td></tr></table></figure></li>
+<li>（4）set-cookie,cookie设定。下面这段代码意思是在客户端Web浏览器上存储cookie以进行客户端识别。如果网页过期，存盘的cookie将被删除。expires=date，到期时间<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;meta http-equiv&#x3D;&quot;set-cookie&quot; content&#x3D;&quot;name&#x3D;value; expires&#x3D;date; path&#x3D;url&quot;&gt;</span><br></pre></td></tr></table></figure></li>
+<li>（5）Window-Target，强制页面在特定的框架中（特别是在iframe中）显示。可选的取值为<code>_blank</code>、<code>_top</code>、<code>_self</code>、<code>_parent</code><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;meta http-equiv&#x3D;&quot;Window-Target&quot; content&#x3D;&quot;_value&quot;&gt;</span><br></pre></td></tr></table></figure></li>
+<li>（6）Expires(期限)，用于设定网页的到期时间。一旦网页过期，必须到服务器上重新传输。<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;meta http-equiv&#x3D;&quot;Expires&quot; content&#x3D;&quot;0&quot;&gt;</span><br></pre></td></tr></table></figure></li>
+<li>（7）Pragma(cache模式)，用于设定禁止浏览器从本地机的缓存中调阅页面内容，设定后一旦离开网页就无法从Cache中再调出，这样设定，访问者将无法脱机浏览。<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">＜meta http-equiv&#x3D;&quot;Pragma&quot; content&#x3D;&quot;no-cache&quot;＞ </span><br></pre></td></tr></table></figure></li>
+<li>（8）Cache-Control，清除缓存<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;meta http-equiv&#x3D;&quot;Cache-Control&quot; content&#x3D;&quot;no-cache&quot;&gt;  </span><br></pre></td></tr></table></figure></li>
+<li>（9）content-type，设置页面属性类型.在HTML5中已使用独立的meta标签来声明字符集<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;meta http-equiv&#x3D;&quot;content-type&quot; content&#x3D;&quot;text&#x2F;html; charset&#x3D;utf-8&quot;&gt;</span><br></pre></td></tr></table></figure></li>
+<li>（10）refresh，设置刷新时间.下面代码表示页面60秒后会自动刷新。配置url属性让页面在设定的刷新时间跳转到特定的url.W3C建议不使用此标签<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;meta http-equiv&#x3D;&quot;refresh&quot; content&#x3D;&quot;60;url&#x3D;http:&#x2F;&#x2F;www.mozilla.org&#x2F;&quot;&gt;</span><br></pre></td></tr></table></figure></li>
+<li>（11）default-style，用于指定文档的首选样式表。<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;meta http&#x3D;&quot;default-style&quot; content&#x3D;&quot;title&quot;&gt;</span><br></pre></td></tr></table></figure>
+content的值为指定文档首选样式表的名称(也就是样式表的title)。该名称必须符合下列限制条件之一：<ul>
+<li>该名称必须与同一文档中的link元素上的title属性的值相匹配，并且该link元素必须具有引用CSS样式表位置的href属性。(外部样式表)</li>
+<li>该名称必须与同一文档中style元素上的title属性的值相匹配，该元素的内容必须是CSS样式表。（内部样式表）</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li><p>（12）Pics-label，控制用户在互联网上的访问。通过content值来设置网页评定等级。使用此标签不会影响搜索引擎的排名</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;meta http-equiv&#x3D;&quot;Pics-label&quot; contect&#x3D;&quot;&quot;&gt;  </span><br></pre></td></tr></table></figure>
+<h2 id="3-name属性"><a href="#3-name属性" class="headerlink" title="3.name属性"></a>3.name属性</h2><p>name属性主要用于描述网页，与之对应的属性值为content，content中的内容主要是便于搜索引擎机器人查找信息和分类信息用的。<br>meta标签的name属性语法格式是：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;meta name&#x3D;&quot;参数&quot; content&#x3D;&quot;具体的参数值&quot;&gt;</span><br></pre></td></tr></table></figure></li>
+<li><p><strong>（1）keyword，关键字，每个网页应具有描述该网页内容的一组唯一的关键字, 不要太短也不要太长</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;meta name&#x3D;&quot;keyword&quot; content&#x3D;&quot;key1,key2,key3&quot; &#x2F;&gt;</span><br></pre></td></tr></table></figure></li>
+<li><p><strong>（2）description，网页描述 ，告诉搜索引擎你的网站主要内容</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;meta name&#x3D;&quot;description&quot; content&#x3D;&quot;something about this page.&quot; &#x2F;&gt;</span><br></pre></td></tr></table></figure></li>
+<li><p>（3）robots，设置搜索引擎索引方式</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">&lt;meta name&#x3D;&quot;robots&quot; content&#x3D;&quot;index,follow&quot; &#x2F;&gt;</span><br><span class="line">&lt;meta name&#x3D;&quot;googlebot&quot; content&#x3D;&quot;index,follow&quot;&gt;</span><br><span class="line">&lt;!--</span><br><span class="line">    all：文件将被检索，且页面上的链接可以被查询；</span><br><span class="line">    none：文件将不被检索，且页面上的链接不可以被查询；</span><br><span class="line">    index：文件将被检索；（让robot&#x2F;spider登录）</span><br><span class="line">    follow：页面上的链接可以被查询；</span><br><span class="line">    noindex：文件将不被检索；(不让robot&#x2F;spider登录)</span><br><span class="line">    nofollow：页面上的链接不可以被查询。(不让robot&#x2F;spider顺着此页的连接往下探找)</span><br><span class="line"> --&gt;</span><br></pre></td></tr></table></figure></li>
+<li><p>（4）author，标注网页的作者</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;meta name&#x3D;&quot;author&quot; content&#x3D;&quot;name, email@example.com&quot;&gt;</span><br><span class="line">&lt;meta name&#x3D;&quot;designer&quot; content&#x3D;&quot;&quot;&gt;</span><br><span class="line">&lt;meta name&#x3D;&quot;owner&quot; content&#x3D;&quot;&quot;&gt;</span><br></pre></td></tr></table></figure></li>
+<li><p>（5）generator，页面制作工具(如WordPress, Dreamweaver)</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;meta name&#x3D;&quot;generator&quot; content&#x3D;&quot;program&quot;&gt;</span><br></pre></td></tr></table></figure></li>
+<li><p>（6）指定 Referrer 策略</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&lt;meta name&#x3D;&quot;referrer&quot; content&#x3D;&quot;no-referrer&quot;&gt;</span><br><span class="line">&lt;!--</span><br><span class="line">    no-referrer 任何情况下都不发送 Referrer 信息；</span><br><span class="line">    no-referrer-when-downgrade 仅当发生协议降级（如 HTTPS 页面引入 HTTP 资源，从 HTTPS 页面跳到 HTTP 等）时不发送 Referrer 信息。这个规则是现在大部分浏览器默认所采用的；</span><br><span class="line">    origin 发送只包含 host 部分的 Referrer；</span><br><span class="line">    origin-when-crossorigin 仅在发生跨域访问时发送只包含 host 的 Referrer，同域下还是完整的。需要注意的是协议、域名和端口都一致，才会被浏览器认为是同域；</span><br><span class="line">    unsafe-url 无论是否发生协议降级，无论是本站链接还是站外链接，统统都发送 Referrer 信息</span><br><span class="line">--&gt;</span><br></pre></td></tr></table></figure></li>
+<li><p>（7）application-name，定义正运行在该网页上的网络应用名称。</p>
+<ul>
+<li>浏览器可能会通过使用该属性去区分应用。</li>
+<li>简单的网页不应该去定义application-name meta标签<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;meta name&#x3D;&quot;application-name&quot; content&#x3D;&quot;Sample Title&quot;&gt;</span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+<li><p><strong>（8）viewport，移动端视口</strong><br>viewport能优化移动浏览器的显示。 如果不是响应式网站，不要使用initial-scale或者禁用缩放。</p>
+<ul>
+<li>大部分4.7-5寸设备的viewport宽设为360px；</li>
+<li>5.5寸设备设为400px；</li>
+<li>iPhone6设为375px；iPone6 plus设为414px。<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">&lt;meta name&#x3D;&quot;viewport&quot; content&#x3D;&quot;width&#x3D;device-width, initial-scale&#x3D;1.0,maximum-scale&#x3D;1.0, user-scalable&#x3D;no&quot;&gt;</span><br><span class="line">&lt;!--</span><br><span class="line">    width 取值为一个正整数或者字符串 device-width，定义视口的宽度（以像素为单位）</span><br><span class="line">    height 取值为一个正整数或者字符串 device-height，定义视口的高度（以像素为单位）</span><br><span class="line">    initial-scale 取值为一个0.0 到10.0之间的正数，定义设备宽度（纵向模式下的设备宽度或横向模式下的设备高度）与视口大小之间的比率</span><br><span class="line">    maximum-scale 取值为一个0.0 到10.0之间的正数，定义允许用户缩放的最大值; 它必须大于或等于minimum-scale</span><br><span class="line">    minimum-scale 取值为一个0.0 到10.0之间的正数，定义允许用户缩放的最小值; 它必须小于或等于maximum-scale</span><br><span class="line">    user-scalable 取值为一个布尔值（yes 或者no），用户是否可以手动缩，默认值是yes，如果设置为no,用户将无法放大网页</span><br><span class="line">--&gt;</span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+<li><p>（9）WebApp全屏模式,启用全屏模式, 伪装app，离线应用</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;meta name&#x3D;&quot;apple-mobile-web-app-capable&quot; content&#x3D;&quot;yes&quot;&gt;</span><br></pre></td></tr></table></figure></li>
+<li><p>（10）隐藏状态栏/设置状态栏颜色，只有在开启WebApp全屏模式时才生效。 content的值为default | black | black-translucent </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;meta name&#x3D;&quot;apple-mobile-web-app-status-bar-style&quot; content&#x3D;&quot;black-translucent&quot;&gt;</span><br></pre></td></tr></table></figure></li>
+<li><p>（11）添加到主屏后的标题</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;meta name&#x3D;&quot;apple-mobile-web-app-title&quot; content&#x3D;&quot;标题&quot;&gt;</span><br></pre></td></tr></table></figure></li>
+<li><p>（12）忽略数字自动识别为电话号码</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;meta content&#x3D;&quot;telephone&#x3D;no&quot; name&#x3D;&quot;format-detection&quot;&gt;</span><br></pre></td></tr></table></figure></li>
+<li><p>（13）忽略识别邮箱</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;meta name&#x3D;&quot;format-detection&quot; content&#x3D;&quot;email&#x3D;no&quot;&gt;</span><br></pre></td></tr></table></figure></li>
+<li><p>（14）添加智能 App 广告条 Smart App Banner,告诉浏览器这个网站对应的app，并在页面上显示下载banner</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;meta name&#x3D;&quot;apple-itunes-app&quot; content&#x3D;&quot;app-id&#x3D;myAppStoreID, affiliate-data&#x3D;myAffiliateData, app-argument&#x3D;myURL&quot;&gt;</span><br></pre></td></tr></table></figure></li>
+<li><p>（15）针对不识别Viewport的手持设备进行优化,主要是针对一些老的不识别viewport的浏览器，比如黑莓</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;meta name&#x3D;&quot;HandheldFriendly&quot; content&#x3D;&quot;true&quot;&gt;</span><br></pre></td></tr></table></figure></li>
+<li><p>（16）强制竖屏</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;!-- uc强制竖屏 --&gt;</span><br><span class="line">&lt;meta name&#x3D;&quot;screen-orientation&quot; content&#x3D;&quot;portrait&quot;&gt;</span><br><span class="line">&lt;!-- QQ强制竖屏 --&gt;</span><br><span class="line">&lt;meta name&#x3D;&quot;x5-orientation&quot; content&#x3D;&quot;portrait&quot;&gt;</span><br></pre></td></tr></table></figure></li>
+<li><p>（17）强制全屏</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;!-- UC强制全屏 --&gt;</span><br><span class="line">&lt;meta name&#x3D;&quot;full-screen&quot; content&#x3D;&quot;yes&quot;&gt;</span><br><span class="line">&lt;!-- QQ强制全屏 --&gt;</span><br><span class="line">&lt;meta name&#x3D;&quot;x5-fullscreen&quot; content&#x3D;&quot;true&quot;&gt;</span><br></pre></td></tr></table></figure></li>
+<li><p>（18）浏览器内核控制<br>国内浏览器很多都是双内核（webkit和Trident）,webkit内核高速浏览，IE内核兼容网页和旧版网站。 而添加meta标签的网站可以控制浏览器选择何种内核渲染。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;meta name&#x3D;&quot;renderer&quot; content&#x3D;&quot;webkit|ie-comp|ie-stand&quot;&gt;</span><br></pre></td></tr></table></figure>
+<p>国内双核浏览器默认内核模式如下：<br>1.搜狗高速浏览器、QQ浏览器：IE内核（兼容模式）<br>2.360极速浏览器、遨游浏览器：Webkit内核（极速模式）</p>
+</li>
+<li><p><strong><a target="_blank" rel="noopener" href="http://www.metatags.org/welcome">更多meta属性请点击1</a></strong></p>
+</li>
+<li><p><strong><a target="_blank" rel="noopener" href="http://gethead.info/">更多meta属性请点击2</a></strong></p>
+<h2 id="参考资料："><a href="#参考资料：" class="headerlink" title="参考资料："></a>参考资料：</h2></li>
+<li><p><a target="_blank" rel="noopener" href="http://zodiac-xl.github.io/blog/%E6%96%87%E6%A1%A3/2015/05/04/meta%E6%A0%87%E7%AD%BE%E8%AF%A6%E8%A7%A3.html">meta标签详解</a></p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="http://dafeizizhu.github.io/2013/07/04/html-meta-tag/">HTML META 标签入门</a></p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://github.com/joshbuchea/HEAD">HEAD </a></p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="http://www.ruanyifeng.com/blog/2016/09/csp.html">阮一峰Content Security Policy 入门教程</a></p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://cnbin.github.io/blog/2016/02/03/x-ua-compatibleshu-xing-de-jie-shi/">X-UA-Compatible属性的解释</a></p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://www.w3.org/TR/2010/WD-html-markup-20100624/meta.http-equiv.default-style.html">HTML: The Markup Language</a></p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="http://www.metatags.org/meta_http_equiv_pics_label">How to use the html tag HTTP-EQUIV “PICS LABEL”</a></p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://cnbin.github.io/blog/2016/02/03/http-equivshu-xing-xiang-jie/">Meta Http-equiv属性详解</a></p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://tink.gitbooks.io/fe-collections/content/ch02-html/s03-meta.html">meta常用属性</a></p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://imququ.com/post/referrer-policy.html">Referrer Policy 介绍</a></p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Web/HTML/Element/meta">meta MDN</a></p>
+</li>
+</ul>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/HTML/" rel="tag"># HTML</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2017/04/29/GitHub-Pages%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%E5%82%BB%E7%93%9C%E6%95%99%E7%A8%8B/" rel="prev" title="GitHub Pages搭建个人博客傻瓜教程">
+                  <i class="fa fa-chevron-left"></i> GitHub Pages搭建个人博客傻瓜教程
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2017/05/04/HTML%E4%B8%AD%E5%93%AA%E4%BA%9B%E6%A0%87%E7%AD%BE%E5%8F%AF%E4%BB%A5%E7%9C%81%E7%95%A5/" rel="next" title="HTML中哪些标签可以省略">
+                  HTML中哪些标签可以省略 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+  
+  
+  
+
+
+
+      
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      const activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      const commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+      
+
+      
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">yuzhu9</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/pisces/" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <script src="//cdn.jsdelivr.net/npm/animejs@3.2.0/lib/anime.min.js"></script>
+<script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>

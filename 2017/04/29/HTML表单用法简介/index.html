@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.3.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.14.0/css/all.min.css">
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css">
+
+<script class="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"zhengyuan.xyz","root":"/","scheme":"Pisces","version":"8.0.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}};
+  </script>
+
+  <meta name="description" content="HTML表单用法简介HTML表单用于收集用户输入，form元素定义HTML表单,form标签的action属性定义在提交表单时执行的动作，method属性规定在提交表单时所用的 HTTP 方法（get或post）。&lt;form action&#x3D;&quot;#&quot; mothod&#x3D;&quot;get&#x2F;post&quot;&gt;">
+<meta property="og:type" content="article">
+<meta property="og:title" content="HTML表单用法简介">
+<meta property="og:url" content="http://zhengyuan.xyz/2017/04/29/HTML%E8%A1%A8%E5%8D%95%E7%94%A8%E6%B3%95%E7%AE%80%E4%BB%8B/index.html">
+<meta property="og:site_name" content="玉竹的博客">
+<meta property="og:description" content="HTML表单用法简介HTML表单用于收集用户输入，form元素定义HTML表单,form标签的action属性定义在提交表单时执行的动作，method属性规定在提交表单时所用的 HTTP 方法（get或post）。&lt;form action&#x3D;&quot;#&quot; mothod&#x3D;&quot;get&#x2F;post&quot;&gt;">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/yuzhu9/image@master/img/23.jpg">
+<meta property="article:published_time" content="2017-04-28T18:55:04.000Z">
+<meta property="article:modified_time" content="2020-12-30T20:48:57.702Z">
+<meta property="article:author" content="yuzhu9">
+<meta property="article:tag" content="HTML">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://cdn.jsdelivr.net/gh/yuzhu9/image@master/img/23.jpg">
+
+
+<link rel="canonical" href="http://zhengyuan.xyz/2017/04/29/HTML%E8%A1%A8%E5%8D%95%E7%94%A8%E6%B3%95%E7%AE%80%E4%BB%8B/">
+
+
+<script class="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>HTML表单用法简介 | 玉竹的博客</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  body { margin-top: 2rem; }
+
+  .use-motion .menu-item,
+  .use-motion .sidebar,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header {
+    visibility: visible;
+  }
+
+  .use-motion .header,
+  .use-motion .site-brand-container .toggle,
+  .use-motion .footer { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle,
+  .use-motion .custom-logo-image {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line {
+    transform: scaleX(1);
+  }
+
+  .search-pop-overlay, .sidebar-nav { display: none; }
+  .sidebar-panel { display: block; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <h1 class="site-title">玉竹的博客</h1>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <section class="post-toc-wrap sidebar-panel">
+          <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#HTML%E8%A1%A8%E5%8D%95%E7%94%A8%E6%B3%95%E7%AE%80%E4%BB%8B"><span class="nav-number">1.</span> <span class="nav-text">HTML表单用法简介</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-input%E5%85%83%E7%B4%A0%EF%BC%8C%E5%85%83%E7%B4%A0%E6%A0%B9%E6%8D%AE%E4%B8%8D%E5%90%8C%E7%9A%84type%E5%B1%9E%E6%80%A7%EF%BC%8C%E5%8F%AF%E4%BB%A5%E5%8F%98%E5%8C%96%E4%B8%BA%E5%A4%9A%E7%A7%8D%E5%BD%A2%E6%80%81%EF%BC%9A"><span class="nav-number">1.0.1.</span> <span class="nav-text">(1)input元素，元素根据不同的type属性，可以变化为多种形态：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-select%E5%85%83%E7%B4%A0%EF%BC%8C%E5%AE%9A%E4%B9%89%E4%B8%8B%E6%8B%89%E5%88%97%E8%A1%A8%EF%BC%9Boption%E5%85%83%E7%B4%A0%E5%AE%9A%E4%B9%89%E5%BE%85%E9%80%89%E6%8B%A9%E7%9A%84%E9%80%89%E9%A1%B9%E3%80%82%E5%88%97%E8%A1%A8%E9%80%9A%E5%B8%B8%E4%BC%9A%E6%8A%8A%E9%A6%96%E4%B8%AA%E9%80%89%E9%A1%B9%E6%98%BE%E7%A4%BA%E4%B8%BA%E8%A2%AB%E9%80%89%E9%80%89%E9%A1%B9%EF%BC%8C%E9%80%9A%E8%BF%87%E6%B7%BB%E5%8A%A0selected%E5%B1%9E%E6%80%A7%E6%9D%A5%E5%AE%9A%E4%B9%89%E9%A2%84%E5%AE%9A%E4%B9%89%E9%80%89%E9%A1%B9%EF%BC%8C%E4%BE%8B%EF%BC%9A"><span class="nav-number">1.0.2.</span> <span class="nav-text">(2)select元素，定义下拉列表；option元素定义待选择的选项。列表通常会把首个选项显示为被选选项，通过添加selected属性来定义预定义选项，例：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-textarea%E5%85%83%E7%B4%A0%E5%AE%9A%E4%B9%89%E5%A4%9A%E8%A1%8C%E8%BE%93%E5%85%A5%E5%AD%97%E6%AE%B5%EF%BC%88%E6%96%87%E6%9C%AC%E5%9F%9F%EF%BC%89%EF%BC%8C%E4%BE%8B%EF%BC%9A"><span class="nav-number">1.0.3.</span> <span class="nav-text">(3)textarea元素定义多行输入字段（文本域），例：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-button%E5%85%83%E7%B4%A0%E5%AE%9A%E4%B9%89%E5%8F%AF%E7%82%B9%E5%87%BB%E7%9A%84%E6%8C%89%E9%92%AE%EF%BC%8C%E4%BE%8B%EF%BC%9A"><span class="nav-number">1.0.4.</span> <span class="nav-text">(4)button元素定义可点击的按钮，例：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-label%E6%A0%87%E7%AD%BE%E4%B8%BAinput%E5%85%83%E7%B4%A0%E5%AE%9A%E4%B9%89%E6%A0%87%E6%B3%A8-%E5%AE%83%E4%B8%BA%E9%BC%A0%E6%A0%87%E7%94%A8%E6%88%B7%E6%94%B9%E8%BF%9B%E4%BA%86%E5%8F%AF%E7%94%A8%E6%80%A7%E3%80%82%E5%A6%82%E6%9E%9C%E6%82%A8%E5%9C%A8label%E5%85%83%E7%B4%A0%E5%86%85%E7%82%B9%E5%87%BB%E6%96%87%E6%9C%AC%EF%BC%8C%E5%B0%B1%E4%BC%9A%E8%A7%A6%E5%8F%91%E6%AD%A4%E6%8E%A7%E4%BB%B6%E3%80%82%E5%B0%B1%E6%98%AF%E8%AF%B4%EF%BC%8C%E5%BD%93%E7%94%A8%E6%88%B7%E9%80%89%E6%8B%A9%E8%AF%A5%E6%A0%87%E7%AD%BE%E6%97%B6%EF%BC%8C%E6%B5%8F%E8%A7%88%E5%99%A8%E5%B0%B1%E4%BC%9A%E8%87%AA%E5%8A%A8%E5%B0%86%E7%84%A6%E7%82%B9%E8%BD%AC%E5%88%B0%E5%92%8C%E6%A0%87%E7%AD%BE%E7%9B%B8%E5%85%B3%E7%9A%84%E8%A1%A8%E5%8D%95%E6%8E%A7%E4%BB%B6%E4%B8%8A%E3%80%82label%E6%A0%87%E7%AD%BE%E7%9A%84-for-%E5%B1%9E%E6%80%A7%E5%BA%94%E5%BD%93%E4%B8%8E%E7%9B%B8%E5%85%B3%E5%85%83%E7%B4%A0%E7%9A%84-id-%E5%B1%9E%E6%80%A7%E7%9B%B8%E5%90%8C%EF%BC%8C%E4%BB%A5%E4%B8%8B%E4%B8%A4%E7%A7%8D%E5%86%99%E6%B3%95%E5%9D%87%E5%8F%AF%EF%BC%9A"><span class="nav-number">1.0.5.</span> <span class="nav-text">(5)label标签为input元素定义标注.它为鼠标用户改进了可用性。如果您在label元素内点击文本，就会触发此控件。就是说，当用户选择该标签时，浏览器就会自动将焦点转到和标签相关的表单控件上。label标签的 for 属性应当与相关元素的 id 属性相同，以下两种写法均可：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9B%B4%E5%A4%9A%E8%A1%A8%E5%8D%95%E5%85%83%E7%B4%A0"><span class="nav-number">1.0.6.</span> <span class="nav-text">更多表单元素</span></a></li></ol></li></ol></li></ol></div>
+      </section>
+      <!--/noindex-->
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="yuzhu9"
+      src="/images/avatar.jpg">
+  <p class="site-author-name" itemprop="name">yuzhu9</p>
+  <div class="site-description" itemprop="description">逝者如斯夫，不舍昼夜</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">25</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">2</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">6</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/yuzhu9" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;yuzhu9" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:poly2014w@163.com" title="E-Mail → mailto:poly2014w@163.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+
+
+
+      </section>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+      
+
+      
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://zhengyuan.xyz/2017/04/29/HTML%E8%A1%A8%E5%8D%95%E7%94%A8%E6%B3%95%E7%AE%80%E4%BB%8B/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="yuzhu9">
+      <meta itemprop="description" content="逝者如斯夫，不舍昼夜">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="玉竹的博客">
+    </span>
+
+    
+    
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          HTML表单用法简介
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2017-04-29 02:55:04" itemprop="dateCreated datePublished" datetime="2017-04-29T02:55:04+08:00">2017-04-29</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">更新于</span>
+        <time title="修改时间：2020-12-31 04:48:57" itemprop="dateModified" datetime="2020-12-31T04:48:57+08:00">2020-12-31</time>
+      </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E7%AC%94%E8%AE%B0/" itemprop="url" rel="index"><span itemprop="name">笔记</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <h1 id="HTML表单用法简介"><a href="#HTML表单用法简介" class="headerlink" title="HTML表单用法简介"></a>HTML表单用法简介</h1><p>HTML表单用于收集用户输入，form元素定义HTML表单,form标签的action属性定义在提交表单时执行的动作，method属性规定在提交表单时所用的 HTTP 方法（get或post）。<br><code>&lt;form action=&quot;#&quot; mothod=&quot;get/post&quot;&gt;</code></p>
+<p><img src="https://cdn.jsdelivr.net/gh/yuzhu9/image@master/img/23.jpg"></p>
+<a id="more"></a>
+
+<p>form主要包含以下表单元素：</p>
+<h3 id="1-input元素，元素根据不同的type属性，可以变化为多种形态："><a href="#1-input元素，元素根据不同的type属性，可以变化为多种形态：" class="headerlink" title="(1)input元素，元素根据不同的type属性，可以变化为多种形态："></a>(1)input元素，元素根据不同的type属性，可以变化为多种形态：</h3><ul>
+<li><p>text单行文本输入框，例：<br><code>用户名：&lt;input type=&quot;text&quot; name=&quot;username&quot;&gt;</code></p>
+</li>
+<li><p>password密码输入框，字段中的字符会被做掩码处理（显示为星号或实心圆），例：<br><code>密码：&lt;input type=&quot;password&quot; name=&quot;pwd&quot;&gt;</code></p>
+</li>
+<li><p>radio单选按钮,同一组需要设置相同的name值，单选按钮允许用户在同一组选项中选择其中之一，通过添加checked属性来定义预定义选项，例：<br><code>性别：&lt;input type=&quot;radio&quot; name=&quot;gender&quot; value=&quot;male&quot;&gt;男 &lt;input type=&quot;radio&quot; name=&quot;gender&quot; value=&quot;female&quot;&gt;女</code></p>
+</li>
+<li><p>checkbox多选按钮，通过添加checked属性来定义预定义选项，例：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">爱好：&lt;input type&#x3D;&quot;checkbox&quot; name&#x3D;&quot;hobby&quot; value&#x3D;&quot;reading&quot; checked&gt;读书</span><br><span class="line">      &lt;input type&#x3D;&quot;checkbox&quot; name&#x3D;&quot;hobby&quot; value&#x3D;&quot;music&quot;&gt;音乐</span><br><span class="line">      &lt;input type&#x3D;&quot;checkbox&quot; name&#x3D;&quot;hobby&quot; value&#x3D;&quot;photography&quot; checked&gt;摄影</span><br><span class="line">      &lt;input type&#x3D;&quot;checkbox&quot; name&#x3D;&quot;hobby&quot; value&#x3D;&quot;fishing&quot;&gt;钓鱼</span><br></pre></td></tr></table></figure></li>
+<li><p>button普通按钮，例：<br><code>&lt;input type=&quot;button&quot; value=&quot;按钮&quot;&gt;</code></p>
+</li>
+<li><p>submit提交表单数据的按钮，例：<br><code>&lt;input type=&quot;submit&quot; value=&quot;提交&quot;&gt;</code></p>
+</li>
+<li><p>reset重置按钮，点击后清空用户填写的未提交数据，例：<br><code>&lt;input type=&quot;reset&quot; value=&quot;重置&quot;&gt;</code></p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="http://www.w3school.com.cn/html/html_form_input_types.asp">更多内容参考</a></p>
+</li>
+</ul>
+<h3 id="2-select元素，定义下拉列表；option元素定义待选择的选项。列表通常会把首个选项显示为被选选项，通过添加selected属性来定义预定义选项，例："><a href="#2-select元素，定义下拉列表；option元素定义待选择的选项。列表通常会把首个选项显示为被选选项，通过添加selected属性来定义预定义选项，例：" class="headerlink" title="(2)select元素，定义下拉列表；option元素定义待选择的选项。列表通常会把首个选项显示为被选选项，通过添加selected属性来定义预定义选项，例："></a>(2)select元素，定义下拉列表；option元素定义待选择的选项。列表通常会把首个选项显示为被选选项，通过添加selected属性来定义预定义选项，例：</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">所在城市：&lt;select name&#x3D;&quot;city&quot;&gt;</span><br><span class="line">			&lt;option value&#x3D;&quot;shanghai&quot;&gt;上海&lt;&#x2F;option&gt;</span><br><span class="line">			&lt;option value&#x3D;&quot;beijing&quot; selected&gt;北京&lt;&#x2F;option&gt;</span><br><span class="line">			&lt;option value&#x3D;&quot;shenzhen&quot;&gt;深圳&lt;&#x2F;option&gt;</span><br><span class="line">		  &lt;&#x2F;select&gt;</span><br></pre></td></tr></table></figure>
+<h3 id="3-textarea元素定义多行输入字段（文本域），例："><a href="#3-textarea元素定义多行输入字段（文本域），例：" class="headerlink" title="(3)textarea元素定义多行输入字段（文本域），例："></a>(3)textarea元素定义多行输入字段（文本域），例：</h3><p><code>&lt;textarea name=&quot;message&quot;&gt;留言备注&lt;/textarea&gt;</code></p>
+<h3 id="4-button元素定义可点击的按钮，例："><a href="#4-button元素定义可点击的按钮，例：" class="headerlink" title="(4)button元素定义可点击的按钮，例："></a>(4)button元素定义可点击的按钮，例：</h3><p><code>&lt;button&gt;点击&lt;/button&gt;</code></p>
+<h3 id="5-label标签为input元素定义标注-它为鼠标用户改进了可用性。如果您在label元素内点击文本，就会触发此控件。就是说，当用户选择该标签时，浏览器就会自动将焦点转到和标签相关的表单控件上。label标签的-for-属性应当与相关元素的-id-属性相同，以下两种写法均可："><a href="#5-label标签为input元素定义标注-它为鼠标用户改进了可用性。如果您在label元素内点击文本，就会触发此控件。就是说，当用户选择该标签时，浏览器就会自动将焦点转到和标签相关的表单控件上。label标签的-for-属性应当与相关元素的-id-属性相同，以下两种写法均可：" class="headerlink" title="(5)label标签为input元素定义标注.它为鼠标用户改进了可用性。如果您在label元素内点击文本，就会触发此控件。就是说，当用户选择该标签时，浏览器就会自动将焦点转到和标签相关的表单控件上。label标签的 for 属性应当与相关元素的 id 属性相同，以下两种写法均可："></a>(5)label标签为input元素定义标注.它为鼠标用户改进了可用性。如果您在label元素内点击文本，就会触发此控件。就是说，当用户选择该标签时，浏览器就会自动将焦点转到和标签相关的表单控件上。label标签的 for 属性应当与相关元素的 id 属性相同，以下两种写法均可：</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&lt;label&gt;用户名：&lt;input type&#x3D;&quot;text&quot; name&#x3D;&quot;username&quot;&gt;&lt;&#x2F;label&gt;</span><br><span class="line">&lt;label for&#x3D;&quot;user&quot;&gt;用户名：&lt;&#x2F;label&gt; &lt;input type&#x3D;&quot;text&quot; name&#x3D;&quot;username&quot; id&#x3D;&quot;user&quot;&gt;</span><br></pre></td></tr></table></figure>
+<h3 id="更多表单元素"><a href="#更多表单元素" class="headerlink" title="更多表单元素"></a><a target="_blank" rel="noopener" href="http://www.w3school.com.cn/html/html_form_elements.asp">更多表单元素</a></h3>
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/HTML/" rel="tag"># HTML</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+            </div>
+            <div class="post-nav-item">
+                <a href="/2017/04/29/%E4%BB%8EURL%E8%BE%93%E5%85%A5%E5%88%B0%E9%A1%B5%E9%9D%A2%E5%8A%A0%E8%BD%BD%E5%8F%91%E7%94%9F%E4%BA%86%E4%BB%80%E4%B9%88/" rel="next" title="从URL输入到页面加载发生了什么">
+                  从URL输入到页面加载发生了什么 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+  
+  
+  
+
+
+
+      
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      const activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      const commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+      
+
+      
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">yuzhu9</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/pisces/" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <script src="//cdn.jsdelivr.net/npm/animejs@3.2.0/lib/anime.min.js"></script>
+<script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>

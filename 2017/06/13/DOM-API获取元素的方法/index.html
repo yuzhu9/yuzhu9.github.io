@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.3.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.14.0/css/all.min.css">
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css">
+
+<script class="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"zhengyuan.xyz","root":"/","scheme":"Pisces","version":"8.0.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}};
+  </script>
+
+  <meta name="description" content="文档对象模型（DOM） 文档对象模型 (DOM) 是 HTML 和 XML 文档的编程接口。它给文档（结构树）提供了一个结构化的表述并且定义了一种方式—程序可以对结构树进行访问，以改变文档的结构，样式和内容。 DOM 提供了一种表述形式— 将文档作为一个结构化的节点组以及包含属性和方法的对象。从本质上说，它将 web 页面和脚本或编程语言连接起来了。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="DOM-API获取元素的方法">
+<meta property="og:url" content="http://zhengyuan.xyz/2017/06/13/DOM-API%E8%8E%B7%E5%8F%96%E5%85%83%E7%B4%A0%E7%9A%84%E6%96%B9%E6%B3%95/index.html">
+<meta property="og:site_name" content="玉竹的博客">
+<meta property="og:description" content="文档对象模型（DOM） 文档对象模型 (DOM) 是 HTML 和 XML 文档的编程接口。它给文档（结构树）提供了一个结构化的表述并且定义了一种方式—程序可以对结构树进行访问，以改变文档的结构，样式和内容。 DOM 提供了一种表述形式— 将文档作为一个结构化的节点组以及包含属性和方法的对象。从本质上说，它将 web 页面和脚本或编程语言连接起来了。">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/yuzhu9/image@master/img/17.jpg">
+<meta property="article:published_time" content="2017-06-13T09:32:36.000Z">
+<meta property="article:modified_time" content="2017-06-13T09:32:36.000Z">
+<meta property="article:author" content="yuzhu9">
+<meta property="article:tag" content="JavaScript">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://cdn.jsdelivr.net/gh/yuzhu9/image@master/img/17.jpg">
+
+
+<link rel="canonical" href="http://zhengyuan.xyz/2017/06/13/DOM-API%E8%8E%B7%E5%8F%96%E5%85%83%E7%B4%A0%E7%9A%84%E6%96%B9%E6%B3%95/">
+
+
+<script class="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>DOM-API获取元素的方法 | 玉竹的博客</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  body { margin-top: 2rem; }
+
+  .use-motion .menu-item,
+  .use-motion .sidebar,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header {
+    visibility: visible;
+  }
+
+  .use-motion .header,
+  .use-motion .site-brand-container .toggle,
+  .use-motion .footer { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle,
+  .use-motion .custom-logo-image {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line {
+    transform: scaleX(1);
+  }
+
+  .search-pop-overlay, .sidebar-nav { display: none; }
+  .sidebar-panel { display: block; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <h1 class="site-title">玉竹的博客</h1>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <section class="post-toc-wrap sidebar-panel">
+          <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%96%87%E6%A1%A3%E5%AF%B9%E8%B1%A1%E6%A8%A1%E5%9E%8B%EF%BC%88DOM%EF%BC%89"><span class="nav-number">1.</span> <span class="nav-text">文档对象模型（DOM）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#document-getElementById-%E8%BF%94%E5%9B%9E%E4%B8%80%E4%B8%AA%E5%8C%B9%E9%85%8D%E7%89%B9%E5%AE%9AID%E7%9A%84%E5%85%83%E7%B4%A0%E8%8A%82%E7%82%B9%E3%80%82"><span class="nav-number">2.</span> <span class="nav-text">document.getElementById()返回一个匹配特定ID的元素节点。</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#document-getElementsByTagName-%E8%BF%94%E5%9B%9E%E4%B8%80%E4%B8%AA%E5%8C%85%E6%8B%AC%E6%89%80%E6%9C%89%E7%BB%99%E5%AE%9A%E6%A0%87%E7%AD%BE%E5%90%8D%E7%A7%B0%E7%9A%84%E5%85%83%E7%B4%A0%E7%9A%84HTML%E9%9B%86%E5%90%88%E3%80%82"><span class="nav-number">3.</span> <span class="nav-text">document.getElementsByTagName()返回一个包括所有给定标签名称的元素的HTML集合。</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#element-getElementsByTagName-%E6%96%B9%E6%B3%95%E8%BF%94%E5%9B%9E%E4%B8%80%E4%B8%AA%E5%8A%A8%E6%80%81%E7%9A%84%E5%8C%85%E5%90%AB%E6%89%80%E6%9C%89%E6%8C%87%E5%AE%9A%E6%A0%87%E7%AD%BE%E5%90%8D%E7%9A%84%E5%85%83%E7%B4%A0%E7%9A%84HTML%E9%9B%86%E5%90%88HTMLCollection%E3%80%82"><span class="nav-number">4.</span> <span class="nav-text">element.getElementsByTagName()方法返回一个动态的包含所有指定标签名的元素的HTML集合HTMLCollection。</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#getElementsByClassName-%E8%BF%94%E5%9B%9E%E4%B8%80%E4%B8%AA%E7%B1%BB%E4%BC%BC%E6%95%B0%E7%BB%84%E7%9A%84%E5%AF%B9%E8%B1%A1%EF%BC%8C%E5%8C%85%E5%90%AB%E4%BA%86%E6%89%80%E6%9C%89%E6%8C%87%E5%AE%9A-class-%E5%90%8D%E7%A7%B0%E7%9A%84%E5%AD%90%E5%85%83%E7%B4%A0%E3%80%82"><span class="nav-number">5.</span> <span class="nav-text">getElementsByClassName()返回一个类似数组的对象，包含了所有指定 class 名称的子元素。</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#getElementsByName-%E6%A0%B9%E6%8D%AE%E7%BB%99%E5%AE%9A%E7%9A%84name-%E8%BF%94%E5%9B%9E%E4%B8%80%E4%B8%AA%E5%9C%A8-X-HTML-document%E7%9A%84%E8%8A%82%E7%82%B9%E5%88%97%E8%A1%A8%E9%9B%86%E5%90%88%E3%80%82"><span class="nav-number">6.</span> <span class="nav-text">getElementsByName()根据给定的name 返回一个在 (X)HTML document的节点列表集合。</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#document-querySelector-%E8%BF%94%E5%9B%9E%E6%96%87%E6%A1%A3%E4%B8%AD%E5%8C%B9%E9%85%8D%E6%8C%87%E5%AE%9A%E7%9A%84%E9%80%89%E6%8B%A9%E5%99%A8%E7%BB%84%E7%9A%84%E7%AC%AC%E4%B8%80%E4%B8%AA%E5%85%83%E7%B4%A0%E8%8A%82%E7%82%B9"><span class="nav-number">7.</span> <span class="nav-text">document.querySelector()返回文档中匹配指定的选择器组的第一个元素节点</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#element-querySelector-%E8%BF%94%E5%9B%9E%E8%B0%83%E7%94%A8%E5%85%83%E7%B4%A0%E7%9A%84%E5%90%8E%E4%BB%A3%E4%B8%AD%E4%B8%8E%E6%8C%87%E5%AE%9A%E7%9A%84%E9%80%89%E6%8B%A9%E5%99%A8%E7%BB%84%E5%8C%B9%E9%85%8D%E7%9A%84%E7%AC%AC%E4%B8%80%E4%B8%AA%E5%85%83%E7%B4%A0"><span class="nav-number">8.</span> <span class="nav-text">element.querySelector()返回调用元素的后代中与指定的选择器组匹配的第一个元素</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#document-querySelectorAll-%E8%BF%94%E5%9B%9E%E4%B8%8E%E6%8C%87%E5%AE%9A%E7%9A%84%E9%80%89%E6%8B%A9%E5%99%A8%E7%BB%84%E5%8C%B9%E9%85%8D%E7%9A%84%E6%96%87%E6%A1%A3%E4%B8%AD%E7%9A%84%E5%85%83%E7%B4%A0%E5%88%97%E8%A1%A8%E3%80%82%E8%BF%94%E5%9B%9E%E7%9A%84%E5%AF%B9%E8%B1%A1%E6%98%AF-NodeList"><span class="nav-number">9.</span> <span class="nav-text">document.querySelectorAll()返回与指定的选择器组匹配的文档中的元素列表。返回的对象是 NodeList</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#element-querySelectorAll-%E8%BF%94%E5%9B%9E%E4%B8%80%E4%B8%AAnon-live%E7%9A%84NodeList-%E5%AE%83%E5%8C%85%E5%90%AB%E6%89%80%E6%9C%89%E5%85%83%E7%B4%A0%E7%9A%84%E9%9D%9E%E6%B4%BB%E5%8A%A8%E8%8A%82%E7%82%B9"><span class="nav-number">10.</span> <span class="nav-text">element.querySelectorAll()返回一个non-live的NodeList, 它包含所有元素的非活动节点</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#node-parentNode%E8%BF%94%E5%9B%9E%E6%8C%87%E5%AE%9A%E7%9A%84%E8%8A%82%E7%82%B9%E5%9C%A8DOM%E6%A0%91%E4%B8%AD%E7%9A%84%E7%88%B6%E8%8A%82%E7%82%B9"><span class="nav-number">11.</span> <span class="nav-text">node.parentNode返回指定的节点在DOM树中的父节点</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#node-parentElement%E8%BF%94%E5%9B%9E%E5%BD%93%E5%89%8D%E8%8A%82%E7%82%B9%E7%9A%84%E7%88%B6%E5%85%83%E7%B4%A0%E8%8A%82%E7%82%B9"><span class="nav-number">12.</span> <span class="nav-text">node.parentElement返回当前节点的父元素节点</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#element-previousElementSibling%E8%BF%94%E5%9B%9E%E5%BD%93%E5%89%8D%E5%85%83%E7%B4%A0%E5%9C%A8%E5%85%B6%E7%88%B6%E5%85%83%E7%B4%A0%E7%9A%84%E5%AD%90%E5%85%83%E7%B4%A0%E8%8A%82%E7%82%B9%E4%B8%AD%E7%9A%84%E5%89%8D%E4%B8%80%E4%B8%AA%E5%85%83%E7%B4%A0%E8%8A%82%E7%82%B9"><span class="nav-number">13.</span> <span class="nav-text">element.previousElementSibling返回当前元素在其父元素的子元素节点中的前一个元素节点</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#element-nextElementSibling%E8%BF%94%E5%9B%9E%E5%BD%93%E5%89%8D%E5%85%83%E7%B4%A0%E5%9C%A8%E5%85%B6%E7%88%B6%E5%85%83%E7%B4%A0%E7%9A%84%E5%AD%90%E5%85%83%E7%B4%A0%E8%8A%82%E7%82%B9%E4%B8%AD%E7%9A%84%E5%90%8E%E4%B8%80%E4%B8%AA%E5%85%83%E7%B4%A0%E8%8A%82%E7%82%B9"><span class="nav-number">14.</span> <span class="nav-text">element.nextElementSibling返回当前元素在其父元素的子元素节点中的后一个元素节点</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#node-children%E8%BF%94%E5%9B%9E%E4%B8%80%E4%B8%AANode%E7%9A%84%E5%AD%90%E5%85%83%E7%B4%A0%E7%9A%84%E5%8A%A8%E6%80%81HTMLCollection"><span class="nav-number">15.</span> <span class="nav-text">node.children返回一个Node的子元素的动态HTMLCollection</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#node-firstElementChild%E8%BF%94%E5%9B%9E%E5%AF%B9%E8%B1%A1%E7%9A%84%E7%AC%AC%E4%B8%80%E4%B8%AA%E5%AD%90%E5%85%83%E7%B4%A0%E8%8A%82%E7%82%B9"><span class="nav-number">16.</span> <span class="nav-text">node.firstElementChild返回对象的第一个子元素节点</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#node-lastElementChild%E8%BF%94%E5%9B%9E%E5%AF%B9%E8%B1%A1%E7%9A%84%E6%9C%80%E5%90%8E%E4%B8%80%E4%B8%AA%E5%AD%90%E5%85%83%E7%B4%A0%E8%8A%82%E7%82%B9"><span class="nav-number">17.</span> <span class="nav-text">node.lastElementChild返回对象的最后一个子元素节点</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#document-documentElement%E4%BC%9A%E8%BF%94%E5%9B%9E%E6%96%87%E6%A1%A3%E5%AF%B9%E8%B1%A1%EF%BC%88document%EF%BC%89%E7%9A%84%E6%A0%B9%E5%85%83%E7%B4%A0%EF%BC%8C%E4%BE%8B%E5%A6%82HTML%E6%96%87%E6%A1%A3%E7%9A%84%E6%A0%B9%E5%85%83%E7%B4%A0%E6%98%AF%E5%85%83%E7%B4%A0%EF%BC%8C%E8%AF%A5%E5%B1%9E%E6%80%A7%E6%98%AF%E5%8F%AA%E8%AF%BB%E5%B1%9E%E6%80%A7"><span class="nav-number">18.</span> <span class="nav-text">document.documentElement会返回文档对象（document）的根元素，例如HTML文档的根元素是元素，该属性是只读属性</span></a></li></ol></div>
+      </section>
+      <!--/noindex-->
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="yuzhu9"
+      src="/images/avatar.jpg">
+  <p class="site-author-name" itemprop="name">yuzhu9</p>
+  <div class="site-description" itemprop="description">逝者如斯夫，不舍昼夜</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">25</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">2</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">6</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/yuzhu9" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;yuzhu9" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:poly2014w@163.com" title="E-Mail → mailto:poly2014w@163.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+
+
+
+      </section>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+      
+
+      
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://zhengyuan.xyz/2017/06/13/DOM-API%E8%8E%B7%E5%8F%96%E5%85%83%E7%B4%A0%E7%9A%84%E6%96%B9%E6%B3%95/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="yuzhu9">
+      <meta itemprop="description" content="逝者如斯夫，不舍昼夜">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="玉竹的博客">
+    </span>
+
+    
+    
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          DOM-API获取元素的方法
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2017-06-13 17:32:36" itemprop="dateCreated datePublished" datetime="2017-06-13T17:32:36+08:00">2017-06-13</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E7%AC%94%E8%AE%B0/" itemprop="url" rel="index"><span itemprop="name">笔记</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <h2 id="文档对象模型（DOM）"><a href="#文档对象模型（DOM）" class="headerlink" title="文档对象模型（DOM）"></a>文档对象模型（DOM）</h2><blockquote>
+<p>文档对象模型 (DOM) 是 HTML 和 XML 文档的编程接口。它给文档（结构树）提供了一个结构化的表述并且定义了一种方式—程序可以对结构树进行访问，以改变文档的结构，样式和内容。 DOM 提供了一种表述形式— 将文档作为一个结构化的节点组以及包含属性和方法的对象。从本质上说，它将 web 页面和脚本或编程语言连接起来了。</p>
+</blockquote>
+<p><img src="https://cdn.jsdelivr.net/gh/yuzhu9/image@master/img/17.jpg"></p>
+<a id="more"></a>
+<h2 id="document-getElementById-返回一个匹配特定ID的元素节点。"><a href="#document-getElementById-返回一个匹配特定ID的元素节点。" class="headerlink" title="document.getElementById()返回一个匹配特定ID的元素节点。"></a><code>document.getElementById()</code>返回一个匹配特定ID的元素节点。</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">element &#x3D; document.getElementById(id);</span><br></pre></td></tr></table></figure>
+<p>element是一个 Element 对象。如果当前文档中拥有特定ID的元素不存在则返回null。<br>id是大小写敏感的字符串，代表了所要查找的元素的唯一ID。</p>
+<h2 id="document-getElementsByTagName-返回一个包括所有给定标签名称的元素的HTML集合。"><a href="#document-getElementsByTagName-返回一个包括所有给定标签名称的元素的HTML集合。" class="headerlink" title="document.getElementsByTagName()返回一个包括所有给定标签名称的元素的HTML集合。"></a><code>document.getElementsByTagName()</code>返回一个包括所有给定标签名称的元素的HTML集合。</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">var elements &#x3D; document.getElementsByTagName(name);</span><br></pre></td></tr></table></figure>
+<p>elements是一个由发现的元素出现在树中的顺序构成的动态的HTML集合(最新的 W3C 规范 说明这些元素是 HTMLCollection（HTML集合）； 然而, 这个方法在WebKit内核的浏览器中返回一个 NodeList 。)<br>name是一个代表元素的名称的<strong>字符串</strong>。特殊字符 “*” 代表了所有元素。</p>
+<h2 id="element-getElementsByTagName-方法返回一个动态的包含所有指定标签名的元素的HTML集合HTMLCollection。"><a href="#element-getElementsByTagName-方法返回一个动态的包含所有指定标签名的元素的HTML集合HTMLCollection。" class="headerlink" title="element.getElementsByTagName()方法返回一个动态的包含所有指定标签名的元素的HTML集合HTMLCollection。"></a><code>element.getElementsByTagName()</code>方法返回一个动态的包含所有指定标签名的元素的HTML集合HTMLCollection。</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">elements &#x3D; element.getElementsByTagName(tagName);</span><br></pre></td></tr></table></figure>
+<p>与’document.getElementsByTagName()’类似，只是它的搜索范围被限定在指定元素的后代。<br>指定的元素的子树会被搜索，不包括元素自己。返回的列表是动态的，这意味着它会随着DOM树的变化自动更新自身。如果没有找到元素，HTMLCollection为空<br>如果是HTML文档中的某个元素调用了getElementsByTagName函数， 运行前会将参数转为小写字母形式。</p>
+<h2 id="getElementsByClassName-返回一个类似数组的对象，包含了所有指定-class-名称的子元素。"><a href="#getElementsByClassName-返回一个类似数组的对象，包含了所有指定-class-名称的子元素。" class="headerlink" title="getElementsByClassName()返回一个类似数组的对象，包含了所有指定 class 名称的子元素。"></a><code>getElementsByClassName()</code>返回一个类似数组的对象，包含了所有指定 class 名称的子元素。</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">var elements &#x3D; document.getElementsByClassName(names); &#x2F;&#x2F; or:</span><br><span class="line">var elements &#x3D; rootElement.getElementsByClassName(names);</span><br></pre></td></tr></table></figure>
+<p>elements 是查找到的所有元素的集合HTMLCollection。<br>names 是一个字符串，表示用于匹配的 class 名称列表; class 名称通过空格分隔<br>getElementsByClassName 可以在任意的元素上调用，不仅仅是 document。 调用这个方法的元素将作为本次查找的根元素.</p>
+<h2 id="getElementsByName-根据给定的name-返回一个在-X-HTML-document的节点列表集合。"><a href="#getElementsByName-根据给定的name-返回一个在-X-HTML-document的节点列表集合。" class="headerlink" title="getElementsByName()根据给定的name 返回一个在 (X)HTML document的节点列表集合。"></a><code>getElementsByName()</code>根据给定的name 返回一个在 (X)HTML document的节点列表集合。</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">elements &#x3D; document.getElementsByName(name) </span><br></pre></td></tr></table></figure>
+<p>elements 是一个 NodeList 集合。<br>name 是元素的 name 属性的值。<br>name属性仅适用于（X)HTML文档。该方法返回一个动态的NodeList集合，包含所有具有指定的name属性值的元素。<br>在IE或Opera中，<code>getElementsByName()</code>方法也将返回具有指定值的id属性的元素。因此不要将name和ID值设为相同的字符串。</p>
+<h2 id="document-querySelector-返回文档中匹配指定的选择器组的第一个元素节点"><a href="#document-querySelector-返回文档中匹配指定的选择器组的第一个元素节点" class="headerlink" title="document.querySelector()返回文档中匹配指定的选择器组的第一个元素节点"></a><code>document.querySelector()</code>返回文档中匹配指定的选择器组的第一个元素节点</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">element &#x3D; document.querySelector(selectors);</span><br></pre></td></tr></table></figure>
+<p>selectors 是一个字符串，包含一个或是多个 CSS 选择器 ，多个则以逗号分隔。<br>如果没有找到匹配元素，则返回 null，如果找到多个匹配元素，则返回第一个匹配到的元素。<br>传递给 querySelector 的字符串参数必须符合 CSS 语法。<br>CSS 伪类不会返回任何元素。</p>
+<h2 id="element-querySelector-返回调用元素的后代中与指定的选择器组匹配的第一个元素"><a href="#element-querySelector-返回调用元素的后代中与指定的选择器组匹配的第一个元素" class="headerlink" title="element.querySelector()返回调用元素的后代中与指定的选择器组匹配的第一个元素"></a><code>element.querySelector()</code>返回调用元素的后代中与指定的选择器组匹配的第一个元素</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">element &#x3D; baseElement.querySelector(selectors);</span><br></pre></td></tr></table></figure>
+<p>返回的是baseElement后代元素中第一个与指定的选择器组匹配的元素。<br>如果没有找到匹配元素，则返回 null</p>
+<h2 id="document-querySelectorAll-返回与指定的选择器组匹配的文档中的元素列表。返回的对象是-NodeList"><a href="#document-querySelectorAll-返回与指定的选择器组匹配的文档中的元素列表。返回的对象是-NodeList" class="headerlink" title="document.querySelectorAll()返回与指定的选择器组匹配的文档中的元素列表。返回的对象是 NodeList"></a><code>document.querySelectorAll()</code>返回与指定的选择器组匹配的文档中的元素列表。返回的对象是 NodeList</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">elementList &#x3D; document.querySelectorAll(selectors);</span><br></pre></td></tr></table></figure>
+<p>selectors 是一个由逗号连接的包含一个或多个CSS选择器的字符串。<br>传递到<code>querySelectorAll()</code>的字符串参数必须遵循CSS语法。</p>
+<h2 id="element-querySelectorAll-返回一个non-live的NodeList-它包含所有元素的非活动节点"><a href="#element-querySelectorAll-返回一个non-live的NodeList-它包含所有元素的非活动节点" class="headerlink" title="element.querySelectorAll()返回一个non-live的NodeList, 它包含所有元素的非活动节点"></a><code>element.querySelectorAll()</code>返回一个non-live的NodeList, 它包含所有元素的非活动节点</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">elementList &#x3D; baseElement.querySelectorAll(selectors);</span><br></pre></td></tr></table></figure>
+<h2 id="node-parentNode返回指定的节点在DOM树中的父节点"><a href="#node-parentNode返回指定的节点在DOM树中的父节点" class="headerlink" title="node.parentNode返回指定的节点在DOM树中的父节点"></a><code>node.parentNode</code>返回指定的节点在DOM树中的父节点</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">parentNode &#x3D; node.parentNode;</span><br></pre></td></tr></table></figure>
+<p>每个节点都有一个parentNode属性，它表示元素的父节点。<br>一个元素节点的父节点可能是一个元素(Element )节点,也可能是一个文档(Document )节点,或者是个文档碎片(DocumentFragment)节点.</p>
+<h2 id="node-parentElement返回当前节点的父元素节点"><a href="#node-parentElement返回当前节点的父元素节点" class="headerlink" title="node.parentElement返回当前节点的父元素节点"></a><code>node.parentElement</code>返回当前节点的父元素节点</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">parentElement &#x3D; node.parentElement;</span><br></pre></td></tr></table></figure>
+<p>返回元素的父元素节点，与parentNode的区别在于，其父节点必须是一个Element<br>如果该元素没有父节点,或者父节点不是一个元素节点.则返回null</p>
+<h2 id="element-previousElementSibling返回当前元素在其父元素的子元素节点中的前一个元素节点"><a href="#element-previousElementSibling返回当前元素在其父元素的子元素节点中的前一个元素节点" class="headerlink" title="element.previousElementSibling返回当前元素在其父元素的子元素节点中的前一个元素节点"></a><code>element.previousElementSibling</code>返回当前元素在其父元素的子元素节点中的前一个元素节点</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">var prevNode &#x3D; elementNodeReference.previousElementSibling; </span><br></pre></td></tr></table></figure>
+<p>如果该元素已经是第一个元素节点,则返回null<br>该属性是只读的</p>
+<h2 id="element-nextElementSibling返回当前元素在其父元素的子元素节点中的后一个元素节点"><a href="#element-nextElementSibling返回当前元素在其父元素的子元素节点中的后一个元素节点" class="headerlink" title="element.nextElementSibling返回当前元素在其父元素的子元素节点中的后一个元素节点"></a><code>element.nextElementSibling</code>返回当前元素在其父元素的子元素节点中的后一个元素节点</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">var nextNode &#x3D; elementNodeReference.nextElementSibling;</span><br></pre></td></tr></table></figure>
+<p>如果该元素已经是最后一个元素节点,则返回null<br>该属性是只读的</p>
+<h2 id="node-children返回一个Node的子元素的动态HTMLCollection"><a href="#node-children返回一个Node的子元素的动态HTMLCollection" class="headerlink" title="node.children返回一个Node的子元素的动态HTMLCollection"></a><code>node.children</code>返回一个Node的子元素的动态HTMLCollection</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">var children &#x3D; node.children;</span><br></pre></td></tr></table></figure>
+<p>children 属性为只读属性，对象类型为HTMLCollection</p>
+<h2 id="node-firstElementChild返回对象的第一个子元素节点"><a href="#node-firstElementChild返回对象的第一个子元素节点" class="headerlink" title="node.firstElementChild返回对象的第一个子元素节点"></a><code>node.firstElementChild</code>返回对象的第一个子元素节点</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">var element &#x3D; node.firstElementChild;</span><br></pre></td></tr></table></figure>
+<p>该属性是只读的<br>如果没有子元素，则为null</p>
+<h2 id="node-lastElementChild返回对象的最后一个子元素节点"><a href="#node-lastElementChild返回对象的最后一个子元素节点" class="headerlink" title="node.lastElementChild返回对象的最后一个子元素节点"></a><code>node.lastElementChild</code>返回对象的最后一个子元素节点</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">var element &#x3D; node.lastElementChild;</span><br></pre></td></tr></table></figure>
+<p>该属性是只读的<br>如果没有子元素，则为null</p>
+<h2 id="document-documentElement会返回文档对象（document）的根元素，例如HTML文档的根元素是元素，该属性是只读属性"><a href="#document-documentElement会返回文档对象（document）的根元素，例如HTML文档的根元素是元素，该属性是只读属性" class="headerlink" title="document.documentElement会返回文档对象（document）的根元素，例如HTML文档的根元素是元素，该属性是只读属性"></a><code>document.documentElement</code>会返回文档对象（document）的根元素，例如HTML文档的根元素是<html>元素，该属性是只读属性</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">var element &#x3D; document.documentElement;</span><br></pre></td></tr></table></figure>
+<p>以上只列举了一部分方法，更多内容需查看MDN</p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/JavaScript/" rel="tag"># JavaScript</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2017/06/12/console%E4%BD%BF%E7%94%A8%E8%AF%A6%E8%A7%A3%EF%BC%88chrome%EF%BC%89/" rel="prev" title="console使用详解（Chrome）">
+                  <i class="fa fa-chevron-left"></i> console使用详解（Chrome）
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2017/06/14/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0-%E5%9C%A8HTML%E4%B8%AD%E4%BD%BF%E7%94%A8JavaScript/" rel="next" title="读书笔记-在HTML中使用JavaScript">
+                  读书笔记-在HTML中使用JavaScript <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+  
+  
+  
+
+
+
+      
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      const activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      const commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+      
+
+      
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">yuzhu9</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/pisces/" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <script src="//cdn.jsdelivr.net/npm/animejs@3.2.0/lib/anime.min.js"></script>
+<script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>

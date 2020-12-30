@@ -1,0 +1,503 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.3.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.14.0/css/all.min.css">
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css">
+
+<script class="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"zhengyuan.xyz","root":"/","scheme":"Pisces","version":"8.0.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}};
+  </script>
+
+  <meta name="description" content="根元素 &lt;html&gt;根元素，其他所有元素必须是此元素的后代">
+<meta property="og:type" content="article">
+<meta property="og:title" content="HTML常用标签复习笔记">
+<meta property="og:url" content="http://zhengyuan.xyz/2018/04/29/HTML%E5%B8%B8%E7%94%A8%E6%A0%87%E7%AD%BE%E5%A4%8D%E4%B9%A0%E7%AC%94%E8%AE%B0/index.html">
+<meta property="og:site_name" content="玉竹的博客">
+<meta property="og:description" content="根元素 &lt;html&gt;根元素，其他所有元素必须是此元素的后代">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/yuzhu9/image@master/img/18.jpg">
+<meta property="article:published_time" content="2018-04-28T21:20:36.000Z">
+<meta property="article:modified_time" content="2018-04-28T21:20:36.000Z">
+<meta property="article:author" content="yuzhu9">
+<meta property="article:tag" content="HTML">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://cdn.jsdelivr.net/gh/yuzhu9/image@master/img/18.jpg">
+
+
+<link rel="canonical" href="http://zhengyuan.xyz/2018/04/29/HTML%E5%B8%B8%E7%94%A8%E6%A0%87%E7%AD%BE%E5%A4%8D%E4%B9%A0%E7%AC%94%E8%AE%B0/">
+
+
+<script class="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>HTML常用标签复习笔记 | 玉竹的博客</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  body { margin-top: 2rem; }
+
+  .use-motion .menu-item,
+  .use-motion .sidebar,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header {
+    visibility: visible;
+  }
+
+  .use-motion .header,
+  .use-motion .site-brand-container .toggle,
+  .use-motion .footer { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle,
+  .use-motion .custom-logo-image {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line {
+    transform: scaleX(1);
+  }
+
+  .search-pop-overlay, .sidebar-nav { display: none; }
+  .sidebar-panel { display: block; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <h1 class="site-title">玉竹的博客</h1>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <section class="post-toc-wrap sidebar-panel">
+          <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%A0%B9%E5%85%83%E7%B4%A0"><span class="nav-number">1.</span> <span class="nav-text">根元素</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%85%83%E6%95%B0%E6%8D%AE"><span class="nav-number">2.</span> <span class="nav-text">元数据</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%86%85%E5%AE%B9%E5%88%86%E5%8C%BA"><span class="nav-number">3.</span> <span class="nav-text">内容分区</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%96%87%E6%9C%AC%E5%86%85%E5%AE%B9"><span class="nav-number">4.</span> <span class="nav-text">文本内容</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%86%85%E8%81%94%E6%96%87%E6%9C%AC%E8%AF%AD%E4%B9%89"><span class="nav-number">5.</span> <span class="nav-text">内联文本语义</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%9B%BE%E7%89%87%E5%92%8C%E5%A4%9A%E5%AA%92%E4%BD%93"><span class="nav-number">6.</span> <span class="nav-text">图片和多媒体</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%84%9A%E6%9C%AC"><span class="nav-number">7.</span> <span class="nav-text">脚本</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%BC%96%E8%BE%91%E6%A0%87%E8%AF%86"><span class="nav-number">8.</span> <span class="nav-text">编辑标识</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%A1%A8%E6%A0%BC%E5%86%85%E5%AE%B9"><span class="nav-number">9.</span> <span class="nav-text">表格内容</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%A1%A8%E5%8D%95"><span class="nav-number">10.</span> <span class="nav-text">表单</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%B5%84%E6%96%99%E6%9D%A5%E6%BA%90"><span class="nav-number">11.</span> <span class="nav-text">资料来源</span></a></li></ol></div>
+      </section>
+      <!--/noindex-->
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="yuzhu9"
+      src="/images/avatar.jpg">
+  <p class="site-author-name" itemprop="name">yuzhu9</p>
+  <div class="site-description" itemprop="description">逝者如斯夫，不舍昼夜</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">25</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">2</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">6</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/yuzhu9" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;yuzhu9" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:poly2014w@163.com" title="E-Mail → mailto:poly2014w@163.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+
+
+
+      </section>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+      
+
+      
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://zhengyuan.xyz/2018/04/29/HTML%E5%B8%B8%E7%94%A8%E6%A0%87%E7%AD%BE%E5%A4%8D%E4%B9%A0%E7%AC%94%E8%AE%B0/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="yuzhu9">
+      <meta itemprop="description" content="逝者如斯夫，不舍昼夜">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="玉竹的博客">
+    </span>
+
+    
+    
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          HTML常用标签复习笔记
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2018-04-29 05:20:36" itemprop="dateCreated datePublished" datetime="2018-04-29T05:20:36+08:00">2018-04-29</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E7%AC%94%E8%AE%B0/" itemprop="url" rel="index"><span itemprop="name">笔记</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <h4 id="根元素"><a href="#根元素" class="headerlink" title="根元素"></a>根元素</h4><ul>
+<li><code>&lt;html&gt;</code>根元素，其他所有元素必须是此元素的后代</li>
+</ul>
+<p><img src="https://cdn.jsdelivr.net/gh/yuzhu9/image@master/img/18.jpg"></p>
+<a id="more"></a>
+
+<h4 id="元数据"><a href="#元数据" class="headerlink" title="元数据"></a>元数据</h4><ul>
+<li><code>&lt;link&gt;</code>指定了外部资源与当前文档的关系。常用来链接样式表</li>
+<li><code>&lt;meta&gt;</code>表示那些不能由其它HTML元相关元素 (<code>&lt;base&gt;</code> <code>&lt;link&gt;</code> <code>&lt;script&gt;</code> <code>&lt;style&gt;</code> <code>&lt;title&gt;</code>) 之一表示的任何元数据信息</li>
+<li><code>&lt;style&gt;</code>包含了文档的样式化信息或者文档的一部分，该标签的样式信息通常是 CSS 的格式。</li>
+<li><code>&lt;title&gt;</code>定义文档的标题，显示在浏览器的标题栏或标签也上。它只可以包含文本。</li>
+</ul>
+<h4 id="内容分区"><a href="#内容分区" class="headerlink" title="内容分区"></a>内容分区</h4><p>内容分区元素允许将文档内容从逻辑上进行组织划分。</p>
+<ul>
+<li><code>&lt;header&gt;</code>表示一组引导性的帮助，可能包含标题元素，也可以包含其他元素。如 logo等</li>
+<li><code>&lt;nav&gt;</code>导航栏</li>
+<li><code>&lt;h1&gt;~&lt;h6&gt;</code>标题标签</li>
+<li><code>&lt;section&gt;</code>表示文档中的一个区域，比如内容中的一个专题组</li>
+<li><code>&lt;footer&gt;</code>表示最近一个章节内容或者根节点元素的页脚。一个页脚通常包含该章节作者、版权数据或文档相关的链接等信息</li>
+<li><code>&lt;aside&gt;</code>表示一个和其余页面内容几乎无关的部分，可以被单独拆分出来而不会使整体受影响。通常表现为侧边栏或嵌入内容</li>
+</ul>
+<h4 id="文本内容"><a href="#文本内容" class="headerlink" title="文本内容"></a>文本内容</h4><ul>
+<li><code>&lt;blockquote&gt;</code>块级引用元素，代表其中的文字是引用内容。通常在渲染时，这部份内容会有一定的缩进。如果引文来源于网络，则可以将原内容的出处URL地址设置到 cite特性上</li>
+<li><code>&lt;main&gt;</code>呈现文档或应用的主体部分</li>
+<li><code>&lt;pre&gt;</code>表示预定义格式文本</li>
+<li><code>&lt;div&gt;</code>通用型的容器，可以用来对其他元素进行分组，语义上不代表任何特定类型的内容</li>
+<li><code>&lt;p&gt;</code>表示文本的一个段落</li>
+<li><code>&lt;hr&gt;</code>表示段落级元素之间的主题转换，表现为水平线。但目前被定义为语义上的，而不是表现层面上</li>
+<li><code>&lt;dl&gt;</code>表示一个包含术语定义以及描述的列表。通常用于展示词汇表或元数据（键-值对列表）</li>
+<li><code>&lt;dt&gt;</code>用于在定义列表中声明一个属于。该元素仅能作为<code>&lt;dl&gt;</code>的子元素。通常后面后跟着<code>&lt;dd&gt;</code>元素</li>
+<li><code>&lt;dd&gt;</code>用来指明一个描述列表元素中一个术语的描述。只能作为<code>&lt;dl&gt;</code>的子元素出现，并且必须跟着一个<code>&lt;dt&gt;</code>元素</li>
+<li><code>&lt;ol&gt;</code>有序列表，通常渲染为带有编号的列表</li>
+<li><code>&lt;ul&gt;</code>无序列表，表示无数值排序项的集合</li>
+<li><code>&lt;li&gt;</code>表示列表里的条目。它必须被包含在<code>&lt;ol&gt;</code>或者<code>&lt;ul&gt;</code>或者<code>&lt;menu&gt;</code>里</li>
+</ul>
+<h4 id="内联文本语义"><a href="#内联文本语义" class="headerlink" title="内联文本语义"></a>内联文本语义</h4><ul>
+<li><code>&lt;a&gt;</code>可以创建到其他网页、文件、同一页面内的位置、电子邮件地址或者任何其他URL的超链接</li>
+<li><code>&lt;b&gt;</code>浏览器中显示为粗体，但不起强调作用</li>
+<li><code>&lt;br&gt;</code>生成一个换行符号</li>
+<li><code>&lt;cite&gt;</code>表示一个作品的引用</li>
+<li><code>&lt;code&gt;</code>呈现一段计算机代码。默认情况下，它以浏览器的默认等宽字体显示</li>
+<li><code>&lt;em&gt;</code>标记需要用户着重阅读的内容，该元素是可以嵌套的，嵌套层次越深，包含的内容被认定为越需要着重阅读</li>
+<li><code>&lt;i&gt;</code>用于表现因某些原因需要区分普通文本的一系列文本，它的内容通常以斜体显示</li>
+<li><code>&lt;kbd&gt;</code>用于表示用户输入，它将产生一个行内元素，以浏览器的默认等宽字体显示</li>
+<li><code>&lt;q&gt;</code>用来引用短的文本</li>
+<li><code>&lt;small&gt;</code>该元素使文本的字体变小一号。在 HTML5 中，除了它的样式含义，这个元素被重新定义为表示边注释和附录细则，包括版权和法律文本</li>
+<li><code>&lt;span&gt;</code>通用行内容器，没有任何特殊语义</li>
+<li><code>&lt;strong&gt;</code>表示文本十分重要，一般用粗体显示</li>
+<li><code>&lt;sub&gt;</code>下标</li>
+<li><code>&lt;sup&gt;</code>上标</li>
+<li><code>&lt;time&gt;</code>用来表示24小时制时间或者公历日期，若表示日期则也可包含时间和时区</li>
+<li><code>&lt;u&gt;</code>使文本在其内容的基线下呈现下划线</li>
+</ul>
+<h4 id="图片和多媒体"><a href="#图片和多媒体" class="headerlink" title="图片和多媒体"></a>图片和多媒体</h4><ul>
+<li><code>&lt;area&gt;</code>在图片上定义一个热点区域，可以关联一个超链接。该元素仅在‘<code>&lt;map&gt;</code>元素内部使用</li>
+<li><code>&lt;audio&gt;</code>表示音频内容，可以包含多个音频资源，这些音频资源可以使用<code>src</code>属性或者<code>&lt;source&gt;</code>元素来进行描述，浏览器将会选择最合适的一个来使用</li>
+<li><code>&lt;img&gt;</code>图像</li>
+<li><code>&lt;map&gt;</code>与<code>&lt;area&gt;</code>一起使用来定义一个图像映射（一个可点击的链接区域）</li>
+<li><code>&lt;track</code>被当作媒体元素<code>&lt;audio&gt;</code> <code>&lt;video&gt;</code>的子元素来使用。它允许指定计时字幕（或者基于事件的数据），例如自动处理字幕</li>
+<li><code>&lt;video&gt;</code>用于嵌入视频内容</li>
+</ul>
+<h4 id="脚本"><a href="#脚本" class="headerlink" title="脚本"></a>脚本</h4><ul>
+<li><code>&lt;canvas&gt;</code>可被用来通过脚本（通常是 JavaScript）绘制图形</li>
+<li><code>&lt;noscript&gt;</code>如果页面上的脚本类型不受支持或者在浏览器中关闭了脚本，使用该元素定义脚本未被执行时的替代内容</li>
+<li><code>&lt;script&gt;</code>用于嵌入或引入可执行脚本</li>
+</ul>
+<h4 id="编辑标识"><a href="#编辑标识" class="headerlink" title="编辑标识"></a>编辑标识</h4><ul>
+<li><code>&lt;del&gt;</code>表示一些被从文档中删除的文字内容</li>
+<li><code>&lt;ins&gt;</code>表示已经被插入文档中的文本</li>
+</ul>
+<h4 id="表格内容"><a href="#表格内容" class="headerlink" title="表格内容"></a>表格内容</h4><ul>
+<li><code>&lt;caption&gt;</code>表示表格的标题，常常作为<code>&lt;table&gt;</code>元素的第一个子元素出现</li>
+<li><code>&lt;col&gt;</code>定义表格中的列，并用于定义所有公共单元格上的公共语义。它通常位于<code>&lt;colgroup&gt;</code>元素内</li>
+<li><code>&lt;colgroup&gt;</code>用来定义表中的一组列表</li>
+<li><code>&lt;table&gt;</code>表示表格数据</li>
+<li><code>&lt;tbody&gt;</code>表格的主体内容</li>
+<li><code>&lt;td&gt;</code>表格数据单元</li>
+<li><code>&lt;tfoot&gt;</code>定义表格中各列的总和或总结的行</li>
+<li><code>&lt;thead&gt;</code>定义表格的列头的行</li>
+<li><code>&lt;th&gt;</code>定义表格内的表头单元格</li>
+<li><code>&lt;tr&gt;</code>定义表格中的行</li>
+</ul>
+<h4 id="表单"><a href="#表单" class="headerlink" title="表单"></a>表单</h4><p>表单元素见<a target="_blank" rel="noopener" href="http://izhengyuan.cn/2017/04/29/HTML%E8%A1%A8%E5%8D%95%E7%94%A8%E6%B3%95%E7%AE%80%E4%BB%8B/">HTML表单用法简介</a></p>
+<h4 id="资料来源"><a href="#资料来源" class="headerlink" title="资料来源"></a>资料来源</h4><p><a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Web/HTML/Element">HTML 元素参考</a></p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/HTML/" rel="tag"># HTML</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2018/04/29/%E7%A9%BA%E6%A0%87%E7%AD%BE%E5%A4%8D%E4%B9%A0%E7%AC%94%E8%AE%B0/" rel="prev" title="空标签复习笔记">
+                  <i class="fa fa-chevron-left"></i> 空标签复习笔记
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2018/06/15/CSS%E5%B8%B8%E8%A7%81%E5%B8%83%E5%B1%80%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" rel="next" title="CSS常见布局学习笔记">
+                  CSS常见布局学习笔记 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+  
+  
+  
+
+
+
+      
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      const activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      const commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+      
+
+      
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">yuzhu9</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/pisces/" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <script src="//cdn.jsdelivr.net/npm/animejs@3.2.0/lib/anime.min.js"></script>
+<script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>

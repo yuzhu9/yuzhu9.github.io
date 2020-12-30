@@ -1,0 +1,489 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.3.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.14.0/css/all.min.css">
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css">
+
+<script class="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"zhengyuan.xyz","root":"/","scheme":"Pisces","version":"8.0.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}};
+  </script>
+
+  <meta name="description" content="1.html标签 可以省略起始标签&lt;html&gt;：html标签的内容不以注释作为开始 可以省略结束标签&lt;&#x2F;html&gt;：结束标签后面没有紧跟注释">
+<meta property="og:type" content="article">
+<meta property="og:title" content="HTML中哪些标签可以省略">
+<meta property="og:url" content="http://zhengyuan.xyz/2017/05/04/HTML%E4%B8%AD%E5%93%AA%E4%BA%9B%E6%A0%87%E7%AD%BE%E5%8F%AF%E4%BB%A5%E7%9C%81%E7%95%A5/index.html">
+<meta property="og:site_name" content="玉竹的博客">
+<meta property="og:description" content="1.html标签 可以省略起始标签&lt;html&gt;：html标签的内容不以注释作为开始 可以省略结束标签&lt;&#x2F;html&gt;：结束标签后面没有紧跟注释">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/yuzhu9/image@master/img/19.jpg">
+<meta property="article:published_time" content="2017-05-03T16:42:02.000Z">
+<meta property="article:modified_time" content="2017-05-03T16:42:02.000Z">
+<meta property="article:author" content="yuzhu9">
+<meta property="article:tag" content="HTML">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://cdn.jsdelivr.net/gh/yuzhu9/image@master/img/19.jpg">
+
+
+<link rel="canonical" href="http://zhengyuan.xyz/2017/05/04/HTML%E4%B8%AD%E5%93%AA%E4%BA%9B%E6%A0%87%E7%AD%BE%E5%8F%AF%E4%BB%A5%E7%9C%81%E7%95%A5/">
+
+
+<script class="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>HTML中哪些标签可以省略 | 玉竹的博客</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  body { margin-top: 2rem; }
+
+  .use-motion .menu-item,
+  .use-motion .sidebar,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header {
+    visibility: visible;
+  }
+
+  .use-motion .header,
+  .use-motion .site-brand-container .toggle,
+  .use-motion .footer { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle,
+  .use-motion .custom-logo-image {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line {
+    transform: scaleX(1);
+  }
+
+  .search-pop-overlay, .sidebar-nav { display: none; }
+  .sidebar-panel { display: block; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <h1 class="site-title">玉竹的博客</h1>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <section class="post-toc-wrap sidebar-panel">
+          <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-html%E6%A0%87%E7%AD%BE"><span class="nav-number">1.</span> <span class="nav-text">1.html标签</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-head%E6%A0%87%E7%AD%BE"><span class="nav-number">2.</span> <span class="nav-text">2.head标签</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-body%E6%A0%87%E7%AD%BE"><span class="nav-number">3.</span> <span class="nav-text">3.body标签</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-tbody%E6%A0%87%E7%AD%BE"><span class="nav-number">4.</span> <span class="nav-text">4.tbody标签</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-li%E6%A0%87%E7%AD%BE"><span class="nav-number">5.</span> <span class="nav-text">5.li标签</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#6-dt%E6%A0%87%E7%AD%BE"><span class="nav-number">6.</span> <span class="nav-text">6.dt标签</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#7-dd%E6%A0%87%E7%AD%BE"><span class="nav-number">7.</span> <span class="nav-text">7.dd标签</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#8-p%E6%A0%87%E7%AD%BE"><span class="nav-number">8.</span> <span class="nav-text">8.p标签</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#9-rt%E6%A0%87%E7%AD%BE"><span class="nav-number">9.</span> <span class="nav-text">9.rt标签</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#10-rtc%E6%A0%87%E7%AD%BE"><span class="nav-number">10.</span> <span class="nav-text">10.rtc标签</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#11-rp%E6%A0%87%E7%AD%BE"><span class="nav-number">11.</span> <span class="nav-text">11.rp标签</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#12-colgroup%E6%A0%87%E7%AD%BE"><span class="nav-number">12.</span> <span class="nav-text">12.colgroup标签</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#13-thead%E6%A0%87%E7%AD%BE"><span class="nav-number">13.</span> <span class="nav-text">13.thead标签</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#14-tfoot%E6%A0%87%E7%AD%BE"><span class="nav-number">14.</span> <span class="nav-text">14.tfoot标签</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#15-tr%E6%A0%87%E7%AD%BE"><span class="nav-number">15.</span> <span class="nav-text">15.tr标签</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#16-td%E6%A0%87%E7%AD%BE"><span class="nav-number">16.</span> <span class="nav-text">16.td标签</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#17-th%E6%A0%87%E7%AD%BE"><span class="nav-number">17.</span> <span class="nav-text">17.th标签</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#18-optgroup%E6%A0%87%E7%AD%BE"><span class="nav-number">18.</span> <span class="nav-text">18.optgroup标签</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#19-option%E6%A0%87%E7%AD%BE"><span class="nav-number">19.</span> <span class="nav-text">19.option标签</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8F%82%E8%80%83%E8%B5%84%E6%96%99%EF%BC%9A"><span class="nav-number">20.</span> <span class="nav-text">参考资料：</span></a></li></ol></div>
+      </section>
+      <!--/noindex-->
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="yuzhu9"
+      src="/images/avatar.jpg">
+  <p class="site-author-name" itemprop="name">yuzhu9</p>
+  <div class="site-description" itemprop="description">逝者如斯夫，不舍昼夜</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">25</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">2</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">6</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/yuzhu9" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;yuzhu9" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:poly2014w@163.com" title="E-Mail → mailto:poly2014w@163.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+
+
+
+      </section>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+      
+
+      
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://zhengyuan.xyz/2017/05/04/HTML%E4%B8%AD%E5%93%AA%E4%BA%9B%E6%A0%87%E7%AD%BE%E5%8F%AF%E4%BB%A5%E7%9C%81%E7%95%A5/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="yuzhu9">
+      <meta itemprop="description" content="逝者如斯夫，不舍昼夜">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="玉竹的博客">
+    </span>
+
+    
+    
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          HTML中哪些标签可以省略
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2017-05-04 00:42:02" itemprop="dateCreated datePublished" datetime="2017-05-04T00:42:02+08:00">2017-05-04</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E7%AC%94%E8%AE%B0/" itemprop="url" rel="index"><span itemprop="name">笔记</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <h2 id="1-html标签"><a href="#1-html标签" class="headerlink" title="1.html标签"></a>1.html标签</h2><ul>
+<li>可以省略起始标签<code>&lt;html&gt;</code>：html标签的内容不以注释作为开始</li>
+<li>可以省略结束标签<code>&lt;/html&gt;</code>：结束标签后面没有紧跟注释</li>
+</ul>
+<p><img src="https://cdn.jsdelivr.net/gh/yuzhu9/image@master/img/19.jpg"></p>
+<a id="more"></a>
+
+<h2 id="2-head标签"><a href="#2-head标签" class="headerlink" title="2.head标签"></a>2.head标签</h2><ul>
+<li>可以省略起始标签<code>&lt;head&gt;</code>：1.head标签内容为空; 2.以一个标签作为开始</li>
+<li>可以省略结束标签<code>&lt;/head&gt;</code>：head结束标签后面不是紧跟空白字符或者注释</li>
+</ul>
+<h2 id="3-body标签"><a href="#3-body标签" class="headerlink" title="3.body标签"></a>3.body标签</h2><ul>
+<li>可以省略起始标签<code>&lt;body&gt;</code>：1.body标签内容为空； 2.不是以空白字符、注释、script元素、 style元素、meta元素、link元素、template元素为开头</li>
+<li>可以省略结束标签<code>&lt;/body&gt;</code>：body结束标签后面的内容不是注释、空白字符、</li>
+</ul>
+<h2 id="4-tbody标签"><a href="#4-tbody标签" class="headerlink" title="4.tbody标签"></a>4.tbody标签</h2><ul>
+<li>可以省略起始标签<code>&lt;tbody&gt;</code>：1.tbody标签内容不为空； 2.它是以tr标签开头，同时在它前面的不能是省略了结束标签的tbody、thead、tfoot</li>
+<li>可以省略结束标签<code>&lt;/tbody&gt;</code>：1.tbody结束标签后面紧跟着tbody或tfoot标签； 2.当前tbody结束标签是父元素的最后一个子元素</li>
+</ul>
+<hr>
+<h2 id="5-li标签"><a href="#5-li标签" class="headerlink" title="5.li标签"></a>5.li标签</h2><ul>
+<li>可以省略结束标签<code>&lt;/li&gt;</code>：1.li结束标签后面的元素是li; 2.当前li结束标签是父元素的最后一个子元素</li>
+</ul>
+<h2 id="6-dt标签"><a href="#6-dt标签" class="headerlink" title="6.dt标签"></a>6.dt标签</h2><ul>
+<li>可以省略结束标签<code>&lt;dt&gt;</code>：dt结束标签后面紧跟着dt或dd标签</li>
+</ul>
+<h2 id="7-dd标签"><a href="#7-dd标签" class="headerlink" title="7.dd标签"></a>7.dd标签</h2><ul>
+<li>可以省略结束标签<code>&lt;/dd&gt;</code>：1.dd结束标签后面紧跟着dd或dt标签； 2.当前dd结束标签是父元素的最后一个子元素</li>
+</ul>
+<h2 id="8-p标签"><a href="#8-p标签" class="headerlink" title="8.p标签"></a>8.p标签</h2><ul>
+<li>可以省略结束标签<code>&lt;/p&gt;</code>：1.p结束标签后面紧跟着address、article、aside、blockquote、details、div、dl、fieldset、figcaption、figure、footer、form、h1、h2、h3、h4、h5、h6、header、hr、main、menu、nav、ol、p、pre、seciton、table、ul元素； 2.当前p结束标签是父元素的最后一个子元素，并且父元素不是a、audio、del、ins、map、nosscript、video元素</li>
+</ul>
+<h2 id="9-rt标签"><a href="#9-rt标签" class="headerlink" title="9.rt标签"></a>9.rt标签</h2><ul>
+<li>可以省略结束标签<code>&lt;/rt&gt;</code>：1.rt结束标签后面紧跟着rb、rt、rtc或rp标签； 2.当前rt结束标签是父元素的最后一个子元素</li>
+</ul>
+<h2 id="10-rtc标签"><a href="#10-rtc标签" class="headerlink" title="10.rtc标签"></a>10.rtc标签</h2><ul>
+<li>可以省略结束标签<code>&lt;/rtc&gt;</code>：1.rtc结束标签后面紧跟着rb或rtc标签； 2.当前rtc结束标签是父元素的最后一个子元素</li>
+</ul>
+<h2 id="11-rp标签"><a href="#11-rp标签" class="headerlink" title="11.rp标签"></a>11.rp标签</h2><ul>
+<li>可以省略结束标签<code>&lt;/rp&gt;</code>：1.rp结束标签后面紧跟着rb、rt、rtc或rp标签； 2.当前rp结束标签是父元素的最后一个子元素</li>
+</ul>
+<h2 id="12-colgroup标签"><a href="#12-colgroup标签" class="headerlink" title="12.colgroup标签"></a>12.colgroup标签</h2><ul>
+<li>可以省略结束标签<code>&lt;/colgroup&gt;</code>：当前colgroup结束标签后面不是紧跟着空白字符或注释</li>
+</ul>
+<h2 id="13-thead标签"><a href="#13-thead标签" class="headerlink" title="13.thead标签"></a>13.thead标签</h2><ul>
+<li>可以省略结束标签<code>&lt;/thead&gt;</code>：thead结束标签后面紧跟着tbody或tfoot标签</li>
+</ul>
+<h2 id="14-tfoot标签"><a href="#14-tfoot标签" class="headerlink" title="14.tfoot标签"></a>14.tfoot标签</h2><ul>
+<li>可以省略结束标签<code>&lt;/tfoot&gt;</code>：当前tfoot结束标签后面紧跟着tbody标签； 2.当前tfoot结束标签是父元素的最后一个子元素</li>
+</ul>
+<h2 id="15-tr标签"><a href="#15-tr标签" class="headerlink" title="15.tr标签"></a>15.tr标签</h2><ul>
+<li>可以省略结束标签<code>&lt;/tr&gt;</code>：1.当前tr结束标签后面紧跟着tr标签； 2.当前tr结束标签是父元素的最后一个子元素</li>
+</ul>
+<h2 id="16-td标签"><a href="#16-td标签" class="headerlink" title="16.td标签"></a>16.td标签</h2><ul>
+<li>可以省略结束标签<code>&lt;/td&gt;</code>：1.当前td结束标签后面紧跟着td或th标签； 2.当前td结束标签是父元素的最后一个子元素</li>
+</ul>
+<h2 id="17-th标签"><a href="#17-th标签" class="headerlink" title="17.th标签"></a>17.th标签</h2><ul>
+<li>可以省略结束标签<code>&lt;/th&gt;</code>：1.当前th结束标签后面紧跟着td或th标签； 2.当前th结束标签是父元素的最后一个子元素</li>
+</ul>
+<h2 id="18-optgroup标签"><a href="#18-optgroup标签" class="headerlink" title="18.optgroup标签"></a>18.optgroup标签</h2><ul>
+<li>可以省略结束标签<code>&lt;/optgroup&gt;</code>：1.当前optgroup结束标签后面紧跟着optgroup标签； 2.当前optgroup结束标签是父元素的最后一个子元素</li>
+</ul>
+<h2 id="19-option标签"><a href="#19-option标签" class="headerlink" title="19.option标签"></a>19.option标签</h2><ul>
+<li>可以省略结束标签<code>&lt;/option&gt;</code>：1.1.当前option结束标签后面紧跟着option或optgroup标签； 2.当前option结束标签是父元素的最后一个子元素</li>
+</ul>
+<p><strong>注：“空白字符”是指：空格(U+0020)、制表符(U+0009)、换行(U+000A)、回车(U+000D)、换页(U+000C)。</strong></p>
+<h2 id="参考资料："><a href="#参考资料：" class="headerlink" title="参考资料："></a>参考资料：</h2><ul>
+<li><a target="_blank" rel="noopener" href="http://hao.jser.com/archive/6370/">可省略的HTML标签及其实践 </a></li>
+<li><a target="_blank" rel="noopener" href="https://www.w3.org/TR/html51/">HTML5.1</a></li>
+</ul>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/HTML/" rel="tag"># HTML</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2017/05/01/meta%E6%A0%87%E7%AD%BE%E5%B1%9E%E6%80%A7/" rel="prev" title="meta标签属性">
+                  <i class="fa fa-chevron-left"></i> meta标签属性
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2017/05/06/%E5%88%9D%E8%AF%86Flex%E5%B8%83%E5%B1%80/" rel="next" title="初识Flex布局">
+                  初识Flex布局 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+  
+  
+  
+
+
+
+      
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      const activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      const commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+      
+
+      
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">yuzhu9</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/pisces/" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <script src="//cdn.jsdelivr.net/npm/animejs@3.2.0/lib/anime.min.js"></script>
+<script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>

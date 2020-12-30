@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.3.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.14.0/css/all.min.css">
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css">
+
+<script class="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"zhengyuan.xyz","root":"/","scheme":"Pisces","version":"8.0.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}};
+  </script>
+
+  <meta name="description" content="1.cd：切换目录。参数是要切换到的目录路径，可以是绝对路径，也可以是相对路径 12345cd ~  切换到家目录（用户目录）cd .&#x2F;demo 切换到当前目录下的demo目录cd ..&#x2F;demo 切换到上一级目录下的demo目录cd &#x2F; 切换到系统根目录cd - 返回进入此目录之前所在的目录">
+<meta property="og:type" content="article">
+<meta property="og:title" content="学习笔记-常用命令行">
+<meta property="og:url" content="http://zhengyuan.xyz/2017/05/07/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4%E8%A1%8C/index.html">
+<meta property="og:site_name" content="玉竹的博客">
+<meta property="og:description" content="1.cd：切换目录。参数是要切换到的目录路径，可以是绝对路径，也可以是相对路径 12345cd ~  切换到家目录（用户目录）cd .&#x2F;demo 切换到当前目录下的demo目录cd ..&#x2F;demo 切换到上一级目录下的demo目录cd &#x2F; 切换到系统根目录cd - 返回进入此目录之前所在的目录">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/yuzhu9/image@master/img/2.jpg">
+<meta property="article:published_time" content="2017-05-06T17:43:34.000Z">
+<meta property="article:modified_time" content="2017-05-06T17:43:34.000Z">
+<meta property="article:author" content="yuzhu9">
+<meta property="article:tag" content="工具">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://cdn.jsdelivr.net/gh/yuzhu9/image@master/img/2.jpg">
+
+
+<link rel="canonical" href="http://zhengyuan.xyz/2017/05/07/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4%E8%A1%8C/">
+
+
+<script class="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>学习笔记-常用命令行 | 玉竹的博客</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  body { margin-top: 2rem; }
+
+  .use-motion .menu-item,
+  .use-motion .sidebar,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header {
+    visibility: visible;
+  }
+
+  .use-motion .header,
+  .use-motion .site-brand-container .toggle,
+  .use-motion .footer { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle,
+  .use-motion .custom-logo-image {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line {
+    transform: scaleX(1);
+  }
+
+  .search-pop-overlay, .sidebar-nav { display: none; }
+  .sidebar-panel { display: block; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <h1 class="site-title">玉竹的博客</h1>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-overview-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <section class="post-toc-wrap sidebar-panel">
+      </section>
+      <!--/noindex-->
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="yuzhu9"
+      src="/images/avatar.jpg">
+  <p class="site-author-name" itemprop="name">yuzhu9</p>
+  <div class="site-description" itemprop="description">逝者如斯夫，不舍昼夜</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">25</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">2</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">6</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/yuzhu9" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;yuzhu9" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:poly2014w@163.com" title="E-Mail → mailto:poly2014w@163.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+
+
+
+      </section>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+      
+
+      
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://zhengyuan.xyz/2017/05/07/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4%E8%A1%8C/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="yuzhu9">
+      <meta itemprop="description" content="逝者如斯夫，不舍昼夜">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="玉竹的博客">
+    </span>
+
+    
+    
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          学习笔记-常用命令行
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2017-05-07 01:43:34" itemprop="dateCreated datePublished" datetime="2017-05-07T01:43:34+08:00">2017-05-07</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E7%AC%94%E8%AE%B0/" itemprop="url" rel="index"><span itemprop="name">笔记</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <p>1.cd：切换目录。参数是要切换到的目录路径，可以是绝对路径，也可以是相对路径</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">cd ~  切换到家目录（用户目录）</span><br><span class="line">cd .&#x2F;demo 切换到当前目录下的demo目录</span><br><span class="line">cd ..&#x2F;demo 切换到上一级目录下的demo目录</span><br><span class="line">cd &#x2F; 切换到系统根目录</span><br><span class="line">cd - 返回进入此目录之前所在的目录</span><br></pre></td></tr></table></figure>
+<p><img src="https://cdn.jsdelivr.net/gh/yuzhu9/image@master/img/2.jpg"></p>
+<a id="more"></a>
+<p>2.ls：list，查看目录中的文件或文件夹等</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">ls -a 显示隐藏文件（以.开头的文件）</span><br><span class="line">ls -l 显示文件和目录的详细资料（l是long的缩写）包含文件的属性与权限数据等 </span><br><span class="line">ls -l t* 列出当前目录中所有以&quot;t&quot;开头的详细内容</span><br><span class="line">ls -d ：仅列出目录本身，而不是列出目录的文件数据</span><br><span class="line">ls -h ：将文件容量以较易读的方式（GB，kB等）列出来   </span><br><span class="line">ls -R ：连同子目录的内容一起列出（递归列出），等于该目录下的所有文件都会显示出来</span><br></pre></td></tr></table></figure>
+<p>3.pwd：查看当前工作目录的完整路径</p>
+<p>4.mkdir：用来创建制定的名称的文件夹</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">mkdir demo1 创建一个叫做demo1的目录</span><br><span class="line">mkdir -p demo1&#x2F;demo2 递归创建多个目录</span><br><span class="line">mkdir demo1 demo2 同时创建两个目录</span><br></pre></td></tr></table></figure>
+<p>4.rm：用来删除一个目录中一个或多个文件或目录</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">rm file1  &#x2F;&#x2F;删除一个叫做 &#39;file1&#39; 的文件，系统会询问是否删除</span><br><span class="line">rm -f file2  &#x2F;&#x2F;强行删除一个叫做 &#39;file2&#39; 的文件，系统不再提示,f就是force的意思，忽略不存在的文件，不会出现警告消息  </span><br><span class="line">rm -r test1  &#x2F;&#x2F;将一个叫做 test1 的子目录及子目录中所有内容删除 -r递归删除，最常用于目录删除，它是一个非常危险的参数 </span><br><span class="line">rm -rf dir1  &#x2F;&#x2F;删除一个叫做 &#39;dir1&#39; 的目录并同时删除其内容 </span><br><span class="line">rm -rf dir1 dir2  &#x2F;&#x2F;同时删除两个目录及它们的内容</span><br><span class="line">rm -i ：互动模式，在删除前会询问用户是否操作 </span><br></pre></td></tr></table></figure>
+<p>5.mv：move的缩写，移动文件或将文件改名</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">mv file1 file2  &#x2F;&#x2F;将文件 file1 重命名为 file2</span><br><span class="line">mv file3 dir1  &#x2F;&#x2F;将 file3 文件移动到目录 dir1 中</span><br><span class="line">mv dir1 dir2  &#x2F;&#x2F;如果目录 dir2 不存在，将目录 dir1 改名为 dir2，否则，将 dir1 移动到 dir2 中</span><br><span class="line">mv -f ：force强制的意思，如果目标文件已经存在，不会询问而直接覆盖 </span><br><span class="line">mv -i ：若目标文件已经存在，就会询问是否覆盖 </span><br><span class="line">mv -u ：若目标文件已经存在，且比目标文件新，才会更新  </span><br><span class="line">mv file1 file2 file3 dir # 把文件file1、file2、file3移动到目录dir中  </span><br></pre></td></tr></table></figure>
+<p>6.cp：复制文件或目录</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">cp file1 tdir1  &#x2F;&#x2F;复制 file1 到目录 dir1 下 </span><br><span class="line">cp dir&#x2F;* .   &#x2F;&#x2F;复制一个目录下的所有文件到当前工作目录</span><br><span class="line">cp -a ：将文件的特性一起复制  </span><br><span class="line">cp -p ：连同文件的属性一起复制，而非使用默认方式，与-a相似，常用于备份 </span><br><span class="line">cp -i ：若目标文件已经存在时，在覆盖时会先询问操作的进行 </span><br><span class="line">cp -r ：递归持续复制，用于目录的复制行为 </span><br><span class="line">cp -u ：目标文件与源文件有差异时才会复制 </span><br><span class="line">cp -a file1 file2 #连同文件的所有特性把文件file1复制成文件file2  </span><br><span class="line">cp file1 file2 file3 dir #把文件file1、file2、file3复制到目录dir中 </span><br></pre></td></tr></table></figure>
+<p>7.cat：用于查看文本文件的内容，将文件内容打印出来，后接要查看的文件名</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cat text  # 将text文件中的内容打印出来  </span><br></pre></td></tr></table></figure>
+<p>8.vim：主要用于文本编辑，它接一个或多个文件名作为参数，如果文件存在就打开，如果文件不存在就以该文件名创建一个文件</p>
+<p>9.open：命令用于打开文件、目录或执行程序。(os x系统)</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">open . 打开当前目录</span><br><span class="line">open ~&#x2F;demo 打开家目录下demo目录（若demo为目录就是打开目录，如果demo是文件就是以该文件关联的程序打开文件）</span><br></pre></td></tr></table></figure>
+<p>10.sudo：任何管理员账户都可以使用sudo来获取 root 权限</p>
+<p>11.touch：后接文件名，用于创建文件或修改文件的时间戳。如果文件名已存在，则将文件的更新时间修改为当前时间，如果文件名不存在，则创建一个空的文件</p>
+<p>12.查询命令的详细意义，可在<a target="_blank" rel="noopener" href="https://explainshell.com/explain?cmd=cat+less">explainshell</a>查询，打开该网站，在输入栏输入要查询的命令，回车，即可查看该命令的意义，例如查询<code>ls -al</code>这个命令的意义，在输入框输入<code>ls -al</code>回车，即显示出了该命令的含义，由三部分组成:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">ls ： list directory contents</span><br><span class="line">-a, --all ：do not ignore entries starting with </span><br><span class="line">-l ： use a long listing format</span><br></pre></td></tr></table></figure>
+<p>13.更多命令待补充</p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E5%B7%A5%E5%85%B7/" rel="tag"># 工具</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2017/05/06/%E5%88%9D%E8%AF%86Flex%E5%B8%83%E5%B1%80/" rel="prev" title="初识Flex布局">
+                  <i class="fa fa-chevron-left"></i> 初识Flex布局
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2017/05/07/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-CSS%E9%80%89%E6%8B%A9%E5%99%A8/" rel="next" title="学习笔记-CSS选择器">
+                  学习笔记-CSS选择器 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+  
+  
+  
+
+
+
+      
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      const activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      const commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+      
+
+      
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">yuzhu9</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/pisces/" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <script src="//cdn.jsdelivr.net/npm/animejs@3.2.0/lib/anime.min.js"></script>
+<script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>
