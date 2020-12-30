@@ -10,6 +10,6 @@ Disallow: /fonts/
 Disallow: /vendors/
 Disallow: /fancybox/
 
-Sitemap: http://www.izhengyuan.cn/sitemap.xml
-Sitemap: http://www.izhengyuan.cn/baidusitemap.xml
+Sitemap: http://www.zhengyuan.xyz/sitemap.xml
+Sitemap: http://www.zhengyuan.xyz/baidusitemap.xml
 
