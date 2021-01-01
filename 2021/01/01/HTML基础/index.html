@@ -22,28 +22,23 @@
     var CONFIG = {"hostname":"zhengyuan.xyz","root":"/","scheme":"Pisces","version":"8.0.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}};
   </script>
 
-  <meta name="description" content="1.什么是 GitGit 是目前最好用的分布式版本控制系统，它的创作者是Linux之父林纳斯。详见Git 维基百科 2.什么是 GitHubGitHub 是一个提供Git版本库托管的网站，是目前世界上最大的代码存放网站和开源社区。">
+  <meta name="description" content="HTML的来源HTML（HyperText Markup Language)是由蒂姆·伯纳斯-李发明">
 <meta property="og:type" content="article">
-<meta property="og:title" content="git复习笔记">
-<meta property="og:url" content="http://zhengyuan.xyz/2018/04/25/git%E5%A4%8D%E4%B9%A0%E7%AC%94%E8%AE%B0/index.html">
+<meta property="og:title" content="HTML入门笔记1">
+<meta property="og:url" content="http://zhengyuan.xyz/2021/01/01/HTML%E5%9F%BA%E7%A1%80/index.html">
 <meta property="og:site_name" content="玉竹的博客">
-<meta property="og:description" content="1.什么是 GitGit 是目前最好用的分布式版本控制系统，它的创作者是Linux之父林纳斯。详见Git 维基百科 2.什么是 GitHubGitHub 是一个提供Git版本库托管的网站，是目前世界上最大的代码存放网站和开源社区。">
+<meta property="og:description" content="HTML的来源HTML（HyperText Markup Language)是由蒂姆·伯纳斯-李发明">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://cdn.jsdelivr.net/gh/yuzhu9/image@master/img/6.jpg">
-<meta property="og:image" content="http://opdzp4hj6.bkt.clouddn.com/init0.png">
-<meta property="og:image" content="http://opdzp4hj6.bkt.clouddn.com/add.png">
-<meta property="og:image" content="http://opdzp4hj6.bkt.clouddn.com/commit01.png">
-<meta property="og:image" content="http://opdzp4hj6.bkt.clouddn.com/commit02.png">
-<meta property="og:image" content="http://opdzp4hj6.bkt.clouddn.com/commit03.png">
-<meta property="article:published_time" content="2018-04-25T15:23:46.000Z">
-<meta property="article:modified_time" content="2018-04-25T15:23:46.000Z">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/yuzhu9/image@master/img/26.jpg">
+<meta property="article:published_time" content="2021-01-01T00:06:40.000Z">
+<meta property="article:modified_time" content="2021-01-01T14:19:50.478Z">
 <meta property="article:author" content="yuzhu9">
-<meta property="article:tag" content="工具">
+<meta property="article:tag" content="HTML">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://cdn.jsdelivr.net/gh/yuzhu9/image@master/img/6.jpg">
+<meta name="twitter:image" content="https://cdn.jsdelivr.net/gh/yuzhu9/image@master/img/26.jpg">
 
 
-<link rel="canonical" href="http://zhengyuan.xyz/2018/04/25/git%E5%A4%8D%E4%B9%A0%E7%AC%94%E8%AE%B0/">
+<link rel="canonical" href="http://zhengyuan.xyz/2021/01/01/HTML%E5%9F%BA%E7%A1%80/">
 
 
 <script class="page-configurations">
@@ -56,7 +51,7 @@
   };
 </script>
 
-  <title>git复习笔记 | 玉竹的博客</title>
+  <title>HTML入门笔记1 | 玉竹的博客</title>
   
 
 
@@ -183,7 +178,7 @@
 
       <!--noindex-->
       <section class="post-toc-wrap sidebar-panel">
-          <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-%E4%BB%80%E4%B9%88%E6%98%AF-Git"><span class="nav-number">1.</span> <span class="nav-text">1.什么是 Git</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-%E4%BB%80%E4%B9%88%E6%98%AF-GitHub"><span class="nav-number">2.</span> <span class="nav-text">2.什么是 GitHub</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-%E6%9C%80%E5%B8%B8%E8%A7%81%E5%91%BD%E4%BB%A4"><span class="nav-number">3.</span> <span class="nav-text">3.最常见命令</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#git-init-%E5%88%9D%E5%A7%8B%E5%8C%96%E4%B8%80%E4%B8%AA%E7%A9%BA%E7%9A%84-Git-%E7%89%88%E6%9C%AC%E5%BA%93%E3%80%82"><span class="nav-number">3.1.</span> <span class="nav-text">git init 初始化一个空的 Git 版本库。</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#git-add%E5%B0%86%E5%B7%A5%E4%BD%9C%E5%8C%BA%E7%9A%84%E6%94%B9%E5%8A%A8%E6%8F%90%E4%BA%A4%E5%88%B0%E6%9A%82%E5%AD%98%E5%8C%BA%E3%80%82"><span class="nav-number">3.2.</span> <span class="nav-text">git add将工作区的改动提交到暂存区。</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#git-commit%E5%B0%86%E6%9A%82%E5%AD%98%E5%8C%BA%E7%9A%84%E5%86%85%E5%AE%B9%E6%8F%90%E4%BA%A4%E5%88%B0-git-%E4%BB%93%E5%BA%93"><span class="nav-number">3.3.</span> <span class="nav-text">git commit将暂存区的内容提交到 git 仓库</span></a></li></ol></li></ol></div>
+          <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#HTML%E7%9A%84%E6%9D%A5%E6%BA%90"><span class="nav-number">1.</span> <span class="nav-text">HTML的来源</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#HTML%E6%96%87%E6%A1%A3%E5%86%85%E5%AE%B9"><span class="nav-number">2.</span> <span class="nav-text">HTML文档内容</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%96%87%E6%A1%A3%E7%B1%BB%E5%9E%8B"><span class="nav-number">3.</span> <span class="nav-text">文档类型</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%A0%B9%E5%85%83%E7%B4%A0"><span class="nav-number">4.</span> <span class="nav-text">根元素</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#head%E6%A0%87%E7%AD%BE"><span class="nav-number">5.</span> <span class="nav-text">head标签</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%B8%B8%E7%94%A8%E7%9A%84%E7%AB%A0%E8%8A%82%E6%A0%87%E7%AD%BE"><span class="nav-number">6.</span> <span class="nav-text">常用的章节标签</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%B8%B8%E7%94%A8%E7%9A%84%E5%86%85%E5%AE%B9%E6%A0%87%E7%AD%BE"><span class="nav-number">7.</span> <span class="nav-text">常用的内容标签</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%85%A8%E5%B1%80%E5%B1%9E%E6%80%A7"><span class="nav-number">8.</span> <span class="nav-text">全局属性</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%BB%98%E8%AE%A4%E6%A0%B7%E5%BC%8F"><span class="nav-number">9.</span> <span class="nav-text">默认样式</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#HTML%E5%AD%A6%E4%B9%A0%E7%BD%91%E7%AB%99"><span class="nav-number">10.</span> <span class="nav-text">HTML学习网站</span></a></li></ol></div>
       </section>
       <!--/noindex-->
 
@@ -256,7 +251,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://zhengyuan.xyz/2018/04/25/git%E5%A4%8D%E4%B9%A0%E7%AC%94%E8%AE%B0/">
+    <link itemprop="mainEntityOfPage" href="http://zhengyuan.xyz/2021/01/01/HTML%E5%9F%BA%E7%A1%80/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.jpg">
@@ -272,7 +267,7 @@
     
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          git复习笔记
+          HTML入门笔记1
         </h1>
 
         <div class="post-meta-container">
@@ -282,8 +277,9 @@
         <i class="far fa-calendar"></i>
       </span>
       <span class="post-meta-item-text">发表于</span>
+      
 
-      <time title="创建时间：2018-04-25 23:23:46" itemprop="dateCreated datePublished" datetime="2018-04-25T23:23:46+08:00">2018-04-25</time>
+      <time title="创建时间：2021-01-01 08:06:40 / 修改时间：22:19:50" itemprop="dateCreated datePublished" datetime="2021-01-01T08:06:40+08:00">2021-01-01</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -305,25 +301,64 @@
     
     
     <div class="post-body" itemprop="articleBody">
-        <h3 id="1-什么是-Git"><a href="#1-什么是-Git" class="headerlink" title="1.什么是 Git"></a>1.什么是 Git</h3><p>Git 是目前最好用的分布式版本控制系统，它的创作者是Linux之父林纳斯。详见<a target="_blank" rel="noopener" href="https://zh.wikipedia.org/wiki/Git">Git 维基百科</a></p>
-<h3 id="2-什么是-GitHub"><a href="#2-什么是-GitHub" class="headerlink" title="2.什么是 GitHub"></a>2.什么是 GitHub</h3><p>GitHub 是一个提供Git版本库托管的网站，是目前世界上最大的代码存放网站和开源社区。</p>
-<p><img src="https://cdn.jsdelivr.net/gh/yuzhu9/image@master/img/6.jpg"></p>
+        <h4 id="HTML的来源"><a href="#HTML的来源" class="headerlink" title="HTML的来源"></a>HTML的来源</h4><p><a target="_blank" rel="noopener" href="https://zh.wikipedia.org/wiki/HTML">HTML（HyperText Markup Language)</a>是由<a target="_blank" rel="noopener" href="https://zh.wikipedia.org/wiki/%E8%92%82%E5%A7%86%C2%B7%E4%BC%AF%E7%BA%B3%E6%96%AF-%E6%9D%8E">蒂姆·伯纳斯-李</a>发明</p>
+<p><img src="https://cdn.jsdelivr.net/gh/yuzhu9/image@master/img/26.jpg"></p>
 <a id="more"></a>
 
-<h3 id="3-最常见命令"><a href="#3-最常见命令" class="headerlink" title="3.最常见命令"></a>3.最常见命令</h3><h4 id="git-init-初始化一个空的-Git-版本库。"><a href="#git-init-初始化一个空的-Git-版本库。" class="headerlink" title="git init 初始化一个空的 Git 版本库。"></a><code>git init</code> 初始化一个空的 Git 版本库。</h4><p>举栗子说明：例如我在桌面test目录下新建了一个叫<code>gitlearning</code>的目录，并跳转到这个目录，在此目录下输入<code>git init</code>命令就在<code>gitlearning</code>目录下创建了一个空的版本库。此时，用<code>ls -a</code>命令就可以查看出现了一个<code>.git</code>目录</p>
-<p><img src="http://opdzp4hj6.bkt.clouddn.com/init0.png"></p>
-<h4 id="git-add将工作区的改动提交到暂存区。"><a href="#git-add将工作区的改动提交到暂存区。" class="headerlink" title="git add将工作区的改动提交到暂存区。"></a><code>git add</code>将工作区的改动提交到暂存区。</h4><p>例如我新建一个叫 index.html 的文件，使用<code>git add index.html</code>命令就可以将这个变动提交到暂存区。</p>
-<p><img src="http://opdzp4hj6.bkt.clouddn.com/add.png"></p>
-<h4 id="git-commit将暂存区的内容提交到-git-仓库"><a href="#git-commit将暂存区的内容提交到-git-仓库" class="headerlink" title="git commit将暂存区的内容提交到 git 仓库"></a><code>git commit</code>将暂存区的内容提交到 git 仓库</h4><p>例如将之前添加到暂存区的index.html提交到仓库。在上一步<code>git add index.html</code>之后<code>git commit</code>就可以把暂存区的内容提交到仓库。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git commit ：该命令会打开文本编辑器以便输入本次提交的说明，输入说明之后保存退出编辑器即可将暂存区内容提交到仓库</span><br></pre></td></tr></table></figure>
-<p><img src="http://opdzp4hj6.bkt.clouddn.com/commit01.png"></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git commit -m ：提交变动到仓库并添加变动说明信息</span><br></pre></td></tr></table></figure>
-<p><img src="http://opdzp4hj6.bkt.clouddn.com/commit02.png"></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git commit -v ：提交变动到仓库，并将所做的变动的diff信息放到便其中从而使你知道本次提交具体做了哪些修改</span><br></pre></td></tr></table></figure>
+<h4 id="HTML文档内容"><a href="#HTML文档内容" class="headerlink" title="HTML文档内容"></a>HTML文档内容</h4><p>一般应包括文档类型、html根元素、head元素、body元素以及包裹在head元素内的一些头部信息和网页标题等内容</p>
+<h4 id="文档类型"><a href="#文档类型" class="headerlink" title="文档类型"></a>文档类型</h4><p><code>&lt;!DOCTYPE html&gt;</code>告诉浏览器以HTML类型来解析文档</p>
+<h4 id="根元素"><a href="#根元素" class="headerlink" title="根元素"></a>根元素</h4><p><code>&lt;html lang=&quot;en&quot;&gt;&lt;/html&gt;</code>html元素是根元素，<code>lang</code>属性声明网页的语言，如英文网站设置为<code>en</code>，中文网站应设置为<code>zh-CN</code>，例如谷歌浏览器的翻译功能就是根据<code>lang</code>属性作为参考辅助</p>
+<h4 id="head标签"><a href="#head标签" class="headerlink" title="head标签"></a>head标签</h4><p><code>&lt;head&gt;&lt;/head&gt;</code>head标签内一般放置看不见的元素，例如</p>
+<ul>
+<li><code>meta charset=&quot;UTF-8&quot;</code>字符编码</li>
+<li><code>&lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0&quot;&gt;</code>禁止缩放，兼容手机</li>
+<li><code>&lt;meta http-equiv=&quot;X-UA-Compatible&quot; content=&quot;ie=edge&quot;&gt;</code>如果当前页面在IE浏览器显示，告诉IE浏览器使用最新内核</li>
+<li><code>&lt;title&gt;Document&lt;/title&gt;</code>网页标题</li>
+</ul>
+<h4 id="常用的章节标签"><a href="#常用的章节标签" class="headerlink" title="常用的章节标签"></a>常用的章节标签</h4><ul>
+<li>h1~h6标签：标题</li>
+<li>main：主要内容</li>
+<li>aside：旁支内容</li>
+<li>section：章节</li>
+<li>article：文章</li>
+<li>p：段落</li>
+<li>header：头部</li>
+<li>footer：脚步</li>
+<li>div：块标签，划分</li>
+</ul>
+<h4 id="常用的内容标签"><a href="#常用的内容标签" class="headerlink" title="常用的内容标签"></a>常用的内容标签</h4><ul>
+<li>ol+li：order-list list-item 有序列表</li>
+<li>ul+li：unorder-list list-item 无序列表</li>
+<li>dl+dt+dd：description-list description-term description-data 描述列表</li>
+<li>pre：预格式</li>
+<li>hr：Horizontal 水平分隔线</li>
+<li>br：break 换行</li>
+<li>a：超链接</li>
+<li>em：emphasis强调（语气上）</li>
+<li>strong：重要（内容上）</li>
+<li>code：代码</li>
+<li>quote：引入的内容，是inline元素</li>
+<li>Blockquote：引入的内容，是块级元素</li>
+</ul>
+<h4 id="全局属性"><a href="#全局属性" class="headerlink" title="全局属性"></a>全局属性</h4><p>所有标签都有的属性</p>
+<ul>
+<li>class：类名，是标签最常用的属性</li>
+<li>id：ID需要是唯一的，谨慎使用，JS可以直接通过ID获取元素</li>
+<li>title：鼠标悬停时显示的信息或图片未加载成功时提示信息</li>
+<li>style：如果把style标签放在body里面，并且设置为display:block，它可以显示出来</li>
+<li>contenteditable：使任何一个元素都能被编辑</li>
+<li>hidden：可以让任何一个元素都隐藏</li>
+<li>Tabindex：用来控制键盘上tab访问的顺序的，正数表示按顺序访问，0表示最后访问，负数表示不能访问</li>
+</ul>
+<h4 id="默认样式"><a href="#默认样式" class="headerlink" title="默认样式"></a>默认样式</h4><p>HTML被发明时还没有CSS，自带了样式，目前已经不符合需求了，需要进行CSS reset清除默认样式</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">*&#123;margin: 0;padding: 0;box-sizing: border-box;&#125;</span><br><span class="line">*::after,*::before&#123;box-sizing: border-box;&#125;</span><br><span class="line">h1,h2,h3,h4,h5,h6&#123;font-weight: normal;&#125;</span><br><span class="line">a&#123;color: inherit;text-decoration: none;&#125;</span><br><span class="line">a:hover&#123;text-decoration: underline;&#125;</span><br><span class="line">ul,ol&#123;list-style: none;&#125;</span><br><span class="line">button,input,select,textarea&#123;font: inherit;&#125;</span><br><span class="line">table&#123;border-collapse: collapse;border-spacing: 0;&#125;</span><br></pre></td></tr></table></figure>
 
 
-<p><img src="http://opdzp4hj6.bkt.clouddn.com/commit03.png"></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">git status ：查看当前版本库的状态</span><br><span class="line">git log ：查看最近的提交日志</span><br><span class="line">git diff ：查看当前工作区和暂存区之间的差异，也就是工作区修改之后还没有提交到暂存区的变化内容</span><br><span class="line">更多待补充</span><br></pre></td></tr></table></figure>
+<h4 id="HTML学习网站"><a href="#HTML学习网站" class="headerlink" title="HTML学习网站"></a>HTML学习网站</h4><ul>
+<li><a target="_blank" rel="noopener" href="https://wangdoc.com/html/">HTML教程</a>：阮一峰出品</li>
+<li><a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/">MDN</a></li>
+<li><a target="_blank" rel="noopener" href="https://codesandbox.io/">codesandbox</a>：在线即时显示代码效果</li>
+</ul>
 
     </div>
 
@@ -333,21 +368,18 @@
 
     <footer class="post-footer">
           <div class="post-tags">
-              <a href="/tags/%E5%B7%A5%E5%85%B7/" rel="tag"># 工具</a>
+              <a href="/tags/HTML/" rel="tag"># HTML</a>
           </div>
 
         
 
           <div class="post-nav">
             <div class="post-nav-item">
-                <a href="/2017/09/10/Promise%E5%88%9D%E8%AF%86/" rel="prev" title="Promise初识">
-                  <i class="fa fa-chevron-left"></i> Promise初识
+                <a href="/2020/12/31/%E5%B8%B8%E7%94%A8%E5%B7%A5%E5%85%B7%E5%92%8C%E9%85%8D%E7%BD%AE/" rel="prev" title="常用工具和配置">
+                  <i class="fa fa-chevron-left"></i> 常用工具和配置
                 </a>
             </div>
             <div class="post-nav-item">
-                <a href="/2018/04/26/HTTP%E5%A4%8D%E4%B9%A0%E7%AC%94%E8%AE%B0/" rel="next" title="HTTP复习笔记">
-                  HTTP复习笔记 <i class="fa fa-chevron-right"></i>
-                </a>
             </div>
           </div>
     </footer>

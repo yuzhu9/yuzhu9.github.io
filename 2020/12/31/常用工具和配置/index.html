@@ -31,7 +31,7 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://cdn.jsdelivr.net/gh/yuzhu9/image@master/img/25.jpg">
 <meta property="article:published_time" content="2020-12-31T01:18:49.000Z">
-<meta property="article:modified_time" content="2020-12-31T23:30:11.297Z">
+<meta property="article:modified_time" content="2021-01-01T14:38:50.362Z">
 <meta property="article:author" content="yuzhu9">
 <meta property="article:tag" content="工具">
 <meta name="twitter:card" content="summary">
@@ -194,7 +194,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">27</span>
+          <span class="site-state-item-count">28</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -285,7 +285,7 @@
           <i class="far fa-calendar-check"></i>
         </span>
         <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2021-01-01 07:30:11" itemprop="dateModified" datetime="2021-01-01T07:30:11+08:00">2021-01-01</time>
+        <time title="修改时间：2021-01-01 22:38:50" itemprop="dateModified" datetime="2021-01-01T22:38:50+08:00">2021-01-01</time>
       </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -394,10 +394,17 @@
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">brew install proxychains-ng</span><br></pre></td></tr></table></figure></li>
 <li><p>配置proxychains-ng</p>
 <ol>
-<li>下载配置文件</li>
-<li>添加bash alias</li>
-<li><code>source ~/.bashrc</code></li>
-<li><code>pc git clone xxx</code> 或<code>pc brew install xxx --verbose</code>这个命令就是科学上网的</li>
+<li><p>下载配置文件</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">curl -L https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;FrankFang&#x2F;dot-files&#x2F;master&#x2F;proxychains.conf &gt; ~&#x2F;.proxychains.conf</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>添加bash alias</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">touch ~&#x2F;.bashrc; echo &#39;alias pc&#x3D;&quot;proxychains4 -f ~&#x2F;.proxychains.conf&quot;&#39; &gt;&gt; ~&#x2F;.bashrc</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>source一下</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">source ~&#x2F;.bashrc</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>输入pc git clone xxx 或者 pc brew install xxx –verbose，这个命令行就是翻墙的</p>
+</li>
 </ol>
 </li>
 </ol>
@@ -459,6 +466,7 @@
 <li>设置Fira Code字体：文件-首选项-设置，搜索字体，修改Font Family，修改为<code>Fira Code,Consolas,monospace</code>，还可以启用或禁用字体连字</li>
 <li>Code Spell Checker插件：防止代码里面单词拼错，安装方法是点击扩展，搜索<code>code spell checker</code>，安装之后拼写有问题的会有提示，可以移动鼠标到错误的单词上，右键快速修复就可以修复拼写错误问题，如果有些提示不是拼写错误，同样可以把鼠标移动到单词上，右键选择把单词加入用户词典或当前词典就不会提示（推荐加入当前词典）</li>
 <li>Git Easy插件：方便操作git，同上，搜索<code>git easy</code>安装</li>
+<li>Prettier插件：更好地格式化工具，方法是在扩展中搜索<code>prettier</code>安装</li>
 </ol>
 <p>VSCode功能：</p>
 <ul>
@@ -539,6 +547,9 @@
                 </a>
             </div>
             <div class="post-nav-item">
+                <a href="/2021/01/01/HTML%E5%9F%BA%E7%A1%80/" rel="next" title="HTML入门笔记1">
+                  HTML入门笔记1 <i class="fa fa-chevron-right"></i>
+                </a>
             </div>
           </div>
     </footer>
