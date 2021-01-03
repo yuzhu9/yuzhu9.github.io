@@ -22,23 +22,25 @@
     var CONFIG = {"hostname":"zhengyuan.xyz","root":"/","scheme":"Pisces","version":"8.0.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}};
   </script>
 
-  <meta name="description" content="语法1.ECMAscript中的一切（变量、函数名和操作符）区分大小写事件作为HTML的属性时，可以不区分大小写，但事件所对应的内容要区分大小写">
+  <meta name="description" content="CSS盒模型是什么">
 <meta property="og:type" content="article">
-<meta property="og:title" content="读书笔记-JavaScript基本概念">
-<meta property="og:url" content="http://zhengyuan.xyz/2017/06/28/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0-JavaScript%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5/index.html">
+<meta property="og:title" content="CSS盒模型">
+<meta property="og:url" content="http://zhengyuan.xyz/2021/01/03/CSS%E7%9B%92%E6%A8%A1%E5%9E%8B/index.html">
 <meta property="og:site_name" content="玉竹的博客">
-<meta property="og:description" content="语法1.ECMAscript中的一切（变量、函数名和操作符）区分大小写事件作为HTML的属性时，可以不区分大小写，但事件所对应的内容要区分大小写">
+<meta property="og:description" content="CSS盒模型是什么">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://cdn.jsdelivr.net/gh/yuzhu9/image@master/img/8.jpg">
-<meta property="article:published_time" content="2017-06-28T04:22:12.000Z">
-<meta property="article:modified_time" content="2017-06-28T04:22:12.000Z">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/yuzhu9/image@master/img/28.jpg">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/yuzhu9/image@master/img/box-model.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/yuzhu9/image@master/img/boxmodel.png">
+<meta property="article:published_time" content="2021-01-03T13:40:56.000Z">
+<meta property="article:modified_time" content="2021-01-03T16:33:10.283Z">
 <meta property="article:author" content="yuzhu9">
-<meta property="article:tag" content="JavaScript">
+<meta property="article:tag" content="CSS">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://cdn.jsdelivr.net/gh/yuzhu9/image@master/img/8.jpg">
+<meta name="twitter:image" content="https://cdn.jsdelivr.net/gh/yuzhu9/image@master/img/28.jpg">
 
 
-<link rel="canonical" href="http://zhengyuan.xyz/2017/06/28/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0-JavaScript%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5/">
+<link rel="canonical" href="http://zhengyuan.xyz/2021/01/03/CSS%E7%9B%92%E6%A8%A1%E5%9E%8B/">
 
 
 <script class="page-configurations">
@@ -51,7 +53,7 @@
   };
 </script>
 
-  <title>读书笔记-JavaScript基本概念 | 玉竹的博客</title>
+  <title>CSS盒模型 | 玉竹的博客</title>
   
 
 
@@ -178,7 +180,7 @@
 
       <!--noindex-->
       <section class="post-toc-wrap sidebar-panel">
-          <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%AF%AD%E6%B3%95"><span class="nav-number">1.</span> <span class="nav-text">语法</span></a></li></ol></div>
+          <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#CSS%E7%9B%92%E6%A8%A1%E5%9E%8B%E6%98%AF%E4%BB%80%E4%B9%88"><span class="nav-number">1.</span> <span class="nav-text">CSS盒模型是什么</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%9B%92%E6%A8%A1%E5%9E%8B%E5%88%86%E4%B8%A4%E7%A7%8D%E7%B1%BB%E5%9E%8B"><span class="nav-number">2.</span> <span class="nav-text">盒模型分两种类型</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%9B%92%E6%A8%A1%E5%9E%8B%E7%9B%B8%E5%85%B3%E7%9A%84%E5%B1%9E%E6%80%A7"><span class="nav-number">3.</span> <span class="nav-text">盒模型相关的属性</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%8F%82%E8%80%83"><span class="nav-number">4.</span> <span class="nav-text">参考</span></a></li></ol></div>
       </section>
       <!--/noindex-->
 
@@ -251,7 +253,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://zhengyuan.xyz/2017/06/28/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0-JavaScript%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5/">
+    <link itemprop="mainEntityOfPage" href="http://zhengyuan.xyz/2021/01/03/CSS%E7%9B%92%E6%A8%A1%E5%9E%8B/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.jpg">
@@ -267,7 +269,7 @@
     
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          读书笔记-JavaScript基本概念
+          CSS盒模型
         </h1>
 
         <div class="post-meta-container">
@@ -278,8 +280,15 @@
       </span>
       <span class="post-meta-item-text">发表于</span>
 
-      <time title="创建时间：2017-06-28 12:22:12" itemprop="dateCreated datePublished" datetime="2017-06-28T12:22:12+08:00">2017-06-28</time>
+      <time title="创建时间：2021-01-03 21:40:56" itemprop="dateCreated datePublished" datetime="2021-01-03T21:40:56+08:00">2021-01-03</time>
     </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">更新于</span>
+        <time title="修改时间：2021-01-04 00:33:10" itemprop="dateModified" datetime="2021-01-04T00:33:10+08:00">2021-01-04</time>
+      </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
         <i class="far fa-folder"></i>
@@ -300,25 +309,43 @@
     
     
     <div class="post-body" itemprop="articleBody">
-        <h2 id="语法"><a href="#语法" class="headerlink" title="语法"></a>语法</h2><p>1.ECMAscript中的一切（变量、函数名和操作符）区分大小写<br>事件作为HTML的属性时，可以不区分大小写，但事件所对应的内容要区分大小写</p>
-<p><img src="https://cdn.jsdelivr.net/gh/yuzhu9/image@master/img/8.jpg"></p>
+        <h4 id="CSS盒模型是什么"><a href="#CSS盒模型是什么" class="headerlink" title="CSS盒模型是什么"></a>CSS盒模型是什么</h4><p><img src="https://cdn.jsdelivr.net/gh/yuzhu9/image@master/img/28.jpg"></p>
 <a id="more"></a>
-<p>2.标识符，是指变量、函数名、属性的名字，或者函数的参数<br>  标识符的第一个字符必须是一个字母(可以是世界上任何一种语言，包括汉字)、下划线（_）或美元符号（$）<br>  其他字符可以是字母、下划线、美元符或者数字</p>
-<p>3.注释包括单行注释和多行注释<br>  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; 单行注释</span><br><span class="line">&#x2F;* 多行</span><br><span class="line"> * 注释</span><br><span class="line"> *&#x2F;</span><br></pre></td></tr></table></figure><br>4.JavaScript有两种模式：正常模式和严格模式（ECMAScript5引入了严格模式)<br>启用严格模式添加下面代码:</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">use strict</span><br></pre></td></tr></table></figure>
-<p>一般在代码块的第一行使用，但合并代码可能会引起问题（严格模式与正常模式代码合并引起全部按严格模式执行）<br>建议使用匿名函数形式，在匿名函数中使用严格模式，将上面启用代码写在匿名函数的第一行<br>使用框架时可能使用到严格模式<br>支持严格模式的浏览器包括IE10+,Firefox4+,Safari5.1+,Opera12+和Chrome</p>
-<p>5.语句以一个分号结尾，如果省略分号，则由解析器确定语句的结尾<br>解析器判断语句结尾的过程：<br>（1）首先判断后一行代码能否与前一行一起执行，如果可以，合并到一起执行<br>（2）如果不能执行，就分别执行两行代码<br>（3）如果分别执行仍然不能正确执行，则报错<br>因此建议在每一条语句前面加分号，以分号开头，避免其他代码未以分号结束而引起错误<br><code>return break continue</code>这三个关键字不会与下一行代码合并，因此这三个关键字后面的代码需要紧跟在这三个关键字后而不能换行<br><code>++ --</code>运算符比较特殊，解析时会和它下一行的代码合并解析，如下例：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">a &#x3D; 1</span><br><span class="line">b &#x3D; 2</span><br><span class="line">a</span><br><span class="line">++</span><br><span class="line">b</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F; 解析的结果：a &#x3D; 1; b &#x3D; 2; a; ++b; a的值为1，b的值为3</span><br></pre></td></tr></table></figure>
-<p>6.关键字和保留字<br>关键字：一组具有特定用途的关键字，可用于表示控制语句的开始或结束，或者用于执行特定操作等，这些关键字不能被用作标识符。<br>保留字：暂时没有特定的用途，但是有可能在将来被用作关键字。（Java的关键字都是JavaScript的保留字）<br>命名标识符时为了避开关键字和保留字冲突，可才用驼峰式命名，在实际开发中，使用拼音命名也很常见</p>
-<p>7.变量<br>ECMAScript的变量是松散型的。每个变量仅仅是一个用于保存值的占位符而已。<br>定义变量时，变量并没有定义类型。在使用<code>typeof</code>方法时才定义变量的类型<br>定义变量时不使用<code>var</code>，定义的变量就是全局变量<br>一条语句定义多个变量时，使用逗号隔开，推荐下面写法：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">var message &#x3D; &#39;hi&#39;</span><br><span class="line">  , found &#x3D; false</span><br><span class="line">  , age &#x3D; 29;</span><br></pre></td></tr></table></figure>
-<p>8.简单数据类型和复杂数据类型<br>(1)5种简单数据类型：<code>Undefined Null Boolean Number String</code><br>(2)1种复杂数据类型：<code>Object</code></p>
-<p>在JavaScript中，所有基础类型都是不可变的，不可变的数据进行比较，是值进行比较<br>任何两个独立的对象都不相等，如果要比较对象，是对对象的引用进行比较，比较的是引用关系<br>理论上，只有对象有方法，其他5种基本类型都没有方法<br>例如：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">var n &#x3D; &#39;abcd&#39;;</span><br><span class="line">n.len &#x3D; 4;</span><br><span class="line">alert(n.len);</span><br><span class="line">&#x2F;&#x2F; 结果为：undefined 因为只有对象有方法，字符串没有方法</span><br></pre></td></tr></table></figure>
-<p>当调用字符串的方法的时候，解析器会把字符串临时转为对象，但调用结束结果不保存<br>数值、字符串、布尔这三种基本数据类型在调用方法的时候，是转换为对象来调用的。</p>
-<p><code>typeof</code>是操作符，<code>typeof</code>所有的返回值都是字符串。</p>
-<p><code>undefined</code>和<code>null</code>的共同点：<br>(1)都只有一个值<br>(2)当这两个值参与判断，都返回<code>false</code><br>(3)这两个值都没有方法</p>
-<p>不同点：<br>(1)<code>null</code>是关键字，已初始化；<code>undefined</code>不是关键字，未初始化<br>(2)<code>null</code>是特殊对象，是空对象，<code>undefined</code>是 window 对象的属性，这个属性对应的值是未定义<br>(3)<code>typeof null</code>的值是 ‘object’，<code>typeof undefined</code>的值是 ‘undefined’<br>(4)<code>null</code>转换为数值类型是0，<code>undefined</code>是 NaN</p>
+
+<p>在CSS中，把所有HTML元素都看作盒子。HTML元素就是一个一个的盒子，而每一个盒子是由4个部分组成的，分别是：</p>
+<ul>
+<li><p>content-box：显示内容</p>
+</li>
+<li><p>padding-box：内边距，包围在内容区域外部的空白区域</p>
+</li>
+<li><p>border-box：边框，包裹内容和内边距</p>
+</li>
+<li><p>margin-box：最外面的区域，是元素和其他元素之间的空白区域</p>
+<p>如下图所示（图片来源于<a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Learn/CSS/Building_blocks/The_box_model">盒模型</a>)：</p>
+<p><img src="https://cdn.jsdelivr.net/gh/yuzhu9/image@master/img/box-model.png"></p>
+</li>
+</ul>
+<h4 id="盒模型分两种类型"><a href="#盒模型分两种类型" class="headerlink" title="盒模型分两种类型"></a>盒模型分两种类型</h4><p>content-box和border-box，也分别被称为标准盒模型和IE盒模型。一个盒子它是表现为content-box还是border-box，可以通过box-sizing属性来设置</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">.box &#123;box-sizing: content-box;&#125; &#x2F;*这样设置盒模型就表现为content-box，是绝大多数浏览器默认的表现形式*&#x2F;</span><br><span class="line">.box &#123;box-sizing: border-box;&#125;&#x2F;*这样设置盒模型就表现为border-box*&#x2F;</span><br></pre></td></tr></table></figure>
+<p>content-box和border-box的区别是对元素设置width和height的表现不同：</p>
+<ul>
+<li>content-box：width只代表content的width，而该元素的实际的宽度=width+左右padding+左右border；height的值只代表content的height，该元素在页面实际高度=height+上下padding+上下border</li>
+<li>border-box：元素的实际宽度=width，width已经包括了content、左右padding和左右border；元素实际高度=height，height已经包括了content、上下padding和上下border</li>
+</ul>
+<p>举个栗子，对两个div元素分别设置为content-box和border-box，它们的width/height/padding/border都设置为一样的值，代码如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line">&lt;!DOCTYPE html&gt;</span><br><span class="line">&lt;html lang&#x3D;&quot;en&quot;&gt;</span><br><span class="line">  &lt;head&gt;</span><br><span class="line">    &lt;meta charset&#x3D;&quot;UTF-8&quot; &#x2F;&gt;</span><br><span class="line">    &lt;meta name&#x3D;&quot;viewport&quot; content&#x3D;&quot;width&#x3D;</span><br><span class="line">    &lt;div class&#x3D;&quot;contentbox&quot;&gt;&lt;&#x2F;div&gt;</span><br><span class="line">    &lt;title&gt;Document&lt;&#x2F;title&gt;</span><br><span class="line">    &lt;style&gt;</span><br><span class="line">      div.contentbox &#123;</span><br><span class="line">        box-sizing: content-box;</span><br><span class="line">        width: 200px;</span><br><span class="line">        height: 200px;</span><br><span class="line">        padding: 10px;</span><br><span class="line">        border: 5px solid;</span><br><span class="line">        background: red;</span><br><span class="line">      &#125;</span><br><span class="line">      div.borderbox &#123;</span><br><span class="line">        box-sizing: border-box;</span><br><span class="line">        width: 200px;</span><br><span class="line">        height: 200px;</span><br><span class="line">        padding: 10px;</span><br><span class="line">        border: 5px solid;</span><br><span class="line">        background: blue;</span><br><span class="line">      &#125;</span><br><span class="line">    &lt;&#x2F;style&gt;</span><br><span class="line">  &lt;&#x2F;head&gt;</span><br><span class="line">  &lt;body&gt;</span><br><span class="line">    &lt;div class&#x3D;&quot;contentbox&quot;&gt;&lt;&#x2F;div&gt;</span><br><span class="line">    &lt;div class&#x3D;&quot;borderbox&quot;&gt;&lt;&#x2F;div&gt;</span><br><span class="line">  &lt;&#x2F;body&gt;</span><br><span class="line">&lt;&#x2F;html&gt;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>它们的盒模型表现为下图：</p>
+<p><img src="https://cdn.jsdelivr.net/gh/yuzhu9/image@master/img/boxmodel.png"></p>
+<h4 id="盒模型相关的属性"><a href="#盒模型相关的属性" class="headerlink" title="盒模型相关的属性"></a>盒模型相关的属性</h4><ul>
+<li>width：如上文所述，对于content-box，width是指content的宽度；对于border-box，width指content+左右padding+左右border的总和</li>
+<li>height：对于content-box，height是指content的宽度；对于border-box，height指content+上下padding+上下border的总和</li>
+<li>padding：有四个方向的值可以设定，padding-top/padding-right/padding-bottom/padding-left</li>
+<li>border：有四个方向的值可以设定，border-top/border-right/border-bottom/border-left</li>
+<li>margin：有四个方向的值可以设定，margin-top/margin-right/margin-bottom/margin-left，margin不会计入盒子实际大小，但它会影响盒子在页面所占的空间，影响的是盒子外面的空间。</li>
+</ul>
+<h4 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h4><ul>
+<li><a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Learn/CSS/Building_blocks/The_box_model">盒模型</a></li>
+</ul>
 
     </div>
 
@@ -328,21 +355,18 @@
 
     <footer class="post-footer">
           <div class="post-tags">
-              <a href="/tags/JavaScript/" rel="tag"># JavaScript</a>
+              <a href="/tags/CSS/" rel="tag"># CSS</a>
           </div>
 
         
 
           <div class="post-nav">
             <div class="post-nav-item">
-                <a href="/2017/06/15/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-Array-API/" rel="prev" title="学习笔记-Array_API">
-                  <i class="fa fa-chevron-left"></i> 学习笔记-Array_API
+                <a href="/2021/01/02/CSS%E5%9F%BA%E7%A1%80%E7%AC%94%E8%AE%B0/" rel="prev" title="CSS基础笔记">
+                  <i class="fa fa-chevron-left"></i> CSS基础笔记
                 </a>
             </div>
             <div class="post-nav-item">
-                <a href="/2017/07/19/transition%E8%BF%87%E6%B8%A1%E5%88%9D%E8%AF%86/" rel="next" title="transition过渡初识">
-                  transition过渡初识 <i class="fa fa-chevron-right"></i>
-                </a>
             </div>
           </div>
     </footer>
