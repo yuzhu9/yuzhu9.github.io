@@ -335,24 +335,24 @@
 </blockquote>
 <p>具体到最开始同心圆的栗子就是:<br>事件冒泡是事件首先发生在圆心，接着向上传播，一层一层，一直到最外层的圆，再到document对象。<br>事件捕获是事件首先发生在document对象，再向下传播到最外层的圆，一层一层传播，直到最里面的圆心。</p>
 <h2 id="4-事件流的三个阶段："><a href="#4-事件流的三个阶段：" class="headerlink" title="4.事件流的三个阶段："></a>4.事件流的三个阶段：</h2><p>W3C为了统一标准，在”DOM2级事件”中规定了事件流包括三个阶段：</p>
-<ul>
+<ol>
 <li>事件捕获阶段(capture phase)</li>
-</ul>
+</ol>
 <blockquote>
 <p>事件从根节点流向目标节点，途中流经各个DOM节点，在各个节点上触发捕获事件，直到达到目标节点。</p>
 </blockquote>
-<ul>
+<ol start="2">
 <li>处于目标阶段(target phase)</li>
-</ul>
+</ol>
 <blockquote>
 <p>事件到达目标节点时，就到了目标阶段，事件在目标节点上被触发</p>
 </blockquote>
-<ul>
-<li>事件冒泡阶段(bubble phase)<blockquote>
+<ol start="3">
+<li>事件冒泡阶段(bubble phase)</li>
+</ol>
+<blockquote>
 <p>事件在目标节点上触发后，不会终止，一层层向上冒，回溯到根节点。</p>
 </blockquote>
-</li>
-</ul>
 <p><img src="https://cdn.jsdelivr.net/gh/yuzhu9/image@master/img/events.jpg"></p>
 <p>以上图片来源于<a target="_blank" rel="noopener" href="https://www.w3.org/TR/DOM-Level-3-Events/#event-flow">W3C</a></p>
 <h2 id="5-注册事件监听器"><a href="#5-注册事件监听器" class="headerlink" title="5.注册事件监听器"></a>5.注册事件监听器</h2><p>每一个可用的事件都会有一个事件处理器，也叫事件监听器。一个事件被激发，我们定义一个用来回应的代码块的时候，就是注册了一个事件处理器，这块代码既监听也处理事件。监听器留意事件是否发生，然后处理器就是对事件发生做出的回应。</p>
