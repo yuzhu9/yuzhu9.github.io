@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.3.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.14.0/css/all.min.css">
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css">
+
+<script class="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"zhengyuan.xyz","root":"/","scheme":"Pisces","version":"8.0.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}};
+  </script>
+
+  <meta name="description" content="jQuery是到目前为止全球使用最广泛，寿命最长的JavaScript库">
+<meta property="og:type" content="article">
+<meta property="og:title" content="jQuery笔记">
+<meta property="og:url" content="http://zhengyuan.xyz/2021/01/13/jQuery%E7%AC%94%E8%AE%B0/index.html">
+<meta property="og:site_name" content="玉竹的博客">
+<meta property="og:description" content="jQuery是到目前为止全球使用最广泛，寿命最长的JavaScript库">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/yuzhu9/image@master/img/37.jpg">
+<meta property="article:published_time" content="2021-01-12T23:07:42.000Z">
+<meta property="article:modified_time" content="2021-01-13T16:01:38.369Z">
+<meta property="article:author" content="yuzhu9">
+<meta property="article:tag" content="JavaScript">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://cdn.jsdelivr.net/gh/yuzhu9/image@master/img/37.jpg">
+
+
+<link rel="canonical" href="http://zhengyuan.xyz/2021/01/13/jQuery%E7%AC%94%E8%AE%B0/">
+
+
+<script class="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>jQuery笔记 | 玉竹的博客</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  body { margin-top: 2rem; }
+
+  .use-motion .menu-item,
+  .use-motion .sidebar,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header {
+    visibility: visible;
+  }
+
+  .use-motion .header,
+  .use-motion .site-brand-container .toggle,
+  .use-motion .footer { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle,
+  .use-motion .custom-logo-image {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line {
+    transform: scaleX(1);
+  }
+
+  .search-pop-overlay, .sidebar-nav { display: none; }
+  .sidebar-panel { display: block; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <h1 class="site-title">玉竹的博客</h1>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <section class="post-toc-wrap sidebar-panel">
+          <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%93%BE%E5%BC%8F%E6%93%8D%E4%BD%9C"><span class="nav-number">1.</span> <span class="nav-text">链式操作</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%8E%B7%E5%8F%96%E5%85%83%E7%B4%A0"><span class="nav-number">2.</span> <span class="nav-text">获取元素</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%9F%A5%E6%89%BE%E5%8F%8A%E8%BF%87%E6%BB%A4%E5%85%83%E7%B4%A0"><span class="nav-number">3.</span> <span class="nav-text">查找及过滤元素</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%88%9B%E5%BB%BA%E5%85%83%E7%B4%A0"><span class="nav-number">4.</span> <span class="nav-text">创建元素</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%A7%BB%E5%8A%A8%E5%85%83%E7%B4%A0"><span class="nav-number">5.</span> <span class="nav-text">移动元素</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BF%AE%E6%94%B9%E5%85%83%E7%B4%A0"><span class="nav-number">6.</span> <span class="nav-text">修改元素</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BA%8B%E4%BB%B6%E6%93%8D%E4%BD%9C"><span class="nav-number">7.</span> <span class="nav-text">事件操作</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%88%A0%E9%99%A4%E5%85%83%E7%B4%A0"><span class="nav-number">8.</span> <span class="nav-text">删除元素</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%9B%B4%E5%A4%9A"><span class="nav-number">9.</span> <span class="nav-text">更多</span></a></li></ol></div>
+      </section>
+      <!--/noindex-->
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="yuzhu9"
+      src="/images/avatar.jpg">
+  <p class="site-author-name" itemprop="name">yuzhu9</p>
+  <div class="site-description" itemprop="description">逝者如斯夫，不舍昼夜</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">39</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">3</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">6</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/yuzhu9" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;yuzhu9" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:poly2014w@163.com" title="E-Mail → mailto:poly2014w@163.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+
+
+
+      </section>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+      
+
+      
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://zhengyuan.xyz/2021/01/13/jQuery%E7%AC%94%E8%AE%B0/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="yuzhu9">
+      <meta itemprop="description" content="逝者如斯夫，不舍昼夜">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="玉竹的博客">
+    </span>
+
+    
+    
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          jQuery笔记
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2021-01-13 07:07:42" itemprop="dateCreated datePublished" datetime="2021-01-13T07:07:42+08:00">2021-01-13</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">更新于</span>
+        <time title="修改时间：2021-01-14 00:01:38" itemprop="dateModified" datetime="2021-01-14T00:01:38+08:00">2021-01-14</time>
+      </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E7%AC%94%E8%AE%B0/" itemprop="url" rel="index"><span itemprop="name">笔记</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <p>jQuery是到目前为止全球使用最广泛，寿命最长的JavaScript库</p>
+<p><img src="https://cdn.jsdelivr.net/gh/yuzhu9/image@master/img/37.jpg"></p>
+<a id="more"></a>
+
+<h4 id="链式操作"><a href="#链式操作" class="headerlink" title="链式操作"></a>链式操作</h4><p>jQuery的链式操作允许选中元素后，进行一系列操作，所有操作都可以连接在一起。</p>
+<p>这是因为jQuery的操作，每一步返回的都是一个jQuery对象，不同操作可以连在一起</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$(&#39;div&#39;).find(&#39;p&#39;).addClass(&#39;para&#39;)</span><br></pre></td></tr></table></figure>
+<h4 id="获取元素"><a href="#获取元素" class="headerlink" title="获取元素"></a>获取元素</h4><ol>
+<li><p>使用CSS选择器：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$(&#39;#id&#39;)</span><br><span class="line">$(&#39;.className&#39;)</span><br><span class="line">$(&#39;input[name&#x3D;age]&#39;)</span><br><span class="line">$(&#39;[lang]&#39;)</span><br></pre></td></tr></table></figure></li>
+<li><p>jQuery特有的选择器</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$(&#39;:button&#39;)&#x2F;&#x2F;选中所有按钮，包括input[type&#x3D;button]&#x2F;input[type&#x3D;submit]&#x2F;input[type&#x3D;teset]&#x2F;&lt;button&gt;</span><br><span class="line">$(&#39;p:visible&#39;)&#x2F;&#x2F;页面所有可见的p元素</span><br><span class="line">$(&#39;div:eq(2)&#39;)&#x2F;&#x2F;页面上第二个div元素</span><br></pre></td></tr></table></figure>
+
+
+</li>
+</ol>
+<h4 id="查找及过滤元素"><a href="#查找及过滤元素" class="headerlink" title="查找及过滤元素"></a>查找及过滤元素</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">$(&#39;div&#39;).find(&#39;red&#39;)&#x2F;&#x2F;查找class等于red的div元素</span><br><span class="line">$(&#39;div&#39;).parent()&#x2F;&#x2F;获取父元素</span><br><span class="line">$(&#39;div&#39;).children()&#x2F;&#x2F;获取子元素集合</span><br><span class="line">$(&#39;div&#39;).siblings()&#x2F;&#x2F;获取兄弟元素集合</span><br><span class="line">$(&#39;div&#39;).index(2)&#x2F;&#x2F;获取第三个div元素</span><br><span class="line">$(&#39;div&#39;).next()&#x2F;&#x2F;获取弟弟元素</span><br><span class="line">$(&#39;div&#39;).prev()&#x2F;&#x2F;获取哥哥元素</span><br><span class="line">$(&#39;div&#39;).each(fn)&#x2F;&#x2F;遍历并对每个div元素执行fn</span><br><span class="line">$(&#39;div&#39;).has(&#39;span&#39;)&#x2F;&#x2F;选择包含span的div元素</span><br><span class="line">$(&#39;div&#39;).not(&#39;.myAge&#39;)&#x2F;&#x2F;选择class不等于myAge的div元素</span><br><span class="line">$(&#39;div&#39;).filter(&#39;.myAge&#39;)&#x2F;&#x2F;选择class等于myAge的div元素</span><br><span class="line">$(&#39;div&#39;).first(&#39;&#39;)&#x2F;&#x2F;选择第一个div元素</span><br><span class="line">$(&#39;div&#39;).eq(2)&#x2F;&#x2F;选择第2个div元素</span><br></pre></td></tr></table></figure>
+<h4 id="创建元素"><a href="#创建元素" class="headerlink" title="创建元素"></a>创建元素</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$(&#39;div&#39;)</span><br><span class="line">jQuery(&#39;div&#39;)</span><br><span class="line">$(&#39;&lt;h1&gt;h1&lt;&#x2F;hi&gt;&#39;)</span><br><span class="line">$(&#39;div&#39;).append(&#39;&lt;p&gt;paragraph&lt;&#x2F;p&gt;&#39;)</span><br></pre></td></tr></table></figure>
+<h4 id="移动元素"><a href="#移动元素" class="headerlink" title="移动元素"></a>移动元素</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">$(&#39;div&#39;).insertBefore($(&#39;p&#39;))&#x2F;&#x2F;把div元素插到p元素前面，返回div元素</span><br><span class="line">$(&#39;p&#39;).before($(&#39;div&#39;))&#x2F;&#x2F;把div元素插到p元素前面，返回p元素</span><br><span class="line">$(&#39;div&#39;).insertAfter($(&#39;p&#39;))&#x2F;把div元素插到p元素后面，返回div元素</span><br><span class="line">$(&#39;p&#39;).after($(&#39;div&#39;))、、把div元素插到p元素后面，返回p元素</span><br><span class="line">$(&#39;p&#39;).appendTo($(&#39;div&#39;))&#x2F;&#x2F;把p元素插到div元素里面作为div的最后一个子元素，返回p元素</span><br><span class="line">$(&#39;div&#39;).append($(&#39;p&#39;))&#x2F;&#x2F;把p元素插到div元素里面作为div的最后一个子元素，返回div元素</span><br><span class="line">$(&#39;p&#39;).prependTo($(&#39;div&#39;))&#x2F;&#x2F;把p元素插到div元素里面作为div的第一个子元素，返回p元素</span><br><span class="line">$(&#39;div&#39;).prepend($(&#39;p&#39;))&#x2F;&#x2F;把p元素插到div元素里面作为div的第一个子元素，返回div元素</span><br></pre></td></tr></table></figure>
+<h4 id="修改元素"><a href="#修改元素" class="headerlink" title="修改元素"></a>修改元素</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">$(&#39;div&#39;).text()&#x2F;&#x2F;读取或设置div元素的文本内容</span><br><span class="line">$(&#39;div&#39;).html()&#x2F;&#x2F;读取或设置div元素的HTML内容</span><br><span class="line">$(&#39;div&#39;).attr(&#39;title&#39;)&#x2F;&#x2F;读取或设置div元素的某个属性，如title</span><br><span class="line">$(&#39;div&#39;).css(&#123;color: &#39;red&#39;&#125;)&#x2F;&#x2F;读取或设置div元素的样式属性，如color属性</span><br><span class="line">$(&#39;div&#39;).addClass(&#39;red&#39;)&#x2F;&#x2F;给div元素添加class为red</span><br></pre></td></tr></table></figure>
+<h4 id="事件操作"><a href="#事件操作" class="headerlink" title="事件操作"></a>事件操作</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">$(&#39;div&#39;).on(&#39;click&#39;,fn)&#x2F;&#x2F;给div元素添加click事件</span><br><span class="line">$(&#39;div&#39;).off(&#39;click&#39;,fn)&#x2F;&#x2F;移除div元素的click事件</span><br><span class="line">$(&#39;div&#39;).click()&#x2F;&#x2F;单击</span><br><span class="line">$(&#39;div&#39;).dblclick()&#x2F;&#x2F;双击事件</span><br><span class="line">$(&#39;div&#39;).hover()&#x2F;&#x2F;mouseenter和mouseleave</span><br><span class="line">$(&#39;div&#39;).mouseup()&#x2F;&#x2F;松开鼠标</span><br><span class="line">$(&#39;div&#39;).mousedown()&#x2F;&#x2F;按下鼠标</span><br><span class="line">$(&#39;div&#39;).mousemove()&#x2F;&#x2F;鼠标在元素内部移动</span><br><span class="line">$(&#39;div&#39;).mouseout()&#x2F;&#x2F;鼠标离开</span><br><span class="line">$(&#39;div&#39;).scroll()&#x2F;&#x2F;滚动条位置变化</span><br><span class="line">$(&#39;div&#39;).toggle()&#x2F;&#x2F;根据鼠标点击次数，一次运行多个函数</span><br><span class="line">$(&#39;input&#39;).blur()&#x2F;&#x2F;表单元素失去焦点</span><br><span class="line">$(&#39;input&#39;).focus&#x2F;&#x2F;表单元素获得焦点</span><br><span class="line">$(&#39;input&#39;).keyup()&#x2F;&#x2F;松开键盘</span><br></pre></td></tr></table></figure>
+<h4 id="删除元素"><a href="#删除元素" class="headerlink" title="删除元素"></a>删除元素</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$(&#39;div&#39;).remove()&#x2F;&#x2F;删除div元素及子元素</span><br><span class="line">$(&#39;div&#39;).empty()&#x2F;&#x2F;删除div元素的子元素</span><br></pre></td></tr></table></figure>
+<h4 id="更多"><a href="#更多" class="headerlink" title="更多"></a>更多</h4><ul>
+<li><a target="_blank" rel="noopener" href="https://api.jquery.com/">jQuery文档</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.jquery123.com/">jQuery中文文档</a></li>
+</ul>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/JavaScript/" rel="tag"># JavaScript</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2021/01/09/JavaScript%E5%87%BD%E6%95%B0%E7%9A%84%E6%89%A7%E8%A1%8C%E6%97%B6%E6%9C%BA/" rel="prev" title="JavaScript函数的执行时机">
+                  <i class="fa fa-chevron-left"></i> JavaScript函数的执行时机
+                </a>
+            </div>
+            <div class="post-nav-item">
+            </div>
+          </div>
+    </footer>
+  </article>
+  
+  
+  
+
+
+
+      
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      const activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      const commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+      
+
+      
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">yuzhu9</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/pisces/" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <script src="//cdn.jsdelivr.net/npm/animejs@3.2.0/lib/anime.min.js"></script>
+<script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>
