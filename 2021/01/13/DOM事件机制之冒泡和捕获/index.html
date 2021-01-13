@@ -370,9 +370,9 @@ type：表示监听事件类型的字符串，如<code>click</code><br>listener�
 <p>栗子：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;div&gt;&lt;span&gt;文字&lt;&#x2F;span&gt;&lt;&#x2F;div&gt;</span><br></pre></td></tr></table></figure>
 <p>用户点击了文字，<code>e.target</code>就是<code>span</code>元素，而<code>e.currentTarget</code>就是<code>div</code>元素</p>
-<h2 id="7-事件委托"><a href="#7-事件委托" class="headerlink" title="7.事件委托"></a>7.事件委托</h2><p>把子节点的监听函数定义在父节点上，由父节点的监听函数统一处理多个子元素的事件。</p>
-<p>比如要监听的子节点较多或者需要监听目前不存在的元素，就可以监听祖先</p>
-<p>事件委托的优点：节省监听数（内存）和可以监听动态元素</p>
+<h2 id="7-事件委托"><a href="#7-事件委托" class="headerlink" title="7.事件委托"></a>7.事件委托</h2><p>把子节点的监听函数定义在父节点上，由父节点的监听函数统一处理多个子元素的事件。事件委托是利用事件冒泡原理实现的。</p>
+<p>比如要监听的子节点较多或者需要监听目前不存在的元素，就可以监听父元素，委托父元素或者更外层的元素代为执行事件。</p>
+<p>事件委托的优点：节省监听数（省内存）和可以监听动态元素</p>
 <p>栗子：</p>
 <p>一个函数<code>on(&#39;click&#39;,&#39;#test&#39;,&#39;li&#39;,fn)</code>，当用户点击<code>&#39;#test&#39;</code>里的li元素时，调用fn函数，使用事件委托</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">function on( eventType,element, selector, fn)&#123;</span><br><span class="line">  element.addEventListener(eventType, e &#x3D;&gt; &#123;</span><br><span class="line">    let el &#x3D; e.target</span><br><span class="line">    while (!el.matches(selector)) &#123;</span><br><span class="line">      if (element &#x3D;&#x3D;&#x3D; el) &#123;</span><br><span class="line">        el &#x3D; null</span><br><span class="line">        break</span><br><span class="line">      &#125;</span><br><span class="line">      el &#x3D; el.parentNode</span><br><span class="line">    &#125;</span><br><span class="line">    el &amp;&amp; fn.call(el, e, el)</span><br><span class="line">  &#125;)</span><br><span class="line">  return element</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
