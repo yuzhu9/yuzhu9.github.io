@@ -1,0 +1,651 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.3.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.14.0/css/all.min.css">
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css">
+
+<script class="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"zhengyuan.xyz","root":"/","scheme":"Pisces","version":"8.0.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}};
+  </script>
+
+  <meta name="description" content="webpackwebpack是一个前端工具，它可以转译代码（如ES6转为ES5,SCSS转为CSS）、构建build、代码压缩、代码分析。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="webpack初识">
+<meta property="og:url" content="http://zhengyuan.xyz/2021/01/24/webpack%E5%88%9D%E8%AF%86/index.html">
+<meta property="og:site_name" content="玉竹的博客">
+<meta property="og:description" content="webpackwebpack是一个前端工具，它可以转译代码（如ES6转为ES5,SCSS转为CSS）、构建build、代码压缩、代码分析。">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/yuzhu9/image@master/img/40.jpg">
+<meta property="article:published_time" content="2021-01-23T20:45:24.000Z">
+<meta property="article:modified_time" content="2021-01-24T23:30:35.497Z">
+<meta property="article:author" content="yuzhu9">
+<meta property="article:tag" content="webpack">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://cdn.jsdelivr.net/gh/yuzhu9/image@master/img/40.jpg">
+
+
+<link rel="canonical" href="http://zhengyuan.xyz/2021/01/24/webpack%E5%88%9D%E8%AF%86/">
+
+
+<script class="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>webpack初识 | 玉竹的博客</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  body { margin-top: 2rem; }
+
+  .use-motion .menu-item,
+  .use-motion .sidebar,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header {
+    visibility: visible;
+  }
+
+  .use-motion .header,
+  .use-motion .site-brand-container .toggle,
+  .use-motion .footer { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle,
+  .use-motion .custom-logo-image {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line {
+    transform: scaleX(1);
+  }
+
+  .search-pop-overlay, .sidebar-nav { display: none; }
+  .sidebar-panel { display: block; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <h1 class="site-title">玉竹的博客</h1>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <section class="post-toc-wrap sidebar-panel">
+          <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#webpack"><span class="nav-number">1.</span> <span class="nav-text">webpack</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#webpack%E7%9A%84%E4%BD%BF%E7%94%A8"><span class="nav-number">2.</span> <span class="nav-text">webpack的使用</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%A8%A1%E5%9D%97%EF%BC%88modules%EF%BC%89"><span class="nav-number">3.</span> <span class="nav-text">模块（modules）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BE%9D%E8%B5%96%E5%9B%BE%EF%BC%88dependency-graph%EF%BC%89"><span class="nav-number">4.</span> <span class="nav-text">依赖图（dependency graph）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%85%8D%E7%BD%AE"><span class="nav-number">5.</span> <span class="nav-text">配置</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%A8%A1%E5%BC%8F"><span class="nav-number">6.</span> <span class="nav-text">模式</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%85%A5%E5%8F%A3%EF%BC%88entry%EF%BC%89"><span class="nav-number">7.</span> <span class="nav-text">入口（entry）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%BE%93%E5%87%BA%EF%BC%88output%EF%BC%89"><span class="nav-number">8.</span> <span class="nav-text">输出（output）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#loader"><span class="nav-number">9.</span> <span class="nav-text">loader</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%8F%92%E4%BB%B6%EF%BC%88plugins%EF%BC%89"><span class="nav-number">10.</span> <span class="nav-text">插件（plugins）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#loader%E5%92%8Cplugin%E7%9A%84%E5%8C%BA%E5%88%AB"><span class="nav-number">11.</span> <span class="nav-text">loader和plugin的区别</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%8F%82%E8%80%83"><span class="nav-number">12.</span> <span class="nav-text">参考</span></a></li></ol></div>
+      </section>
+      <!--/noindex-->
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="yuzhu9"
+      src="/images/avatar.jpg">
+  <p class="site-author-name" itemprop="name">yuzhu9</p>
+  <div class="site-description" itemprop="description">逝者如斯夫，不舍昼夜</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">42</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">4</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">8</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/yuzhu9" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;yuzhu9" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:poly2014w@163.com" title="E-Mail → mailto:poly2014w@163.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+
+
+
+      </section>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+      
+
+      
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://zhengyuan.xyz/2021/01/24/webpack%E5%88%9D%E8%AF%86/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="yuzhu9">
+      <meta itemprop="description" content="逝者如斯夫，不舍昼夜">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="玉竹的博客">
+    </span>
+
+    
+    
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          webpack初识
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2021-01-24 04:45:24" itemprop="dateCreated datePublished" datetime="2021-01-24T04:45:24+08:00">2021-01-24</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">更新于</span>
+        <time title="修改时间：2021-01-25 07:30:35" itemprop="dateModified" datetime="2021-01-25T07:30:35+08:00">2021-01-25</time>
+      </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E5%B7%A5%E5%85%B7/" itemprop="url" rel="index"><span itemprop="name">工具</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <h4 id="webpack"><a href="#webpack" class="headerlink" title="webpack"></a>webpack</h4><p>webpack是一个前端工具，它可以转译代码（如ES6转为ES5,SCSS转为CSS）、构建build、代码压缩、代码分析。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/yuzhu9/image@master/img/40.jpg"></p>
+<a id="more"></a>
+
+<h4 id="webpack的使用"><a href="#webpack的使用" class="headerlink" title="webpack的使用"></a>webpack的使用</h4><p>查看webpack信息</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm info webpack</span><br></pre></td></tr></table></figure>
+<p>安装webpack（以下代码是本地安装，也可以全局安装）</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">mkdir webpack-demo</span><br><span class="line">cd webpack-demo</span><br><span class="line">npm init -y &#x2F;&#x2F;或yarn init -y，创建package.json </span><br><span class="line">npm install webpack webpack-cli --save-dev &#x2F;&#x2F;或yarn add webpack webpack-cli --dev</span><br><span class="line">&#x2F;&#x2F;安装完成就会出现node_modules目录</span><br></pre></td></tr></table></figure>
+<p>一些demo</p>
+<ul>
+<li><p><strong>转译JS</strong>：webpack内置了babel-loader，直接转译JS。</p>
+<ol>
+<li><p>新建一个目录src，目录下新建文件index.js，js文件里写如下代码：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">console.log(&#39;hello&#39;)</span><br></pre></td></tr></table></figure></li>
+<li><p>在终端运行webpack</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">npx webpack  &#x2F;&#x2F;或.&#x2F;node_modules&#x2F;.bin&#x2F;webpack</span><br><span class="line">&#x2F;&#x2F;npx会自动在本地查找webpack，但不够稳定，如果windows系统安装node时目录有空格，npx就不能正常使用</span><br></pre></td></tr></table></figure>
+<p>运行上面代码后就会出现一个dist目录，目录下有一个main.js文件，这就完成了一次最简单的js转译。</p>
+</li>
+<li><p>接着试验转译import引入的JS文件，在src目录下新建x.js文件，x.js文件写如下代码：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">export default &#39;xxx&#39;</span><br></pre></td></tr></table></figure>
+<p>把index.js里代码改为：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">import x from &#39;.&#x2F;x.js&#39;</span><br><span class="line">console.log(x)</span><br></pre></td></tr></table></figure>
+<p>在终端运行webpack</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npx webpack</span><br></pre></td></tr></table></figure>
+<p>可以看到dist/main.js文件里面就是转译后的代码。</p>
+<p>此时，就可以对webpack进行一些简单的配置了，如配置mode/entry/output</p>
+</li>
+</ol>
+</li>
+<li><p><strong>生成HTML</strong></p>
+<ol>
+<li><p>根据webpack文档提示安装相应的plugin</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install --save-dev html-webpack-plugin&#x2F;&#x2F;或者yarn add html-webpack-plugin --dev</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>在webpack.config.js文件添加配置信息</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">var HtmlWebpackPlugin &#x3D; require(&#39;html-webpack-plugin&#39;);</span><br><span class="line">var path &#x3D; require(&#39;path&#39;);</span><br><span class="line"></span><br><span class="line">module.exports &#x3D; &#123;</span><br><span class="line">  &#x2F;&#x2F;mode: &#39;development&#39;,</span><br><span class="line">  mode: &#39;production&#39;,</span><br><span class="line">  entry: &#39;.&#x2F;src&#x2F;index.js&#39;,</span><br><span class="line">  output: &#123;</span><br><span class="line">    filename: &#39;[name].[contenthash].js&#39;,</span><br><span class="line">    &#x2F;&#x2F; path: path.resolve(__dirname, &#39;dist&#39;),</span><br><span class="line">    &#x2F;&#x2F; filename: &#39;main.js&#39;</span><br><span class="line">  &#125;,</span><br><span class="line">  plugins: [new HtmlWebpackPlugin()]</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>在package.json增加配置</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  &quot;name&quot;: &quot;webpack-demo&quot;,</span><br><span class="line">  &quot;version&quot;: &quot;1.0.0&quot;,</span><br><span class="line">  &quot;description&quot;: &quot;&quot;,</span><br><span class="line">	&quot;main&quot;: &quot;index.js&quot;,</span><br><span class="line">	&quot;scripts&quot;: &#123;</span><br><span class="line">  &quot;build&quot;: &quot;rm -rf dist; webpack&quot;, &#x2F;&#x2F;添加build</span><br><span class="line">  &quot;test&quot;: &quot;echo \&quot;Error: no test specified\&quot; &amp;&amp; exit 1&quot;</span><br><span class="line">&#125;,</span><br><span class="line">	&quot;keywords&quot;: [],</span><br><span class="line">	&quot;author&quot;: &quot;&quot;,</span><br><span class="line">	&quot;license&quot;: &quot;ISC&quot;,</span><br><span class="line">	&quot;devDependencies&quot;: &#123;</span><br><span class="line">  &quot;html-webpack-plugin&quot;: &quot;^5.0.0-beta.6&quot;,</span><br><span class="line">  &quot;webpack&quot;: &quot;^5.17.0&quot;,</span><br><span class="line">  &quot;webpack-cli&quot;: &quot;^4.4.0&quot;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>终端运行<code> yarn build</code>或<code>npm run build</code> dist目录下就会新增一个index.html文件。</p>
+</li>
+<li><p>查看<a target="_blank" rel="noopener" href="https://github.com/jantimon/html-webpack-plugin#options">插件文档</a>，修改配置：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">var HtmlWebpackPlugin &#x3D; require(&#39;html-webpack-plugin&#39;);</span><br><span class="line">var path &#x3D; require(&#39;path&#39;);</span><br><span class="line"></span><br><span class="line">module.exports &#x3D; &#123;</span><br><span class="line">  &#x2F;&#x2F;mode: &#39;development&#39;,</span><br><span class="line">  mode: &#39;production&#39;,</span><br><span class="line">  entry: &#39;.&#x2F;src&#x2F;index.js&#39;,</span><br><span class="line">  output: &#123;</span><br><span class="line">    filename: &#39;[name].[contenthash].js&#39;,</span><br><span class="line">  &#125;,</span><br><span class="line">  plugins: [</span><br><span class="line">  	new HtmlWebpackPlugin(&#123;</span><br><span class="line">      title: &#39;My App&#39;,  &#x2F;&#x2F;HTML文件的title</span><br><span class="line">      template: &#39;src&#x2F;assets&#x2F;test.html&#39; &#x2F;&#x2F;HTML文档的模板文件</span><br><span class="line">    &#125;)</span><br><span class="line">  ]</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>新建一个HTML文件，名字叫test.html，路径是src/assets/test.html</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">&lt;!DOCTYPE html&gt;</span><br><span class="line">&lt;html lang&#x3D;&quot;zh-CN&quot;&gt;</span><br><span class="line">&lt;head&gt;</span><br><span class="line">    &lt;meta charset&#x3D;&quot;UTF-8&quot;&gt;</span><br><span class="line">    &lt;meta name&#x3D;&quot;viewport&quot; content&#x3D;&quot;width&#x3D;device-width, initial-scale&#x3D;1.0&quot;&gt;</span><br><span class="line">    &lt;title&gt;我的webpack文档&lt;&#x2F;title&gt;</span><br><span class="line">&lt;&#x2F;head&gt;</span><br><span class="line">&lt;body&gt;</span><br><span class="line">    &lt;div&gt;test-webpack&lt;&#x2F;div&gt;</span><br><span class="line">&lt;&#x2F;body&gt;</span><br><span class="line">&lt;&#x2F;html&gt;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>终端运行<code>yarn build </code>或<code>npm run build</code>就可以看到dist文件下的index.html文件以test.html为模板生成的</p>
+</li>
+<li><p>如果要把生成的HTML文件的title改成配置中的title，只需要将test.html文件的title内容修改为：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">&lt;!DOCTYPE html&gt;</span><br><span class="line">&lt;html lang&#x3D;&quot;zh-CN&quot;&gt;</span><br><span class="line">&lt;head&gt;</span><br><span class="line">    &lt;meta charset&#x3D;&quot;UTF-8&quot;&gt;</span><br><span class="line">    &lt;meta name&#x3D;&quot;viewport&quot; content&#x3D;&quot;width&#x3D;device-width, initial-scale&#x3D;1.0&quot;&gt;</span><br><span class="line">    &lt;title&gt;&lt;%&#x3D; htmlWebpackPlugin.options.title %&gt;&lt;&#x2F;title&gt;</span><br><span class="line">&lt;&#x2F;head&gt;</span><br><span class="line">&lt;body&gt;</span><br><span class="line">    &lt;div&gt;test&lt;&#x2F;div&gt;</span><br><span class="line">&lt;&#x2F;body&gt;</span><br><span class="line">&lt;&#x2F;html&gt;</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+</li>
+<li><p><strong>引入CSS</strong></p>
+<ul>
+<li>可以使用JS生成style，使用css-loader和style-loader就可以把css以style标签的形式插入文档</li>
+</ul>
+<ol>
+<li><p>根据webpack文档提示安装css-loader和style-loader。css-loader负责把css文件内容加载到JS中，style-loader负责把css-loader加载到JS中的内容，放到style元素中，并且把style插入到head中</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">yarn add style-loader --dev &#x2F;&#x2F;或npm install --save-dev style-loader</span><br><span class="line">yarn add css-loader --dev &#x2F;&#x2F;或npm install --save-dev css-loader</span><br></pre></td></tr></table></figure>
+
+<p><a target="_blank" rel="noopener" href="https://webpack.js.org/loaders/css-loader/">文档css-loader</a></p>
+</li>
+<li><p>新建css文件x.css，路径为src/x.css，内容为：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">body &#123;</span><br><span class="line">	background: grey;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>修改x.js的内容，在x.js中引入css文件</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">import &#39;.&#x2F;x.css&#39;</span><br><span class="line">export default &#39;xxx&#39;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>修改webpack.config.js配置文件</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">var HtmlWebpackPlugin &#x3D; require(&#39;html-webpack-plugin&#39;);</span><br><span class="line">var path &#x3D; require(&#39;path&#39;);</span><br><span class="line"></span><br><span class="line">module.exports &#x3D; &#123;</span><br><span class="line">  mode: &#39;production&#39;,</span><br><span class="line">  entry: &#39;.&#x2F;src&#x2F;index.js&#39;,</span><br><span class="line">  output: &#123;</span><br><span class="line">    filename: &#39;[name].[contenthash].js&#39;,</span><br><span class="line">  &#125;,</span><br><span class="line">  module: &#123;   &#x2F;&#x2F;css文件的配置信息</span><br><span class="line">    rules: [</span><br><span class="line">      &#123;</span><br><span class="line">        test: &#x2F;\.css$&#x2F;i,</span><br><span class="line">        use: [&quot;style-loader&quot;, &quot;css-loader&quot;],</span><br><span class="line">      &#125;,</span><br><span class="line">    ],</span><br><span class="line">  &#125;,</span><br><span class="line">  plugins: [</span><br><span class="line">  	new HtmlWebpackPlugin(&#123;</span><br><span class="line">      title: &#39;My App&#39;,  </span><br><span class="line">      template: &#39;src&#x2F;assets&#x2F;test.html&#39; </span><br><span class="line">    &#125;)</span><br><span class="line">  ]</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>终端运行<code>yarn build </code>或<code>npm run build</code>即可</p>
+</li>
+</ol>
+<ul>
+<li>使用插件提取css文件，使用插件把一个或多个css文件打包成css文件（通常是一个）</li>
+</ul>
+<ol>
+<li><p>根据<a target="_blank" rel="noopener" href="https://webpack.js.org/plugins/mini-css-extract-plugin/">webpack文档</a>提示，安装mini-css-extract-plugin</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">yarn add mini-css-extract-plugin --dev </span><br><span class="line">&#x2F;&#x2F;或npm install --save-dev mini-css-extract-plugin</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>修改配置文件</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line">const HtmlWebpackPlugin &#x3D; require(&#39;html-webpack-plugin&#39;);</span><br><span class="line">const MiniCssExtractPlugin &#x3D; require(&#39;mini-css-extract-plugin&#39;);</span><br><span class="line">const path &#x3D; require(&#39;path&#39;);</span><br><span class="line"></span><br><span class="line">module.exports &#x3D; &#123;</span><br><span class="line">  mode: &#39;production&#39;,</span><br><span class="line">  entry: &#39;.&#x2F;src&#x2F;index.js&#39;,</span><br><span class="line">  output: &#123;</span><br><span class="line">    filename: &#39;[name].[contenthash].js&#39;,</span><br><span class="line">  &#125;,</span><br><span class="line">  module: &#123;</span><br><span class="line">    rules: [</span><br><span class="line">      &#123;</span><br><span class="line">        test: &#x2F;\.css$&#x2F;i,</span><br><span class="line">        use: [</span><br><span class="line">            &#123; &#x2F;&#x2F;修改use配置</span><br><span class="line">              loader: MiniCssExtractPlugin.loader,</span><br><span class="line">              options: &#123;</span><br><span class="line">                publicPath: &#39;&#x2F;public&#x2F;path&#x2F;to&#x2F;&#39;,</span><br><span class="line">              &#125;,</span><br><span class="line">            &#125;,</span><br><span class="line">             &#39;css-loader&#39;],</span><br><span class="line">      &#125;,</span><br><span class="line">    ],</span><br><span class="line">  &#125;,</span><br><span class="line">  plugins: [</span><br><span class="line">  	new HtmlWebpackPlugin(&#123;</span><br><span class="line">      title: &#39;My App&#39;,  </span><br><span class="line">      template: &#39;src&#x2F;assets&#x2F;test.html&#39;</span><br><span class="line">    &#125;),</span><br><span class="line">    new MiniCssExtractPlugin(&#123; &#x2F;&#x2F;添加MiniCssExtractPlugin实例</span><br><span class="line">      filename: &#39;[name].css&#39;,</span><br><span class="line">      chunkFilename: &#39;[id].css&#39;,</span><br><span class="line">      ignoreOrder: false,</span><br><span class="line">      &#125;,</span><br><span class="line">    &#125;),</span><br><span class="line">  ]</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>终端输入<code>yarn build</code>或<code>npm run build</code>就可以看到dist目录下生成了main.css文件</p>
+</li>
+<li><p>上述步骤生成的main.css文件名是固定的，不能自动刷新，需要修改一下配置</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">plugins: [</span><br><span class="line">  	new HtmlWebpackPlugin(&#123;</span><br><span class="line">      title: &#39;My App&#39;,  </span><br><span class="line">      template: &#39;src&#x2F;assets&#x2F;test.html&#39;</span><br><span class="line">    &#125;),</span><br><span class="line">    new MiniCssExtractPlugin(&#123; </span><br><span class="line">      filename: &#39;[name].[contenthash].css&#39;, &#x2F;&#x2F;hash</span><br><span class="line">      chunkFilename: &#39;[id].[contenthash].css&#39;,&#x2F;&#x2F;hash</span><br><span class="line">      ignoreOrder: false,</span><br><span class="line">      &#125;,</span><br><span class="line">    &#125;),</span><br><span class="line">  ]</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+</li>
+<li><p><strong>使用webpack-dev-server</strong></p>
+<ol>
+<li><p>安装webpack-dev-server</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yarn add webpack-dev-server --dev&#x2F;&#x2F; 或npm install --save-dev webpack-dev-server</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>按照<a target="_blank" rel="noopener" href="https://webpack.js.org/guides/development/">webpack文档</a>提示，把配置文件中的mode改为development模式，并添加一些配置</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">var HtmlWebpackPlugin &#x3D; require(&#39;html-webpack-plugin&#39;);</span><br><span class="line">var path &#x3D; require(&#39;path&#39;);</span><br><span class="line"></span><br><span class="line">module.exports &#x3D; &#123;</span><br><span class="line">  mode: &#39;development&#39;,</span><br><span class="line">  entry: &#39;.&#x2F;src&#x2F;index.js&#39;,</span><br><span class="line">  output: &#123;</span><br><span class="line">    filename: &#39;[name].[contenthash].js&#39;,</span><br><span class="line">  &#125;,</span><br><span class="line">   devtool: &quot;inline-source-map&quot;,</span><br><span class="line">   devServer: &#123; &#x2F;&#x2F;添加devServer相关配置</span><br><span class="line">    contentBase: &#39;.&#x2F;dist&#39;,</span><br><span class="line">  &#125;,</span><br><span class="line">  module: &#123;</span><br><span class="line">    rules: [</span><br><span class="line">      &#123;</span><br><span class="line">        test: &#x2F;\.css$&#x2F;i,</span><br><span class="line">        use: [&quot;style-loader&quot;, &quot;css-loader&quot;],</span><br><span class="line">      &#125;,</span><br><span class="line">    ],</span><br><span class="line">  &#125;,</span><br><span class="line">  plugins: [</span><br><span class="line">  	new HtmlWebpackPlugin(&#123;</span><br><span class="line">      title: &#39;My App&#39;,  </span><br><span class="line">      template: &#39;src&#x2F;assets&#x2F;test.html&#39; </span><br><span class="line">    &#125;)</span><br><span class="line">  ]</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<p>修改package.json文件</p>
+</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"> &#123;</span><br><span class="line">&quot;name&quot;: &quot;webpack-demo&quot;,</span><br><span class="line">   &quot;version&quot;: &quot;1.0.0&quot;,</span><br><span class="line">   &quot;main&quot;: &quot;index.js&quot;,</span><br><span class="line">   &quot;license&quot;: &quot;MIT&quot;,</span><br><span class="line">   &quot;scripts&quot;: &#123;</span><br><span class="line">     &quot;build&quot;: &quot;rm -rf dist; webpack&quot;,</span><br><span class="line">     &quot;test&quot;: &quot;echo \&quot;Error: no test specified\&quot; &amp;&amp; exit 1&quot;,</span><br><span class="line">     &quot;start&quot;: &quot;webpack serve --open&quot; &#x2F;&#x2F;如果不需要打开浏览器，就删除--open</span><br><span class="line">   &#125;,</span><br><span class="line">   &quot;devDependencies&quot;: &#123;</span><br><span class="line">     &quot;css-loader&quot;: &quot;^5.0.1&quot;,</span><br><span class="line">     &quot;html-webpack-plugin&quot;: &quot;^4.5.1&quot;,</span><br><span class="line">     &quot;style-loader&quot;: &quot;^2.0.0&quot;,</span><br><span class="line">     &quot;webpack&quot;: &quot;^5.17.0&quot;,</span><br><span class="line">     &quot;webpack-cli&quot;: &quot;^4.4.0&quot;</span><br><span class="line">   &#125;</span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure>
+
+<ol start="3">
+<li>终端输入<code>yarn start</code>或者<code>npm run start</code>即可     </li>
+</ol>
+</li>
+<li><p><strong>配置不同的webpack.config文件</strong></p>
+<ol>
+<li><p>根据不同的模式（development模式和production模式）可以进行不同的配置</p>
+</li>
+<li><p>先把共用的一些配置提取出来，新建webpack.config.base.js文件</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">const HtmlWebpackPlugin &#x3D; require(&#39;html-webpack-plugin&#39;);</span><br><span class="line">const path &#x3D; require(&#39;path&#39;);</span><br><span class="line"></span><br><span class="line">module.exports &#x3D; &#123;</span><br><span class="line">  entry: &#39;.&#x2F;src&#x2F;index.js&#39;, &#x2F;&#x2F;输入改为src&#x2F;index.js文件</span><br><span class="line">  output: &#123;</span><br><span class="line">    &#x2F;&#x2F;path: path.resolve(__dirname, &#39;dist&#39;),</span><br><span class="line">    filename: &#39;[name].[contenthash].js&#39;</span><br><span class="line">  &#125;,</span><br><span class="line">  plugins: [</span><br><span class="line">    new HtmlWebpackPlugin(&#123;</span><br><span class="line">        title: &#39;My App&#39;,  &#x2F;&#x2F;HTML文件的title</span><br><span class="line">        template: &#39;src&#x2F;assets&#x2F;test.html&#39; &#x2F;&#x2F;HTML文档的模板文件</span><br><span class="line">      &#125;),</span><br><span class="line">  ]</span><br><span class="line">&#125;; </span><br></pre></td></tr></table></figure>
+</li>
+<li><p>再新建一个生成环境的配置文件webpack.config.prod.js文件</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line">const HtmlWebpackPlugin &#x3D; require(&#39;html-webpack-plugin&#39;);</span><br><span class="line">const MiniCssExtractPlugin &#x3D; require(&#39;mini-css-extract-plugin&#39;);</span><br><span class="line">const path &#x3D; require(&#39;path&#39;);</span><br><span class="line">const base &#x3D; require(&#39;.&#x2F;webpack.config.base&#39;)</span><br><span class="line"></span><br><span class="line">module.exports &#x3D; &#123;</span><br><span class="line">  ...base,</span><br><span class="line">  mode: &#39;production&#39;,</span><br><span class="line">  module: &#123;</span><br><span class="line">    rules: [</span><br><span class="line">      &#123;</span><br><span class="line">        test: &#x2F;\.css$&#x2F;i,</span><br><span class="line">        use: [</span><br><span class="line">            &#123;</span><br><span class="line">              loader: MiniCssExtractPlugin.loader,</span><br><span class="line">              options: &#123;</span><br><span class="line">                publicPath: &#39;&#x2F;public&#x2F;path&#x2F;to&#x2F;&#39;,</span><br><span class="line">              &#125;,</span><br><span class="line">            &#125;,</span><br><span class="line">             &#39;css-loader&#39;],</span><br><span class="line">      &#125;,</span><br><span class="line">    ],</span><br><span class="line">  &#125;,</span><br><span class="line">  plugins: [</span><br><span class="line">    ...base.plugins,</span><br><span class="line">    new MiniCssExtractPlugin(&#123; &#x2F;&#x2F;添加MiniCssExtractPlugin实例</span><br><span class="line">        filename: &#39;[name].css&#39;,</span><br><span class="line">        chunkFilename: &#39;[id].css&#39;, </span><br><span class="line">        ignoreOrder: false,</span><br><span class="line">      &#125;),</span><br><span class="line">  ]</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>把默认的配置文件webpack.config.js文件作为开发环境的配置文件</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">const HtmlWebpackPlugin &#x3D; require(&#39;html-webpack-plugin&#39;);</span><br><span class="line">const path &#x3D; require(&#39;path&#39;);</span><br><span class="line">const base &#x3D; require(&#39;.&#x2F;webpack.config.base&#39;)</span><br><span class="line"></span><br><span class="line">module.exports &#x3D; &#123;</span><br><span class="line">  ...base,</span><br><span class="line">  mode: &#39;development&#39;, &#x2F;&#x2F;模式改为production模式</span><br><span class="line">  devtool: &quot;inline-source-map&quot;, &#x2F;&#x2F;添加devServer相关配置</span><br><span class="line">  devServer: &#123; &#x2F;&#x2F;添加devServer相关配置</span><br><span class="line">    contentBase: &#39;.&#x2F;dist&#39;,</span><br><span class="line">  &#125;,</span><br><span class="line">  module: &#123;</span><br><span class="line">    rules: [</span><br><span class="line">      &#123;</span><br><span class="line">        test: &#x2F;\.css$&#x2F;i,</span><br><span class="line">        use: [&#39;style-loader&#39;, &#39;css-loader&#39;],</span><br><span class="line">      &#125;,</span><br><span class="line">    ]</span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>在package.json中修改配置，把build的配置指定为webpack.config.prod.js</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  &quot;name&quot;: &quot;webpack-demo&quot;,</span><br><span class="line">  &quot;version&quot;: &quot;1.0.0&quot;,</span><br><span class="line">  &quot;description&quot;: &quot;&quot;,</span><br><span class="line">  &quot;main&quot;: &quot;index.js&quot;,</span><br><span class="line">  &quot;scripts&quot;: &#123;</span><br><span class="line">    &quot;build&quot;: &quot;rm -rf dist; webpack --config webpack.config.prod.js&quot;, &#x2F;&#x2F;build</span><br><span class="line">    &quot;test&quot;: &quot;echo \&quot;Error: no test specified\&quot; &amp;&amp; exit 1&quot;,</span><br><span class="line">    &quot;start&quot;: &quot;webpack serve&quot; </span><br><span class="line">  &#125;,</span><br><span class="line">  &quot;keywords&quot;: [],</span><br><span class="line">  &quot;author&quot;: &quot;&quot;,</span><br><span class="line">  &quot;license&quot;: &quot;ISC&quot;,</span><br><span class="line">  &quot;devDependencies&quot;: &#123;</span><br><span class="line">    &quot;css-loader&quot;: &quot;^5.0.1&quot;,</span><br><span class="line">    &quot;html-webpack-plugin&quot;: &quot;^5.0.0-beta.6&quot;,</span><br><span class="line">    &quot;mini-css-extract-plugin&quot;: &quot;^1.3.4&quot;,</span><br><span class="line">    &quot;style-loader&quot;: &quot;^2.0.0&quot;,</span><br><span class="line">    &quot;webpack&quot;: &quot;^5.17.0&quot;,</span><br><span class="line">    &quot;webpack-cli&quot;: &quot;^4.4.0&quot;,</span><br><span class="line">    &quot;webpack-dev-server&quot;: &quot;^3.11.2&quot;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+</li>
+<li><p><strong>引入SCSS</strong></p>
+<ol>
+<li><p>安装sass-loader，需要安装dart-sass</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yarn add sass-loader dart-sass --dev &#x2F;&#x2F;npm方式略</span><br></pre></td></tr></table></figure></li>
+<li><p>修改配置</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">module: &#123;</span><br><span class="line">  rules: [</span><br><span class="line">    &#123;</span><br><span class="line">      test: &#x2F;\.scss$&#x2F;i,</span><br><span class="line">      use: [</span><br><span class="line">        &#39;style-loader&#39;,</span><br><span class="line">        &#39;css-loader&#39;,</span><br><span class="line">        &#123;</span><br><span class="line">          loader: &#39;sass-loader&#39;,</span><br><span class="line">          options: &#123;</span><br><span class="line">            implementation: require(&#39;dart-sass&#39;)</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">      ],</span><br><span class="line">    &#125;,</span><br><span class="line">  ],</span><br><span class="line">&#125;,</span><br></pre></td></tr></table></figure></li>
+<li><p>新建scss文件，在index.js中用import引入</p>
+</li>
+</ol>
+</li>
+<li><p><strong>引入LESS</strong></p>
+<ol>
+<li><p>安装less-loader</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yarn add less less-loader --dev</span><br></pre></td></tr></table></figure></li>
+<li><p>修改配置</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">module: &#123;</span><br><span class="line">          rules: [</span><br><span class="line">              &#123;</span><br><span class="line">                  test: &#x2F;\.less$&#x2F;,</span><br><span class="line">                  use: [&#123;</span><br><span class="line">                          loader: &quot;style-loader&quot;,</span><br><span class="line">                      &#125;,</span><br><span class="line">                      &#123;</span><br><span class="line">                          loader: &quot;css-loader&quot;,</span><br><span class="line">                      &#125;,</span><br><span class="line">                      &#123;</span><br><span class="line">                          loader: &quot;less-loader&quot;,</span><br><span class="line">                          options: &#123;</span><br><span class="line">                              lessOptions: &#123;</span><br><span class="line">                                  strictMath: true,</span><br><span class="line">                              &#125;,</span><br><span class="line">                          &#125;,</span><br><span class="line">                      &#125;,</span><br><span class="line">                  ],</span><br><span class="line">              &#125;,</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>新建less文件，在index.js中用import引入</p>
+</li>
+</ol>
+</li>
+<li><p><strong>引入Stylus</strong></p>
+<ol>
+<li><p>安装stylus-loader stylus</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yarn add stylus-loader stylus --dev</span><br></pre></td></tr></table></figure></li>
+<li><p>修改配置</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">module: &#123;</span><br><span class="line">	rules: [</span><br><span class="line">      &#123;</span><br><span class="line">        test: &#x2F;\.styl$&#x2F;i,</span><br><span class="line">        use: [</span><br><span class="line">          &quot;style-loader&quot;,</span><br><span class="line">          &#123;</span><br><span class="line">            loader: &quot;css-loader&quot;,</span><br><span class="line">            options: &#123;</span><br><span class="line">              sourceMap: true,</span><br><span class="line">            &#125;,</span><br><span class="line">          &#125;,</span><br><span class="line">          &#123;</span><br><span class="line">            loader: &quot;stylus-loader&quot;,</span><br><span class="line">            options: &#123;</span><br><span class="line">              sourceMap: true,</span><br><span class="line">            &#125;,</span><br><span class="line">          &#125;,</span><br><span class="line">        ],</span><br><span class="line">      &#125;,</span><br><span class="line">    ]</span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure></li>
+<li><p>新建stylus文件，在index.js中用import引入</p>
+</li>
+</ol>
+</li>
+<li><p><strong>使用file-loader引入图片</strong></p>
+<ol>
+<li><p>安装file-loader</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yarn add file-loader --dev</span><br></pre></td></tr></table></figure></li>
+<li><p>修改配置</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">module: &#123;</span><br><span class="line">    rules: [</span><br><span class="line">      &#123;</span><br><span class="line">        test: &#x2F;\.(png|jpe?g|gif)$&#x2F;i,</span><br><span class="line">        use: [</span><br><span class="line">          &#123;</span><br><span class="line">            loader: &#39;file-loader&#39;,</span><br><span class="line">          &#125;,</span><br><span class="line">        ],</span><br><span class="line">      &#125;,</span><br><span class="line">    ],</span><br><span class="line">  &#125;,</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></li>
+<li><p>将一张图片放在src/assets目录下</p>
+</li>
+<li><p>在index.js中用JS生成img元素，插入到src/assets目录下test.html中</p>
+</li>
+<li><p><code>yarn start</code>即可查看到图片已经成功插入</p>
+</li>
+<li><p>safd</p>
+</li>
+</ol>
+</li>
+<li><p><strong>import()懒加载</strong></p>
+<ol>
+<li><p>新建一个文件，例如b.js</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">export default function lazy()&#123;</span><br><span class="line">    console.log(&#39;懒加载模块&#39;)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+<li><p>在index.js中用import()加载这个文件<code>import(./b.js)</code>就会得到一个Promise。使用Promise.then()方法，传入成功和失败要调用的函数</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">const button &#x3D; document.createElement(&#39;button&#39;)</span><br><span class="line">button.innerText &#x3D; &#39;懒加载&#39;</span><br><span class="line">button.onclick &#x3D; ()&#x3D;&gt; &#123;</span><br><span class="line">	const promise &#x3D; import(&#39;.&#x2F;b.js&#39;)</span><br><span class="line">	promise.then((module) &#x3D;&gt; &#123;</span><br><span class="line">	const fn &#x3D; module.default</span><br><span class="line">	fn()</span><br><span class="line">	&#125;,()&#x3D;&gt;&#123;</span><br><span class="line">	console.log(&#39;模块加载错误&#39;)</span><br><span class="line">	&#125;)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="模块（modules）"><a href="#模块（modules）" class="headerlink" title="模块（modules）"></a>模块（modules）</h4></li>
+</ol>
+</li>
+</ul>
+<p>除了JavaScript模块，webpack还支持各种类型的源文件，包括图片、字体、JSON文件等等。支持以下方式引入：</p>
+<ul>
+<li>ES2015 <code>import</code></li>
+<li>CommonJS <code>require()</code></li>
+<li>AMD <code>define</code>和<code>require</code></li>
+<li>CSS/SASS/LESS文件中的<code>@import</code></li>
+<li>样式（url(…)）或HTML文件（<code>&lt;img src=...&gt;</code>）中的图片链接（image url）</li>
+</ul>
+<h4 id="依赖图（dependency-graph）"><a href="#依赖图（dependency-graph）" class="headerlink" title="依赖图（dependency graph）"></a>依赖图（dependency graph）</h4><p>一个文件依赖于另一个文件，webpack就把此视为文件之间有依赖关系。webpack依据模块之间的依赖关系递归生成一张内部逻辑图，也就是依赖图。根据依赖图把模块打包为bundle</p>
+<h4 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h4><p>新建一个名为webpack.config.js的文件，在webpack文档里面找到<a target="_blank" rel="noopener" href="https://webpack.js.org/concepts/configuration/#simple-configuration">配置信息（Configuration）</a>。复制基本配置到webpack.config.js文件：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">var path &#x3D; require(&#39;path&#39;);</span><br><span class="line"></span><br><span class="line">module.exports &#x3D; &#123;</span><br><span class="line">  mode: &#39;development&#39;,</span><br><span class="line">  entry: &#39;.&#x2F;foo.js&#39;,</span><br><span class="line">  output: &#123;</span><br><span class="line">    path: path.resolve(__dirname, &#39;dist&#39;),</span><br><span class="line">    filename: &#39;foo.bundle.js&#39;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>根据需要修改mode、entry和output的配置信息，比如：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">var path &#x3D; require(&#39;path&#39;);</span><br><span class="line"></span><br><span class="line">module.exports &#x3D; &#123;</span><br><span class="line">  mode: &#39;production&#39;, &#x2F;&#x2F;模式改为production模式</span><br><span class="line">  entry: &#39;.&#x2F;src&#x2F;index.js&#39;, &#x2F;&#x2F;输入改为src&#x2F;index.js文件</span><br><span class="line">  output: &#123;</span><br><span class="line">    path: path.resolve(__dirname, &#39;dist&#39;),</span><br><span class="line">    filename: &#39;main.js&#39; &#x2F;&#x2F;输出文件改为main.js</span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>HTTP缓存的意义：能提升网页资源的加载速度，没有更新的数据就可以使用缓存，有新数据就从服务器下载更新。使用webpack处理之后，使文件内容跟文件名有一一对应的关系，文件内容有更新，hash就更新，浏览器就会下载更新。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">var path &#x3D; require(&#39;path&#39;);</span><br><span class="line"></span><br><span class="line">module.exports &#x3D; &#123;</span><br><span class="line">  mode: &#39;production&#39;, &#x2F;&#x2F;模式改为production模式</span><br><span class="line">  entry: &#39;.&#x2F;src&#x2F;index.js&#39;, &#x2F;&#x2F;输入改为src&#x2F;index.js文件</span><br><span class="line">  output: &#123;</span><br><span class="line">  	path: path.resolve(__dirname, &#39;dist&#39;),</span><br><span class="line">    filename: &#39;[name].[contenthash].js&#39; &#x2F;&#x2F;文件名中的hash</span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h4 id="模式"><a href="#模式" class="headerlink" title="模式"></a>模式</h4><p>模式只能在配置文件中设置mode，包括development模式和production模式</p>
+<h4 id="入口（entry）"><a href="#入口（entry）" class="headerlink" title="入口（entry）"></a>入口（entry）</h4><p>配置中的entry属性规定了依赖图的起始点</p>
+<ul>
+<li><p>单个入口语法</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">const config &#x3D; &#123;</span><br><span class="line">  entry: &#39;.&#x2F;src&#x2F;index.js&#39;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">module.exports &#x3D; config;</span><br></pre></td></tr></table></figure></li>
+<li><p>对象语法</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">const config &#x3D; &#123;</span><br><span class="line">  entry: &#123;</span><br><span class="line">    app: &#39;.&#x2F;src&#x2F;app.js&#39;,</span><br><span class="line">    vendors: &#39;.&#x2F;src&#x2F;vendors.js&#39;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+
+</li>
+</ul>
+<h4 id="输出（output）"><a href="#输出（output）" class="headerlink" title="输出（output）"></a>输出（output）</h4><p>配置文件中的output属性，最低要求是将它的值设置为一个对象，包括输出路径和文件名</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">const config &#x3D; &#123;</span><br><span class="line">  output: &#123;</span><br><span class="line">    filename: &#39;bundle.js&#39;,</span><br><span class="line">    path: &#39;&#x2F;home&#x2F;proj&#x2F;public&#x2F;assets&#39;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">module.exports &#x3D; config;</span><br></pre></td></tr></table></figure>
+<h4 id="loader"><a href="#loader" class="headerlink" title="loader"></a>loader</h4><p>loader用于对模块的源代码进行转换。loader能让webpack处理其他类型的文件，可以将文件从不同语言转换为JavaScript，将内联图像转换为data URL等。loader通常被命名为<code>xxx-loader</code>。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  test: &#x2F;\.js$&#x2F;</span><br><span class="line">  use: [</span><br><span class="line">    &#123;</span><br><span class="line">      loader: path.resolve(&#39;path&#x2F;to&#x2F;loader.js&#39;),</span><br><span class="line">      options: &#123;&#x2F;* ... *&#x2F;&#125;</span><br><span class="line">    &#125;</span><br><span class="line">  ]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>test定义了需要被转化的文件或者文件类型，use定义了对该文件进行转化的loader类型。</p>
+<p>更多内容查看<a target="_blank" rel="noopener" href="https://webpack.js.org/loaders/">文档loader</a></p>
+<h4 id="插件（plugins）"><a href="#插件（plugins）" class="headerlink" title="插件（plugins）"></a>插件（plugins）</h4><p>插件（plugins）是一个具有apply属性的JavaScript对象，它可以实现比loader更强大的功能。在webpack配置中，需要向plugins属性传入new实例。插件需要先引入再使用。</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">const webpack &#x3D; require(&#39;webpack&#39;); &#x2F;&#x2F; 用于引用webpack内置插件</span><br><span class="line">const HtmlWebpackPlugin &#x3D; require(&#39;html-webpack-plugin&#39;); &#x2F;&#x2F; 外部插件</span><br><span class="line">const path &#x3D; require(&#39;path&#39;);</span><br><span class="line"></span><br><span class="line">module.exports &#x3D; &#123;</span><br><span class="line">  plugins: [</span><br><span class="line">    new webpack.HotModuleReplacementPlugin(),</span><br><span class="line">    new HtmlWebpackPlugin(&#123;template: &#39;.&#x2F;src&#x2F;index.html&#39;&#125;)</span><br><span class="line">  ]</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h4 id="loader和plugin的区别"><a href="#loader和plugin的区别" class="headerlink" title="loader和plugin的区别"></a>loader和plugin的区别</h4><ul>
+<li>loader是加载器，plugin是插件</li>
+<li>loader的作用是load各种资源文件，专注于转化文件。plugin插件是用来加强或者说扩展webpack功能的，它的功能更加丰富。比如loader可以用来加载JS文件，把JS文件转译成低版本浏览器可以支持的JS，它也可以加载CSS文件，把CSS文件变成页面上的style标签或者其他一些处理，它还可以加载图片文件，对图片进行一些优化。而plugin是加强webpack功能的，比如说html-webpack-plugin插件，它是用来生成HTML文件的，min-css-extract-plugin，它用来抽取CSS代码进行处理变成一个CSS文件。</li>
+</ul>
+<h4 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h4><ul>
+<li><a target="_blank" rel="noopener" href="https://webpack.js.org/concepts/">webpack英文文档</a></li>
+<li><a target="_blank" rel="noopener" href="https://webpack.docschina.org/concepts/">webpack中文文档</a></li>
+</ul>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/webpack/" rel="tag"># webpack</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2021/01/23/MVC%E5%88%9D%E8%AF%86/" rel="prev" title="MVC初识">
+                  <i class="fa fa-chevron-left"></i> MVC初识
+                </a>
+            </div>
+            <div class="post-nav-item">
+            </div>
+          </div>
+    </footer>
+  </article>
+  
+  
+  
+
+
+
+      
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      const activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      const commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+      
+
+      
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">yuzhu9</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/pisces/" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <script src="//cdn.jsdelivr.net/npm/animejs@3.2.0/lib/anime.min.js"></script>
+<script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>
