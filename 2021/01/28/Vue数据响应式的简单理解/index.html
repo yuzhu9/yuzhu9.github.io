@@ -1,0 +1,498 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.3.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.14.0/css/all.min.css">
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css">
+
+<script class="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"zhengyuan.xyz","root":"/","scheme":"Pisces","version":"8.0.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}};
+  </script>
+
+  <meta name="description" content="Vue数据响应式 Vue最独特的特性之一，是其非侵入性的响应式系统。数据模型仅仅是普通的JavaScript对象，而当你修改它们时，视图会进行更新。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Vue数据响应式的简单理解">
+<meta property="og:url" content="http://zhengyuan.xyz/2021/01/28/Vue%E6%95%B0%E6%8D%AE%E5%93%8D%E5%BA%94%E5%BC%8F%E7%9A%84%E7%AE%80%E5%8D%95%E7%90%86%E8%A7%A3/index.html">
+<meta property="og:site_name" content="玉竹的博客">
+<meta property="og:description" content="Vue数据响应式 Vue最独特的特性之一，是其非侵入性的响应式系统。数据模型仅仅是普通的JavaScript对象，而当你修改它们时，视图会进行更新。">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/yuzhu9/image@master/img/44.jpg">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/yuzhu9/image@master/img/v01.jpg">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/yuzhu9/image@master/img/v002.jpg">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/yuzhu9/image@master/img/v03.jpg">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/yuzhu9/image@master/img/v05.jpg">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/yuzhu9/image@master/img/v06.jpg">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/yuzhu9/image@master/img/v07.jpg">
+<meta property="article:published_time" content="2021-01-28T03:35:19.000Z">
+<meta property="article:modified_time" content="2021-01-29T00:39:55.634Z">
+<meta property="article:author" content="yuzhu9">
+<meta property="article:tag" content="Vue">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://cdn.jsdelivr.net/gh/yuzhu9/image@master/img/44.jpg">
+
+
+<link rel="canonical" href="http://zhengyuan.xyz/2021/01/28/Vue%E6%95%B0%E6%8D%AE%E5%93%8D%E5%BA%94%E5%BC%8F%E7%9A%84%E7%AE%80%E5%8D%95%E7%90%86%E8%A7%A3/">
+
+
+<script class="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>Vue数据响应式的简单理解 | 玉竹的博客</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  body { margin-top: 2rem; }
+
+  .use-motion .menu-item,
+  .use-motion .sidebar,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header {
+    visibility: visible;
+  }
+
+  .use-motion .header,
+  .use-motion .site-brand-container .toggle,
+  .use-motion .footer { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle,
+  .use-motion .custom-logo-image {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line {
+    transform: scaleX(1);
+  }
+
+  .search-pop-overlay, .sidebar-nav { display: none; }
+  .sidebar-panel { display: block; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <h1 class="site-title">玉竹的博客</h1>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <section class="post-toc-wrap sidebar-panel">
+          <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#Vue%E6%95%B0%E6%8D%AE%E5%93%8D%E5%BA%94%E5%BC%8F"><span class="nav-number">1.</span> <span class="nav-text">Vue数据响应式</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Vue%E6%95%B0%E6%8D%AE%E5%93%8D%E5%BA%94%E5%BC%8F%E7%9A%84%E7%AE%80%E5%8D%95%E7%90%86%E8%A7%A3"><span class="nav-number">2.</span> <span class="nav-text">Vue数据响应式的简单理解</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Vue%E7%9A%84BUG"><span class="nav-number">3.</span> <span class="nav-text">Vue的BUG</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#data%E4%B8%AD%E6%9C%89%E6%95%B0%E7%BB%84%E7%9A%84%E8%A7%A3%E5%86%B3%E5%8A%9E%E6%B3%95"><span class="nav-number">4.</span> <span class="nav-text">data中有数组的解决办法</span></a></li></ol></div>
+      </section>
+      <!--/noindex-->
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="yuzhu9"
+      src="/images/avatar.jpg">
+  <p class="site-author-name" itemprop="name">yuzhu9</p>
+  <div class="site-description" itemprop="description">逝者如斯夫，不舍昼夜</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">44</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">4</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">9</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/yuzhu9" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;yuzhu9" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:poly2014w@163.com" title="E-Mail → mailto:poly2014w@163.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+
+
+
+      </section>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+      
+
+      
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://zhengyuan.xyz/2021/01/28/Vue%E6%95%B0%E6%8D%AE%E5%93%8D%E5%BA%94%E5%BC%8F%E7%9A%84%E7%AE%80%E5%8D%95%E7%90%86%E8%A7%A3/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="yuzhu9">
+      <meta itemprop="description" content="逝者如斯夫，不舍昼夜">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="玉竹的博客">
+    </span>
+
+    
+    
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Vue数据响应式的简单理解
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2021-01-28 11:35:19" itemprop="dateCreated datePublished" datetime="2021-01-28T11:35:19+08:00">2021-01-28</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">更新于</span>
+        <time title="修改时间：2021-01-29 08:39:55" itemprop="dateModified" datetime="2021-01-29T08:39:55+08:00">2021-01-29</time>
+      </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E7%AC%94%E8%AE%B0/" itemprop="url" rel="index"><span itemprop="name">笔记</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <h4 id="Vue数据响应式"><a href="#Vue数据响应式" class="headerlink" title="Vue数据响应式"></a>Vue数据响应式</h4><blockquote>
+<p>Vue最独特的特性之一，是其非侵入性的响应式系统。数据模型仅仅是普通的JavaScript对象，而当你修改它们时，视图会进行更新。</p>
+</blockquote>
+<p><img src="https://cdn.jsdelivr.net/gh/yuzhu9/image@master/img/44.jpg"></p>
+<a id="more"></a>
+
+<h4 id="Vue数据响应式的简单理解"><a href="#Vue数据响应式的简单理解" class="headerlink" title="Vue数据响应式的简单理解"></a>Vue数据响应式的简单理解</h4><p>概括来说就是：Vue对传入的JS对象进行了代理和监听。通过Object.defineProperty方法遍历所有property，转化为getter/setter，从而可以实时监听property，数据发生变化时，调用render，对数据进行渲染，从而更新页面。</p>
+<blockquote>
+<p>当你把一个普通的 JavaScript 对象传入 Vue 实例作为 <code>data</code> 选项，Vue 将遍历此对象所有的 property，并使用 <a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Object/defineProperty"><code>Object.defineProperty</code></a> 把这些 property 全部转为 <a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Guide/Working_with_Objects#%E5%AE%9A%E4%B9%89_getters_%E4%B8%8E_setters">getter/setter</a>。</p>
+</blockquote>
+<p>先从一个简单的栗子来看看Vue对普通的JS对象做了什么</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">const data1 &#x3D; &#123;n: 1&#125; &#x2F;&#x2F;定义一个简单的对象，它只有一个property</span><br><span class="line">console.log(&#39;data1是&#39;)</span><br><span class="line">console.log(data1)&#x2F;&#x2F;在控制台打印出data1</span><br></pre></td></tr></table></figure>
+<p>得到如下结果：</p>
+<p><img src="https://cdn.jsdelivr.net/gh/yuzhu9/image@master/img/v01.jpg"></p>
+<p>data1就是一个普通的对象，它有一个数据属性n，接着把这个对象传入Vue实例</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">const vm &#x3D; new Vue (&#123;</span><br><span class="line">  data: data1</span><br><span class="line">&#125;)</span><br><span class="line">console.log(&#39;经过vue处理后的data1是&#39;)</span><br><span class="line">console.log(data1)</span><br></pre></td></tr></table></figure>
+<p>得到如下结果：</p>
+<p><img src="https://cdn.jsdelivr.net/gh/yuzhu9/image@master/img/v002.jpg"></p>
+<p>从上面两张图可以看出，很明显，data1对象发生了变化。根据Vue文档，是使用<code>Object.defineProperty</code>把property全部转为getter/setter。那就写一个最简单的把property转为getter/setter的函数</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">function xxx(data) &#123;</span><br><span class="line">    let value &#x3D; data.n &#x2F;&#x2F;用value来存data.n的原始值</span><br><span class="line">    Object.defineProperty(data, &#39;n&#39;, &#123;</span><br><span class="line">        get() &#123;</span><br><span class="line">            return value</span><br><span class="line">        &#125;,</span><br><span class="line">        set(val) &#123;</span><br><span class="line">           value &#x3D; val</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>接下来把data1作为参数传入xxx函数，然后打印出data1</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">xxx(data1)</span><br><span class="line">console.log(data1)</span><br></pre></td></tr></table></figure>
+<p>得到如下结果：</p>
+<p><img src="https://cdn.jsdelivr.net/gh/yuzhu9/image@master/img/v03.jpg"></p>
+<p>成功把data1的property（也就是n）变成了getter/setter。</p>
+<p>接下来再来关注一下JS对象属性的值，重新定义一个对象data2。像之前一样，把data2传入vue实例的data选项。把n的值显示在UI界面上，修改代码如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">let data2 &#x3D; &#123;n: 2&#125;</span><br><span class="line">let vm &#x3D; new Vue(&#123;</span><br><span class="line">	data: data2,</span><br><span class="line">	template:&#96;</span><br><span class="line">    &lt;div&gt;&#123;&#123;n&#125;&#125;&lt;&#x2F;div&gt;    </span><br><span class="line">	&#96;</span><br><span class="line">&#125;).$mount(&#39;#app&#39;)</span><br></pre></td></tr></table></figure>
+<p>可以看到，页面成功显示出n的值2</p>
+<p><img src="https://cdn.jsdelivr.net/gh/yuzhu9/image@master/img/v05.jpg"></p>
+<p>在上面的代码之后增加两行代码，把vm.n的值修改一下并打印出data2.n</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">vm.n &#x3D; 5</span><br><span class="line">console.log(data2.n)</span><br></pre></td></tr></table></figure>
+<p>此时，页面上的数字会不会变化呢？data2.n会不会同步变化呢</p>
+<p><img src="https://cdn.jsdelivr.net/gh/yuzhu9/image@master/img/v06.jpg"></p>
+<p>答案是：会！数字变化了，变成了5</p>
+<p>再修改一下代码，设置data2.n，同时打印出vm.n</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">data2.n &#x3D; 10</span><br><span class="line">console.log(vm.n)</span><br></pre></td></tr></table></figure>
+<p>数字变成了10</p>
+<p><img src="https://cdn.jsdelivr.net/gh/yuzhu9/image@master/img/v07.jpg"></p>
+<p>也就是说，对data2的n进行读和写，与对vm的n进行读和写是完全同步的。这是因为vm实例是data2对象的代理。写一个最简单的代理函数</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">function proxy(data) &#123;</span><br><span class="line">    const obj &#x3D; &#123;&#125;</span><br><span class="line">    Object.defineProperty(obj, &#39;n&#39;, &#123;</span><br><span class="line">        get() &#123;</span><br><span class="line">            return data.n</span><br><span class="line">        &#125;,</span><br><span class="line">        set(val) &#123;</span><br><span class="line">            data.n &#x3D; val</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;)</span><br><span class="line">    return obj</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>重新定义一个data3对象，把data3传入proxy函数，返回的obj赋值给yyy，那么yyy就是data3的代理</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">let data3 &#x3D; &#123;n: 3&#125;</span><br><span class="line">let yyy &#x3D; proxy(data3)</span><br><span class="line">console.log(yyy.n)&#x2F;&#x2F;打印出3</span><br></pre></td></tr></table></figure>
+<p>我们把这个代理函数和前面将property转为getter/setter的函数结合起来，组成一个函数，也就是在一个函数内完成将一个对象的property转为getter/setter，并为它设置一个代理，最后返回这个代理对象</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">function proxy(data) &#123;</span><br><span class="line">    let value &#x3D; data.n &#x2F;&#x2F;用value来存data.n的原始值</span><br><span class="line">    Object.defineProperty(data, &#39;n&#39;, &#123;</span><br><span class="line">        get() &#123;</span><br><span class="line">            return value</span><br><span class="line">        &#125;,</span><br><span class="line">        set(val) &#123;</span><br><span class="line">           value &#x3D; val</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;)</span><br><span class="line">    const obj &#x3D; &#123;&#125;</span><br><span class="line">    Object.defineProperty(obj, &#39;n&#39;, &#123;</span><br><span class="line">        get() &#123;</span><br><span class="line">            return data.n</span><br><span class="line">        &#125;,</span><br><span class="line">        set(val) &#123;</span><br><span class="line">            data.n &#x3D; val</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;)</span><br><span class="line">    return obj</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><code>vm = new Vue(&#123;data: myData&#125;)</code>这句代码对myData进行了如下处理：</p>
+<ol>
+<li>会让vm称为myData的代理</li>
+<li>会对myData的所有属性进行监控，这样myData的属性发生变化，vm就可以调用render进行UI界面渲染</li>
+</ol>
+<h4 id="Vue的BUG"><a href="#Vue的BUG" class="headerlink" title="Vue的BUG"></a>Vue的BUG</h4><p>Vue无法检测property的添加或移除，Vue在对实例进行初始化时对property执行getter/setter转化，property必须在data对象上存在才能监听，才能把它转换为响应式。</p>
+<p>解决的办法：</p>
+<ul>
+<li><p>把对象的所有key都声明好，不要新增key</p>
+</li>
+<li><p>如果做不到不新增key，就使用Vue.set或者this.$set来新增key，Vue.set的作用是：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">新增key</span><br><span class="line">自动创建代理和监听</span><br><span class="line">触发UI更新（但不会立即更新）</span><br></pre></td></tr></table></figure>
+<h4 id="data中有数组的解决办法"><a href="#data中有数组的解决办法" class="headerlink" title="data中有数组的解决办法"></a>data中有数组的解决办法</h4></li>
+</ul>
+<p>因为没法对数组提前声明所有key，vue也不能检测是否新增了下标，使用Vue.set太麻烦，因此Vue提供了7个API用于数组。</p>
+<ul>
+<li>push()</li>
+<li>unshift()</li>
+<li>shift()</li>
+<li>pop()</li>
+<li>splice()</li>
+<li>sort()</li>
+<li>reverse()</li>
+</ul>
+<p>这7个API是对原来数组方法进行了一定的修改，它调用了数组原型的方法，也添加了Vue自己的处理。用这些方法对数组进行处理，也会触发视图更新</p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/Vue/" rel="tag"># Vue</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2021/01/25/Vue%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" rel="prev" title="Vue学习笔记">
+                  <i class="fa fa-chevron-left"></i> Vue学习笔记
+                </a>
+            </div>
+            <div class="post-nav-item">
+            </div>
+          </div>
+    </footer>
+  </article>
+  
+  
+  
+
+
+
+      
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      const activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      const commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+      
+
+      
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">yuzhu9</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/pisces/" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <script src="//cdn.jsdelivr.net/npm/animejs@3.2.0/lib/anime.min.js"></script>
+<script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>
