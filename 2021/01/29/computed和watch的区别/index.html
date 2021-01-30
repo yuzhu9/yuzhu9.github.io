@@ -22,23 +22,26 @@
     var CONFIG = {"hostname":"zhengyuan.xyz","root":"/","scheme":"Pisces","version":"8.0.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}};
   </script>
 
-  <meta name="description" content="相关概念 带有片段标识符的URI链接到文档中某一个元素 ，被称为是目标元素。:target 选择器可用于选取当前活动的目标元素。">
+  <meta name="description" content="computedcomputed是计算属性，使用时不需要加()，可以当属性用，它会根据依赖自动缓存，如果依赖不变，computed的值就不会重新计算。">
 <meta property="og:type" content="article">
-<meta property="og:title" content=":target伪类">
-<meta property="og:url" content="http://zhengyuan.xyz/2017/05/08/target%E4%BC%AA%E7%B1%BB/index.html">
+<meta property="og:title" content="computed和watch的区别">
+<meta property="og:url" content="http://zhengyuan.xyz/2021/01/29/computed%E5%92%8Cwatch%E7%9A%84%E5%8C%BA%E5%88%AB/index.html">
 <meta property="og:site_name" content="玉竹的博客">
-<meta property="og:description" content="相关概念 带有片段标识符的URI链接到文档中某一个元素 ，被称为是目标元素。:target 选择器可用于选取当前活动的目标元素。">
+<meta property="og:description" content="computedcomputed是计算属性，使用时不需要加()，可以当属性用，它会根据依赖自动缓存，如果依赖不变，computed的值就不会重新计算。">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://cdn.jsdelivr.net/gh/yuzhu9/image@master/img/5.jpg">
-<meta property="article:published_time" content="2017-05-08T15:19:43.000Z">
-<meta property="article:modified_time" content="2017-05-08T15:19:43.000Z">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/yuzhu9/image@master/img/42.jpg">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/yuzhu9/image@master/img/computed.jpg">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/yuzhu9/image@master/img/watch.jpg">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/yuzhu9/image@master/img/window01.jpg">
+<meta property="article:published_time" content="2021-01-29T06:48:17.000Z">
+<meta property="article:modified_time" content="2021-01-30T05:08:22.114Z">
 <meta property="article:author" content="yuzhu9">
-<meta property="article:tag" content="CSS">
+<meta property="article:tag" content="Vue">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://cdn.jsdelivr.net/gh/yuzhu9/image@master/img/5.jpg">
+<meta name="twitter:image" content="https://cdn.jsdelivr.net/gh/yuzhu9/image@master/img/42.jpg">
 
 
-<link rel="canonical" href="http://zhengyuan.xyz/2017/05/08/target%E4%BC%AA%E7%B1%BB/">
+<link rel="canonical" href="http://zhengyuan.xyz/2021/01/29/computed%E5%92%8Cwatch%E7%9A%84%E5%8C%BA%E5%88%AB/">
 
 
 <script class="page-configurations">
@@ -51,7 +54,7 @@
   };
 </script>
 
-  <title>:target伪类 | 玉竹的博客</title>
+  <title>computed和watch的区别 | 玉竹的博客</title>
   
 
 
@@ -178,7 +181,7 @@
 
       <!--noindex-->
       <section class="post-toc-wrap sidebar-panel">
-          <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%9B%B8%E5%85%B3%E6%A6%82%E5%BF%B5"><span class="nav-number">1.</span> <span class="nav-text">相关概念</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AE%80%E5%8D%95%E7%A4%BA%E4%BE%8B"><span class="nav-number">2.</span> <span class="nav-text">简单示例</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%80%E4%BA%9B%E9%BB%91%E7%A7%91%E6%8A%80"><span class="nav-number">3.</span> <span class="nav-text">一些黑科技</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8F%82%E8%80%83%E8%B5%84%E6%96%99"><span class="nav-number">4.</span> <span class="nav-text">参考资料</span></a></li></ol></div>
+          <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#computed"><span class="nav-number">1.</span> <span class="nav-text">computed</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#watch"><span class="nav-number">2.</span> <span class="nav-text">watch</span></a></li></ol></div>
       </section>
       <!--/noindex-->
 
@@ -251,7 +254,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://zhengyuan.xyz/2017/05/08/target%E4%BC%AA%E7%B1%BB/">
+    <link itemprop="mainEntityOfPage" href="http://zhengyuan.xyz/2021/01/29/computed%E5%92%8Cwatch%E7%9A%84%E5%8C%BA%E5%88%AB/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.jpg">
@@ -267,7 +270,7 @@
     
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          :target伪类
+          computed和watch的区别
         </h1>
 
         <div class="post-meta-container">
@@ -278,8 +281,15 @@
       </span>
       <span class="post-meta-item-text">发表于</span>
 
-      <time title="创建时间：2017-05-08 23:19:43" itemprop="dateCreated datePublished" datetime="2017-05-08T23:19:43+08:00">2017-05-08</time>
+      <time title="创建时间：2021-01-29 14:48:17" itemprop="dateCreated datePublished" datetime="2021-01-29T14:48:17+08:00">2021-01-29</time>
     </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">更新于</span>
+        <time title="修改时间：2021-01-30 13:08:22" itemprop="dateModified" datetime="2021-01-30T13:08:22+08:00">2021-01-30</time>
+      </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
         <i class="far fa-folder"></i>
@@ -300,27 +310,24 @@
     
     
     <div class="post-body" itemprop="articleBody">
-        <h2 id="相关概念"><a href="#相关概念" class="headerlink" title="相关概念"></a>相关概念</h2><blockquote>
-<p>带有片段标识符的URI链接到文档中某一个元素 ，被称为是目标元素。:target 选择器可用于选取当前活动的目标元素。</p>
-</blockquote>
-<p><img src="https://cdn.jsdelivr.net/gh/yuzhu9/image@master/img/5.jpg"></p>
+        <h4 id="computed"><a href="#computed" class="headerlink" title="computed"></a>computed</h4><p>computed是计算属性，使用时不需要加()，可以当属性用，它会根据依赖自动缓存，如果依赖不变，computed的值就不会重新计算。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/yuzhu9/image@master/img/42.jpg"></p>
 <a id="more"></a>
-<h2 id="简单示例"><a href="#简单示例" class="headerlink" title="简单示例"></a>简单示例</h2><p>以下代码示例，当鼠标点击a标签，p标签的文字就会变成红色。因为id为demo的p元素是目标元素。当点击a标签时，目标元素p就是当前活动的目标元素，target伪类就会匹配到这个元素，设置的样式就会生效。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">html:</span><br><span class="line">  &lt;a href&#x3D;&quot;#demo&quot;&gt;a标签&lt;&#x2F;a&gt;</span><br><span class="line">  &lt;p id&#x3D;&quot;demo&quot;&gt;这是一个段落&lt;&#x2F;p&gt;</span><br><span class="line"></span><br><span class="line">CSS:</span><br><span class="line">#demo:target &#123;color: red;&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="一些黑科技"><a href="#一些黑科技" class="headerlink" title="一些黑科技"></a>一些黑科技</h2><ul>
-<li><p><a target="_blank" rel="noopener" href="http://demo.bitsofco.de/the-target-trick/hide-show.html#">隐藏或显示元素</a></p>
-</li>
-<li><p><a target="_blank" rel="noopener" href="http://demo.bitsofco.de/the-target-trick/slide-out.html#">侧边栏抽屉式导航</a></p>
-</li>
-<li><p><a target="_blank" rel="noopener" href="http://demo.bitsofco.de/the-target-trick/modal.html#">弹出式模态框</a></p>
-</li>
-<li><p><a target="_blank" rel="noopener" href="http://demo.bitsofco.de/the-target-trick/body.html#">改变全局样式</a></p>
-</li>
-</ul>
-<h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><ul>
-<li><a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Web/Guide/CSS/Using_the_:target_selector">在选择器中使用:target伪类 MDN</a></li>
-<li><a target="_blank" rel="noopener" href="http://webres.wang/the-css-target-trick/">CSS 伪类 :target 的黑科技</a></li>
-</ul>
+
+<p>栗子：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">new Vue(&#123;</span><br><span class="line">    data: &#123;</span><br><span class="line">        message: &#39;hello&#39;</span><br><span class="line">    &#125;,</span><br><span class="line">    template:&#96;</span><br><span class="line">        &lt;div&gt;</span><br><span class="line">            &lt;p&gt;&#123;&#123;message&#125;&#125;&lt;&#x2F;p&gt;</span><br><span class="line">            &lt;p&gt;&#123;&#123;reverseMessage&#125;&#125;&lt;&#x2F;p&gt;</span><br><span class="line">       &lt;&#x2F;div&gt;</span><br><span class="line">    &#96;,</span><br><span class="line">    computed: &#123;</span><br><span class="line">        reverseMessage()&#123;</span><br><span class="line">            return this.message.split(&#39;&#39;).reverse().join(&#39;&#39;)</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;).$mount(&#39;#app&#39;)</span><br></pre></td></tr></table></figure>
+<p>页面显示结果是:</p>
+<p><img src="https://cdn.jsdelivr.net/gh/yuzhu9/image@master/img/computed.jpg"></p>
+<p>计算属性默认只有getter，可以设置setter</p>
+<h4 id="watch"><a href="#watch" class="headerlink" title="watch"></a>watch</h4><p>watch是用来监听的，当需要在数据变化时执行异步或者开销较大的操作时，使用watch。watch有两个选项，一个选项是immediate，表示是否在第一次渲染时执行这个函数，还有一个选项是deep，表示如果监听一个对象，是否要监听这个对象内部值的变化。watch是如果某个属性变化了，就会去执行一个函数。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">new Vue(&#123;</span><br><span class="line">    data: &#123;</span><br><span class="line">        n: 0,</span><br><span class="line">        obj: &#123;</span><br><span class="line">            a: &#39;a&#39;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;,</span><br><span class="line">    template: &#96;</span><br><span class="line">        &lt;div&gt;</span><br><span class="line">            &lt;button @click&#x3D;&#39;n +&#x3D; 1&#39;&gt;n+1&lt;&#x2F;button&gt;</span><br><span class="line">            &lt;button @click&#x3D;&#39;obj.a +&#x3D; &quot;hi&quot;&#39;&gt;obj.a + &quot;hi&quot;&lt;&#x2F;button&gt;</span><br><span class="line">            &lt;button @click&#x3D;&#39;obj &#x3D; &#123;a: &quot;a&quot;&#125;&#39;&gt;obj &#x3D; 新对象&lt;&#x2F;button&gt;</span><br><span class="line">       &lt;&#x2F;div&gt;</span><br><span class="line">    &#96;,</span><br><span class="line">    watch: &#123;</span><br><span class="line">        n() &#123;</span><br><span class="line">            console.log(&#39;n变了&#39;)</span><br><span class="line">        &#125;,</span><br><span class="line">        obj() &#123;</span><br><span class="line">            console.log(&#39;obj变了&#39;)</span><br><span class="line">        &#125;,</span><br><span class="line">        &#39;obj.a&#39;: function () &#123;</span><br><span class="line">            console.log(&#39;obj.a变了&#39;)</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;).$mount(&#39;#app&#39;)</span><br></pre></td></tr></table></figure>
+<p>控制台显示如下：</p>
+<p><img src="https://cdn.jsdelivr.net/gh/yuzhu9/image@master/img/watch.jpg"></p>
+<p>watch监听的规则就是简单类型看值，复杂类型（对象）看地址</p>
+<p>watch函数不要使用箭头函数，因为箭头函数是没有this的。在箭头函数中使用this，this不会指向Vue实例，而是指向箭头函数的外层函数，例如下面的栗子：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">new Vue(&#123;</span><br><span class="line">    data: &#123;</span><br><span class="line">        n: 0,</span><br><span class="line">        obj: &#123;</span><br><span class="line">            a: &#39;a&#39;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;,</span><br><span class="line">    template: &#96;</span><br><span class="line">        &lt;div&gt;&#123;&#123;n&#125;&#125;&lt;button @click&#x3D;&#39;n +&#x3D; 1&#39;&gt;+1&lt;&#x2F;button&gt;&lt;&#x2F;div&gt;</span><br><span class="line">    &#96;,</span><br><span class="line">    watch: &#123;</span><br><span class="line">        n: () &#x3D;&gt; &#123;</span><br><span class="line">            console.log(this)</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;).$mount(&#39;#app&#39;)</span><br></pre></td></tr></table></figure>
+<p>this指向的是箭头函数的外层函数，栗子中的箭头函数没有外层函数，就指向了全局对象，window或者global。在浏览器中全局对象就是window。所以当点击页面上的+1按钮，控制台会打印出window</p>
+<p><img src="https://cdn.jsdelivr.net/gh/yuzhu9/image@master/img/window01.jpg"></p>
 
     </div>
 
@@ -330,21 +337,18 @@
 
     <footer class="post-footer">
           <div class="post-tags">
-              <a href="/tags/CSS/" rel="tag"># CSS</a>
+              <a href="/tags/Vue/" rel="tag"># Vue</a>
           </div>
 
         
 
           <div class="post-nav">
             <div class="post-nav-item">
-                <a href="/2017/05/07/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-CSS%E9%80%89%E6%8B%A9%E5%99%A8/" rel="prev" title="学习笔记-CSS选择器">
-                  <i class="fa fa-chevron-left"></i> 学习笔记-CSS选择器
+                <a href="/2021/01/28/Vue%E6%95%B0%E6%8D%AE%E5%93%8D%E5%BA%94%E5%BC%8F%E7%9A%84%E7%AE%80%E5%8D%95%E7%90%86%E8%A7%A3/" rel="prev" title="Vue数据响应式的简单理解">
+                  <i class="fa fa-chevron-left"></i> Vue数据响应式的简单理解
                 </a>
             </div>
             <div class="post-nav-item">
-                <a href="/2017/05/16/CSS%E7%BB%A7%E6%89%BF%E5%B1%9E%E6%80%A7%E5%B0%8F%E7%BB%93/" rel="next" title="CSS继承属性小结">
-                  CSS继承属性小结 <i class="fa fa-chevron-right"></i>
-                </a>
             </div>
           </div>
     </footer>
