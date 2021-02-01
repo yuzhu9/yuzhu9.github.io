@@ -188,7 +188,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">47</span>
+          <span class="site-state-item-count">48</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -244,7 +244,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://zhengyuan.xyz/2021/02/01/%E4%BF%AE%E9%A5%B0%E7%AC%A6sync%E7%9A%84%E7%AE%80%E5%8D%95%E7%90%86%E8%A7%A3/">
+    <link itemprop="mainEntityOfPage" href="http://zhengyuan.xyz/2021/02/01/Vue%E6%9E%84%E9%80%A0%E9%80%89%E9%A1%B9Directive-Mixin-Extends-Provide-Inject/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.jpg">
@@ -261,7 +261,94 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2021/02/01/%E4%BF%AE%E9%A5%B0%E7%AC%A6sync%E7%9A%84%E7%AE%80%E5%8D%95%E7%90%86%E8%A7%A3/" class="post-title-link" itemprop="url">修饰符sync的简单理解</a>
+            <a href="/2021/02/01/Vue%E6%9E%84%E9%80%A0%E9%80%89%E9%A1%B9Directive-Mixin-Extends-Provide-Inject/" class="post-title-link" itemprop="url">Vue构造选项Directive/Mixin/Extends/Provide/Inject</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2021-02-01 07:18:47" itemprop="dateCreated datePublished" datetime="2021-02-01T07:18:47+08:00">2021-02-01</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">更新于</span>
+        <time title="修改时间：2021-02-02 04:08:00" itemprop="dateModified" datetime="2021-02-02T04:08:00+08:00">2021-02-02</time>
+      </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E7%AC%94%E8%AE%B0/" itemprop="url" rel="index"><span itemprop="name">笔记</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h4 id="Directives"><a href="#Directives" class="headerlink" title="Directives"></a>Directives</h4><p>Vue中以<code>v-</code>开头的都是指令，Vue有一部分内置指令，也可以自己造指令</p>
+<p><img src="https://cdn.jsdelivr.net/gh/yuzhu9/image@master/img/46.jpg"></p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2021/02/01/Vue%E6%9E%84%E9%80%A0%E9%80%89%E9%A1%B9Directive-Mixin-Extends-Provide-Inject/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://zhengyuan.xyz/2021/02/01/Vue%E4%BF%AE%E9%A5%B0%E7%AC%A6sync%E7%9A%84%E7%AE%80%E5%8D%95%E7%90%86%E8%A7%A3/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="yuzhu9">
+      <meta itemprop="description" content="逝者如斯夫，不舍昼夜">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="玉竹的博客">
+    </span>
+
+    
+    
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/02/01/Vue%E4%BF%AE%E9%A5%B0%E7%AC%A6sync%E7%9A%84%E7%AE%80%E5%8D%95%E7%90%86%E8%A7%A3/" class="post-title-link" itemprop="url">Vue修饰符sync的简单理解</a>
         </h2>
 
         <div class="post-meta-container">
@@ -273,7 +360,7 @@
       <span class="post-meta-item-text">发表于</span>
       
 
-      <time title="创建时间：2021-02-01 02:26:34 / 修改时间：04:34:59" itemprop="dateCreated datePublished" datetime="2021-02-01T02:26:34+08:00">2021-02-01</time>
+      <time title="创建时间：2021-02-01 02:26:34 / 修改时间：07:19:29" itemprop="dateCreated datePublished" datetime="2021-02-01T02:26:34+08:00">2021-02-01</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -299,7 +386,7 @@
 <p><img src="https://cdn.jsdelivr.net/gh/yuzhu9/image@master/img/45.jpg"></p>
           <!--noindex-->
             <div class="post-button">
-              <a class="btn" href="/2021/02/01/%E4%BF%AE%E9%A5%B0%E7%AC%A6sync%E7%9A%84%E7%AE%80%E5%8D%95%E7%90%86%E8%A7%A3/#more" rel="contents">
+              <a class="btn" href="/2021/02/01/Vue%E4%BF%AE%E9%A5%B0%E7%AC%A6sync%E7%9A%84%E7%AE%80%E5%8D%95%E7%90%86%E8%A7%A3/#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -993,93 +1080,6 @@
           <!--noindex-->
             <div class="post-button">
               <a class="btn" href="/2021/01/13/DOM%E4%BA%8B%E4%BB%B6%E6%9C%BA%E5%88%B6%E4%B9%8B%E5%86%92%E6%B3%A1%E5%92%8C%E6%8D%95%E8%8E%B7/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://zhengyuan.xyz/2021/01/13/jQuery%E7%AC%94%E8%AE%B0/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.jpg">
-      <meta itemprop="name" content="yuzhu9">
-      <meta itemprop="description" content="逝者如斯夫，不舍昼夜">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="玉竹的博客">
-    </span>
-
-    
-    
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2021/01/13/jQuery%E7%AC%94%E8%AE%B0/" class="post-title-link" itemprop="url">jQuery笔记</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2021-01-13 07:07:42" itemprop="dateCreated datePublished" datetime="2021-01-13T07:07:42+08:00">2021-01-13</time>
-    </span>
-      <span class="post-meta-item">
-        <span class="post-meta-item-icon">
-          <i class="far fa-calendar-check"></i>
-        </span>
-        <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2021-01-14 00:01:38" itemprop="dateModified" datetime="2021-01-14T00:01:38+08:00">2021-01-14</time>
-      </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/%E7%AC%94%E8%AE%B0/" itemprop="url" rel="index"><span itemprop="name">笔记</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <p>jQuery是到目前为止全球使用最广泛，寿命最长的JavaScript库</p>
-<p><img src="https://cdn.jsdelivr.net/gh/yuzhu9/image@master/img/37.jpg"></p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2021/01/13/jQuery%E7%AC%94%E8%AE%B0/#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
